@@ -65,7 +65,7 @@ public class StartFrame implements Initializable {
 
 	private void showTable() {
 		DboBatchesDaoImpl dbo = new DboBatchesDaoImpl();
-		LinkedList<DboBatchesEntity> allBatchesRows = dbo.loadByAllBatches();
+		LinkedList<DboBatchesEntity> allBatchesRows = dbo.loadAllBatches();
 
 		convertNull(allBatchesRows);
 

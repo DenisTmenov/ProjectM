@@ -27,7 +27,7 @@ public class DboBatchesDaoImpl implements DboBatchesDao {
 	}
 
 	@Override
-	public LinkedList<DboBatchesEntity> loadByAllBatches() {
+	public LinkedList<DboBatchesEntity> loadAllBatches() {
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet set = null;

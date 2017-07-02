@@ -13,6 +13,6 @@ public interface DboBatchesDao {
 
 	void remove(Integer batchId) throws SqlException;
 	
-	public LinkedList<DboBatchesEntity> loadByAllBatches();
+	public LinkedList<DboBatchesEntity> loadAllBatches();
 
 }
