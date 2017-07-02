@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import com.project.m.dao.sql.DboBatchesDaoImpl;
 import com.project.m.entity.DboBatchesEntity;
+import com.project.m.utils.StringUtils;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -31,6 +32,9 @@ public class StartFrame implements Initializable {
 	private void showTable() {
 		DboBatchesDaoImpl dbo = new DboBatchesDaoImpl();
 		LinkedList<DboBatchesEntity> allBatchesRows = dbo.loadByAllBatches();
+		
+		convertNull(allBatchesRows);
+		
         ObservableList<DboBatchesEntity> batchesOblist = FXCollections.observableArrayList();
         batchesOblist.addAll(allBatchesRows);
        
@@ -42,5 +46,12 @@ public class StartFrame implements Initializable {
         //jobCountColumn.setCellValueFactory(cellData -> cellData.getValue().get);
         
         batchTable.setItems(batchesOblist);
+	}
+	
+	private LinkedList<DboBatchesEntity> convertNull(LinkedList<DboBatchesEntity> list){
+		for(DboBatchesEntity entity : list) {
+			entity.setBatchesName(StringUtils.convertNullToSpace(entity.getBatchesName()));
+		}
+		return list;
 	}
 }
