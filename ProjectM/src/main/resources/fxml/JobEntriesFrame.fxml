@@ -13,8 +13,8 @@ fx:controller="com.project.m.frame.JobEntriesFrame">
             <TableView fx:id="batchTable" stylesheets="@../style/projectStyle.css">
               <columns>
                 <TableColumn fx:id="entryIdColumn" prefWidth="75.0" styleClass="columnRight" text="Entry id" />
-                <TableColumn fx:id="itemStatusColumn" prefWidth="75.0" text="Item Status" />
-                <TableColumn fx:id="mailboxColumn" prefWidth="75.0" text="Mailbox" />
+                <TableColumn fx:id="jobIdColumn" prefWidth="75.0" text="Item Status" />
+                <TableColumn fx:id="itemStatuColumn" prefWidth="75.0" text="Mailbox" />
               </columns>
             </TableView>
          </content>

@@ -4,8 +4,8 @@ import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 
-import com.project.m.dao.sql.DboBatchesDaoImpl;
-import com.project.m.entity.DboBatchesEntity;
+import com.project.m.dao.sql.DboJobEntriesDaoImpl;
+import com.project.m.entity.DboJobEntriesEntity;
 import com.project.m.utils.StringUtils;
 
 import javafx.collections.FXCollections;
@@ -19,10 +19,10 @@ import javafx.scene.control.cell.TextFieldTableCell;
 public class JobEntriesFrame implements Initializable {
 
 	@FXML
-	private TableColumn<DboBatchesEntity, String> batchIdColumn, batchNameColumn, jobCountColumn;
+	private TableColumn<DboJobEntriesEntity, String> entryIdColumn, jobIdColumn, itemStatuColumn;
 
 	@FXML
-	private TableView<DboBatchesEntity> batchTable;
+	private TableView<DboJobEntriesEntity> batchTable;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -30,27 +30,28 @@ public class JobEntriesFrame implements Initializable {
 	}
 
 	private void showTable() {
-		/*DboBatchesDaoImpl dbo = new DboBatchesDaoImpl();
-		LinkedList<DboBatchesEntity> allBatchesRows = dbo.loadByAllBatches();
+		Integer batchId = StartFrame.getBatchId();
+		DboJobEntriesDaoImpl dbo = new DboJobEntriesDaoImpl();
+		LinkedList<DboJobEntriesEntity> jobEntriesRows = dbo.loadEntriesByBatchId(batchId);
 
-		convertNull(allBatchesRows);
+		//convertNull(allBatchesRows);
 
-		ObservableList<DboBatchesEntity> batchesOblist = FXCollections.observableArrayList();
-		batchesOblist.addAll(allBatchesRows);
+		ObservableList<DboJobEntriesEntity> jobEntriesOblist = FXCollections.observableArrayList();
+		jobEntriesOblist.addAll(jobEntriesRows);
 
-		batchIdColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		batchIdColumn.setCellValueFactory(cellData -> cellData.getValue().getBatchesIdSimple());
-		batchNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		batchNameColumn.setCellValueFactory(cellData -> cellData.getValue().getBatchesNameSimple());
+		entryIdColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+		entryIdColumn.setCellValueFactory(cellData -> cellData.getValue().getEntryIdSimple());
+		jobIdColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+		jobIdColumn.setCellValueFactory(cellData -> cellData.getValue().getJobIdSimple());
 
-		batchTable.setItems(batchesOblist);*/
+		batchTable.setItems(jobEntriesOblist);
 	}
 
-	private LinkedList<DboBatchesEntity> convertNull(LinkedList<DboBatchesEntity> list) {
-		for (DboBatchesEntity entity : list) {
+	/*private LinkedList<DboJobEntriesEntity> convertNull(LinkedList<DboJobEntriesEntity> list) {
+		for (DboJobEntriesEntity entity : list) {
 			entity.setBatchesName(StringUtils.convertNullToSpace(entity.getBatchesName()));
 		}
 		return list;
-	}
+	}*/
 
 }

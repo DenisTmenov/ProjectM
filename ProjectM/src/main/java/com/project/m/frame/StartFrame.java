@@ -19,6 +19,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
@@ -29,6 +30,8 @@ public class StartFrame implements Initializable {
 	private Stage dialogWindow;
 	private Parent JobEntriesFrame;
 	private Scene jobEntriesScene;
+
+	private static Integer batchId;
 
 	@FXML
 	private TableColumn<DboBatchesEntity, String> batchIdColumn, batchNameColumn, jobCountColumn;
@@ -44,6 +47,13 @@ public class StartFrame implements Initializable {
 			@Override
 			public void handle(MouseEvent event) {
 				if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+					// problem (51 row): "Type safety: Unchecked cast from TablePosition to TablePosition<DboBatchesEntity,String>"
+					TablePosition<DboBatchesEntity, String> pos = (TablePosition<DboBatchesEntity, String>) batchTable.getSelectionModel().getSelectedCells().get(0);
+					int index = pos.getRow();
+					Integer batchId = batchTable.getItems().get(index).getBatchesId();
+					
+					setBatchId(batchId);
+
 					dialogWindow = new Stage();
 					dialogWindow.setTitle("JobEntries");
 					FXMLLoader loader = new FXMLLoader();
@@ -87,6 +97,14 @@ public class StartFrame implements Initializable {
 			entity.setBatchesName(StringUtils.convertNullToSpace(entity.getBatchesName()));
 		}
 		return list;
+	}
+
+	public static Integer getBatchId() {
+		return batchId;
+	}
+
+	private void setBatchId(Integer batchIdnew) {
+		batchId = batchIdnew;
 	}
 
 }
