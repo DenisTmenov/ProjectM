@@ -8,22 +8,28 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
+import com.project.m.frame.exceptions.ExceptionFrame;
+
 public class Main extends Application {
+
+	private Stage windows;
+	private Parent page;
+	private Scene sceneBatchTable;
+	
 
 	@Override
 	public void start(Stage Stage) {
+		windows = Stage;
+		windows.setTitle("ProjectM");
 		try {
-			Stage mainStage = new Stage();
-			mainStage.setTitle("ProjectM");
-			Parent page = FXMLLoader.load(getClass().getResource("/fxml/StartFrame.fxml"));
-			Scene scene = new Scene(page);
-			mainStage.setScene(scene);
-			mainStage.setResizable(false);
-			mainStage.show();
+			page = FXMLLoader.load(getClass().getResource("/fxml/StartFrame.fxml"));
 		} catch (IOException e) {
-			System.out.println("Problem in LOADER DB");
-			e.printStackTrace();
+			throw new ExceptionFrame("Problem in LOADER StartFrame.fxml", e);
 		}
+		sceneBatchTable = new Scene(page);
+		windows.setScene(sceneBatchTable);
+		windows.setResizable(false);
+		windows.show();
 
 	}
 
