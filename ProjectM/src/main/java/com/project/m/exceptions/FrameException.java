@@ -1,4 +1,4 @@
-package com.project.m.frame.exceptions;
+package com.project.m.exceptions;
 
 public class FrameException extends RuntimeException {
 

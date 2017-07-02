@@ -1,4 +1,4 @@
-package com.project.m.dao.exception;
+package com.project.m.exceptions;
 
 public class SqlException extends RuntimeException {
 

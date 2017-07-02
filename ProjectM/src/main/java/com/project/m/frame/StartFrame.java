@@ -7,7 +7,7 @@ import java.util.ResourceBundle;
 
 import com.project.m.dao.sql.DboBatchesDaoImpl;
 import com.project.m.entity.DboBatchesEntity;
-import com.project.m.frame.exceptions.ExceptionFrame;
+import com.project.m.exceptions.FrameException;
 import com.project.m.utils.StringUtils;
 
 import javafx.collections.FXCollections;
@@ -51,7 +51,7 @@ public class StartFrame implements Initializable {
 					try {
 						JobEntriesFrame = loader.load();
 					} catch (IOException e) {
-						throw new ExceptionFrame("Problem in LOADER StartFrame.fxml", e);
+						throw new FrameException("Problem in LOADER StartFrame.fxml", e);
 					}
 					jobEntriesScene = new Scene(JobEntriesFrame);
 					dialogWindow.setScene(jobEntriesScene);

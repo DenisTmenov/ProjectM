@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-import com.project.m.frame.exceptions.ExceptionFrame;
+import com.project.m.exceptions.FrameException;
 
 public class Main extends Application {
 
@@ -24,7 +24,7 @@ public class Main extends Application {
 		try {
 			page = FXMLLoader.load(getClass().getResource("/fxml/StartFrame.fxml"));
 		} catch (IOException e) {
-			throw new ExceptionFrame("Problem in LOADER StartFrame.fxml", e);
+			throw new FrameException("Problem in LOADER StartFrame.fxml", e);
 		}
 		sceneBatchTable = new Scene(page);
 		windows.setScene(sceneBatchTable);
