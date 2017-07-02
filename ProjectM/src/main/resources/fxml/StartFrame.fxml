@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="table" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.m.frame.StartFrame">
+   <children>
+      <ScrollPane prefHeight="200.0" prefWidth="290.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <content>
+            <TableView fx:id="batchTable" stylesheets="@../style/projectStyle.css">
+              <columns>
+                <TableColumn fx:id="batchIdColumn" prefWidth="75.0" styleClass="columnRight" text="Batch id" />
+                <TableColumn fx:id="batchNameColumn" prefWidth="75.0" text="Batch name" />
+                  <TableColumn fx:id="jobCountColumn" prefWidth="75.0" text="Job count" />
+              </columns>
+            </TableView>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

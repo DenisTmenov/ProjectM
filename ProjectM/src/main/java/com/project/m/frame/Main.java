@@ -15,7 +15,7 @@ public class Main extends Application {
 		try {
 			Stage mainStage = new Stage();
 			mainStage.setTitle("ProjectM");
-			Parent page = FXMLLoader.load(getClass().getResource("/com/project/m/controllers/StartFrame.fxml"));
+			Parent page = FXMLLoader.load(getClass().getResource("/fxml/StartFrame.fxml"));
 			Scene scene = new Scene(page);
 			mainStage.setScene(scene);
 			mainStage.setResizable(false);
