@@ -4,10 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.LinkedList;
-import java.util.List;
 
 import com.project.m.dao.DboBatchesDao;
 import com.project.m.dao.db.ConnectionSQL;
@@ -29,6 +26,7 @@ public class DboBatchesDaoImpl implements DboBatchesDao {
 	public void remove(Integer batchId) throws SqlException {
 	}
 
+	@Override
 	public LinkedList<DboBatchesEntity> loadByAllBatches() {
 		Connection connection = null;
 		PreparedStatement statement = null;

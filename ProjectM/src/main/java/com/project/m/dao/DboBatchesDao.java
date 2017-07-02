@@ -1,5 +1,7 @@
 package com.project.m.dao;
 
+import java.util.LinkedList;
+
 import com.project.m.dao.exception.SqlException;
 import com.project.m.entity.DboBatchesEntity;
 
@@ -10,5 +12,7 @@ public interface DboBatchesDao {
 	void update(DboBatchesEntity bean) throws SqlException;
 
 	void remove(Integer batchId) throws SqlException;
+	
+	public LinkedList<DboBatchesEntity> loadByAllBatches();
 
 }
