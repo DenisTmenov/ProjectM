@@ -10,7 +10,7 @@ fx:controller="com.project.m.frame.JobEntriesFrame">
    <children>
       <ScrollPane prefHeight="200.0" prefWidth="290.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <content>
-            <TableView fx:id="batchTable" stylesheets="@../style/projectStyle.css">
+            <TableView fx:id="jobEntriesTable" stylesheets="@../style/projectStyle.css">
               <columns>
                 <TableColumn fx:id="entryIdColumn" prefWidth="75.0" styleClass="columnRight" text="Entry id" />
                 <TableColumn fx:id="jobIdColumn" prefWidth="75.0" text="Item Status" />

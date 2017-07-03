@@ -1,12 +1,11 @@
 package com.project.m.entity;
 
-import java.math.BigInteger;
 import java.util.Date;
 
 import javafx.beans.property.SimpleStringProperty;
 
 public class DboJobEntriesEntity {
-
+// add Simple Properties !!!!!!!!!!!!!!
 	private String entryId;
 	private Integer jobId;
 	private Integer itemStatus;

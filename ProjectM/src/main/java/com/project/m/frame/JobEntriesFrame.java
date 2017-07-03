@@ -22,7 +22,7 @@ public class JobEntriesFrame implements Initializable {
 	private TableColumn<DboJobEntriesEntity, String> entryIdColumn, jobIdColumn, itemStatuColumn;
 
 	@FXML
-	private TableView<DboJobEntriesEntity> batchTable;
+	private TableView<DboJobEntriesEntity> jobEntriesTable;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -32,7 +32,7 @@ public class JobEntriesFrame implements Initializable {
 	private void showTable() {
 		Integer batchId = StartFrame.getBatchId();
 		DboJobEntriesDaoImpl dbo = new DboJobEntriesDaoImpl();
-		LinkedList<DboJobEntriesEntity> jobEntriesRows = dbo.loadEntriesByBatchId(batchId);
+		/*LinkedList<DboJobEntriesEntity> jobEntriesRows = dbo.loadEntriesByBatchId(batchId);
 
 		//convertNull(allBatchesRows);
 
@@ -44,7 +44,7 @@ public class JobEntriesFrame implements Initializable {
 		jobIdColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		jobIdColumn.setCellValueFactory(cellData -> cellData.getValue().getJobIdSimple());
 
-		batchTable.setItems(jobEntriesOblist);
+		jobEntriesTable.setItems(jobEntriesOblist);*/
 	}
 
 	/*private LinkedList<DboJobEntriesEntity> convertNull(LinkedList<DboJobEntriesEntity> list) {
