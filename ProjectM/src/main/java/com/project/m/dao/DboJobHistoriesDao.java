@@ -4,9 +4,10 @@ import java.util.LinkedList;
 
 import com.project.m.entity.DboBatchesEntity;
 import com.project.m.entity.DboJobEntriesEntity;
+import com.project.m.entity.DboJobHistoriesEntity;
 import com.project.m.exceptions.SqlException;
 
-public interface DboJobEntriesDao {
+public interface DboJobHistoriesDao {
 	
 	void save(DboBatchesEntity bean) throws SqlException;
 
@@ -14,6 +15,6 @@ public interface DboJobEntriesDao {
 
 	void remove(Integer batchId) throws SqlException;
 	
-	public LinkedList<DboJobEntriesEntity> loadJobEntriesByBatchId(Integer batchId);
+	public LinkedList<DboJobHistoriesEntity> loadJobHistoriesByBatchId(Integer batchId);
 
 }

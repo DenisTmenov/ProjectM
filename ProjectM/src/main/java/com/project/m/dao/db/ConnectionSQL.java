@@ -49,10 +49,10 @@ public class ConnectionSQL {
 
 	private static void closeConnection(Connection connection) {
 		if (connection != null) {
-			try {
+			/*try {
 				connection.close();
 			} catch (SQLException e) {
-			}
+			}*/
 		}
 	}
 

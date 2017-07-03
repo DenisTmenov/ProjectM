@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="table" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" 
+fx:controller="com.project.m.frame.JobHistoriesFrame">
+   <children>
+      <ScrollPane prefHeight="200.0" prefWidth="290.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <content>
+            <TableView fx:id="jobHistoriesTable" stylesheets="@../style/projectStyle.css">
+              <columns>
+                <TableColumn fx:id="jobIdColumn" prefWidth="75.0" text="JobId" />
+				<TableColumn fx:id="jobStatusColumn" prefWidth="75.0" text="JobStatus" />
+				<TableColumn fx:id="timeStartedColumn" prefWidth="75.0" text="TimeStarted" />
+				<TableColumn fx:id="timeFinishedColumn" prefWidth="75.0" text="TimeFinished" />
+				<TableColumn fx:id="targetTypeColumn" prefWidth="75.0" text="TargetType" />
+				<TableColumn fx:id="sourceTypeColumn" prefWidth="75.0" text="SourceType" />
+				<TableColumn fx:id="dateFromColumn" prefWidth="75.0" text="DateFrom" />
+				<TableColumn fx:id="dateToColumn" prefWidth="75.0" text="DateTo" />
+				<TableColumn fx:id="ItemsTotalColumn" prefWidth="75.0" text="ItemsTotal" />
+				<TableColumn fx:id="itemsFailedColumn" prefWidth="75.0" text="ItemsFailed" />
+				<TableColumn fx:id="itemsRemainingColumn" prefWidth="75.0" text="ItemsRemaining" />
+				<TableColumn fx:id="sMVersionColumn" prefWidth="75.0" text="SMVersion" />
+				<TableColumn fx:id="sourceColumn" prefWidth="75.0" text="Source" />
+				<TableColumn fx:id="targetColumn" prefWidth="75.0" text="Target" />
+				<TableColumn fx:id="jobCreatedByColumn" prefWidth="75.0" text="JobCreatedBy" />
+				<TableColumn fx:id="jobModifiedByColumn" prefWidth="75.0" text="JobModifiedBy" />
+				<TableColumn fx:id="jobCreatedColumn" prefWidth="75.0" text="JobCreated" />
+				<TableColumn fx:id="jobModifiedColumn" prefWidth="75.0" text="JobModified" />
+				<TableColumn fx:id="batchIdColumn" prefWidth="75.0" text="BatchId" />
+				<TableColumn fx:id="failedCountColumn" prefWidth="75.0" text="FailedCount" />
+				<TableColumn fx:id="processingInBatchColumn" prefWidth="75.0" text="ProcessingInBatch" />
+				<TableColumn fx:id="processingOnMachineColumn" prefWidth="75.0" text="ProcessingOnMachine" />
+				<TableColumn fx:id="processingRateColumn" prefWidth="75.0" text="ProcessingRate" />
+				<TableColumn fx:id="lastUpdateColumn" prefWidth="75.0" text="LastUpdate" />
+				<TableColumn fx:id="configColumn" prefWidth="75.0" text="Config" />
+				<TableColumn fx:id="statusMessageColumn" prefWidth="75.0" text="StatusMessage" />
+				<TableColumn fx:id="priorityColumn" prefWidth="75.0" text="Priority" />
+				<TableColumn fx:id="percentCompleteColumn" prefWidth="75.0" text="PercentComplete" />
+				<TableColumn fx:id="sourceMailboxColumn" prefWidth="75.0" text="SourceMailbox" />
+				<TableColumn fx:id="targetMailboxColumn" prefWidth="75.0" text="TargetMailbox" />
+				<TableColumn fx:id="processingItemsColumn" prefWidth="75.0" text="ProcessingItems" />
+				<TableColumn fx:id="statusDateColumn" prefWidth="75.0" text="StatusDate" />
+				<TableColumn fx:id="rehydrationTypeColumn" prefWidth="75.0" text="RehydrationType" />
+				<TableColumn fx:id="ownerIdColumn" prefWidth="75.0" text="OwnerId" />
+
+              </columns>
+            </TableView>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

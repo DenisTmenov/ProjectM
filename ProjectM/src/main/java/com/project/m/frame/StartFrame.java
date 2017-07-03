@@ -28,8 +28,8 @@ import javafx.stage.Stage;
 
 public class StartFrame implements Initializable {
 	private Stage dialogWindow;
-	private Parent JobEntriesFrame;
-	private Scene jobEntriesScene;
+	private Parent JobHistoriesFrame;
+	private Scene JobHistoriesScene;
 
 	private static Integer batchId;
 
@@ -47,24 +47,23 @@ public class StartFrame implements Initializable {
 			@Override
 			public void handle(MouseEvent event) {
 				if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
-					// problem (51 row): "Type safety: Unchecked cast from TablePosition to TablePosition<DboBatchesEntity,String>"
-					TablePosition<DboBatchesEntity, String> pos = (TablePosition<DboBatchesEntity, String>) batchTable.getSelectionModel().getSelectedCells().get(0);
+					TablePosition<?, ?> pos = batchTable.getSelectionModel().getSelectedCells().get(0);
 					int index = pos.getRow();
 					Integer batchId = batchTable.getItems().get(index).getBatchesId();
 					
 					setBatchId(batchId);
 
 					dialogWindow = new Stage();
-					dialogWindow.setTitle("JobEntries");
+					dialogWindow.setTitle("JobHistories");
 					FXMLLoader loader = new FXMLLoader();
-					loader.setLocation(getClass().getResource("/fxml/JobEntriesFrame.fxml"));
+					loader.setLocation(getClass().getResource("/fxml/JobHistoriesFrame.fxml"));
 					try {
-						JobEntriesFrame = loader.load();
+						JobHistoriesFrame = loader.load();
 					} catch (IOException e) {
 						throw new FrameException("Problem in LOADER StartFrame.fxml", e);
 					}
-					jobEntriesScene = new Scene(JobEntriesFrame);
-					dialogWindow.setScene(jobEntriesScene);
+					JobHistoriesScene = new Scene(JobHistoriesFrame);
+					dialogWindow.setScene(JobHistoriesScene);
 					dialogWindow.setResizable(true);
 					dialogWindow.initModality(Modality.APPLICATION_MODAL);
 					dialogWindow.showAndWait();

@@ -160,4 +160,120 @@ public class EntityCreator {
 		return entity;
 	}
 
+	public static DboJobHistoriesEntity createDboJobHistoriesEntity(ResultSet set) {
+		Integer jobId = null;
+		Integer jobStatus = null;
+		Date timeStarted = null;
+		Date timeFinished = null;
+		String targetType = null;
+		String sourceType = null;
+		Date dateFrom = null;
+		Date dateTo = null;
+		String ItemsTotal = null;
+		String itemsFailed = null;
+		String itemsRemaining = null;
+		String sMVersion = null;
+		Integer source = null;
+		Integer target = null;
+		String jobCreatedBy = null;
+		String jobModifiedBy = null;
+		Date jobCreated = null;
+		Date jobModified = null;
+		Integer batchId = null;
+		Integer failedCount = null;
+		Integer processingInBatch = null;
+		String processingOnMachine = null;
+		Integer processingRate = null;
+		Date lastUpdate = null;
+		String config = null;
+		String statusMessage = null;
+		Integer priority = null;
+		Integer percentComplete = null;
+		String sourceMailbox = null;
+		String targetMailbox = null;
+		Integer processingItems = null;
+		Date statusDate = null;
+		Integer rehydrationType = null;
+		Integer ownerId = null;
+
+		try {
+			jobId = set.getInt("JobId");
+			jobStatus = set.getInt("JobStatus");
+			timeStarted = set.getDate("TimeStarted");
+			timeFinished = set.getDate("TimeFinished");
+			targetType = set.getString("TargetType");
+			sourceType = set.getString("SourceType");
+			dateFrom = set.getDate("DateFrom");
+			dateTo = set.getDate("DateTo");
+			ItemsTotal = set.getString("ItemsTotal");
+			itemsFailed = set.getString("ItemsFailed");
+			itemsRemaining = set.getString("ItemsRemaining");
+			sMVersion = set.getString("SMVersion");
+			source = set.getInt("Source");
+			target = set.getInt("Target");
+			jobCreatedBy = set.getString("JobCreatedBy");
+			jobModifiedBy = set.getString("JobModifiedBy");
+			jobCreated = set.getDate("JobCreated");
+			jobModified = set.getDate("JobModified");
+			batchId = set.getInt("BatchId");
+			failedCount = set.getInt("FailedCount");
+			processingInBatch = set.getInt("ProcessingInBatch");
+			processingOnMachine = set.getString("ProcessingOnMachine");
+			processingRate = set.getInt("ProcessingRate");
+			lastUpdate = set.getDate("LastUpdate");
+			config = set.getString("Config");
+			statusMessage = set.getString("StatusMessage");
+			priority = set.getInt("Priority");
+			percentComplete = set.getInt("PercentComplete");
+			sourceMailbox = set.getString("SourceMailbox");
+			targetMailbox = set.getString("TargetMailbox");
+			processingItems = set.getInt("ProcessingItems");
+			statusDate = set.getDate("StatusDate");
+			rehydrationType = set.getInt("RehydrationType");
+			ownerId = set.getInt("OwnerId");
+
+		} catch (SQLException e) {
+			throw new EntityException("Exception in createDboJobHistoriesEntity().", e);
+		}
+
+		DboJobHistoriesEntity entity = new DboJobHistoriesEntity();
+
+		entity.setJobId(jobId);
+		entity.setJobStatus(jobStatus);
+		entity.setTimeStarted(timeStarted);
+		entity.setTimeFinished(timeFinished);
+		entity.setTargetType(targetType);
+		entity.setSourceType(sourceType);
+		entity.setDateFrom(dateFrom);
+		entity.setDateTo(dateTo);
+		entity.setItemsTotal(ItemsTotal);
+		entity.setItemsFailed(itemsFailed);
+		entity.setItemsRemaining(itemsRemaining);
+		entity.setSMVersion(sMVersion);
+		entity.setSource(source);
+		entity.setTarget(target);
+		entity.setJobCreatedBy(jobCreatedBy);
+		entity.setJobModifiedBy(jobModifiedBy);
+		entity.setJobCreated(jobCreated);
+		entity.setJobModified(jobModified);
+		entity.setBatchId(batchId);
+		entity.setFailedCount(failedCount);
+		entity.setProcessingInBatch(processingInBatch);
+		entity.setProcessingOnMachine(processingOnMachine);
+		entity.setProcessingRate(processingRate);
+		entity.setLastUpdate(lastUpdate);
+		entity.setConfig(config);
+		entity.setStatusMessage(statusMessage);
+		entity.setPriority(priority);
+		entity.setPercentComplete(percentComplete);
+		entity.setSourceMailbox(sourceMailbox);
+		entity.setTargetMailbox(targetMailbox);
+		entity.setProcessingItems(processingItems);
+		entity.setStatusDate(statusDate);
+		entity.setRehydrationType(rehydrationType);
+		entity.setOwnerId(ownerId);
+
+		return entity;
+	}
+
 }

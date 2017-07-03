@@ -29,7 +29,7 @@ public class DboJobEntriesDaoImpl implements DboJobEntriesDao {
 	}
 
 	@Override
-	public LinkedList<DboJobEntriesEntity> loadEntriesByBatchId(Integer batchId){
+	public LinkedList<DboJobEntriesEntity> loadJobEntriesByBatchId(Integer batchId){
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet set = null;
@@ -38,7 +38,7 @@ public class DboJobEntriesDaoImpl implements DboJobEntriesDao {
 
 		try {
 			connection = ConnectionSQL.getInstance().getConnection();
-			statement = connection.prepareStatement("SELECT * FROM [dbo].[JobEntries] WHERE JobId = ?");
+			statement = connection.prepareStatement("SELECT * FROM [dbo].[JobEntries] WHERE BatchId = ?");
 			statement.setInt(1, batchId);
 			
 			set = statement.executeQuery();
@@ -48,7 +48,7 @@ public class DboJobEntriesDaoImpl implements DboJobEntriesDao {
 				result.add(entity);
 			}
 		} catch (SQLException e) {
-			throw new SqlException("Exception in loadEntriesByBatchId().", e);
+			throw new SqlException("Exception in loadJobEntriesByBatchId().", e);
 		} finally {
 			ConnectionSQL.closeDbResources(connection, statement, set);
 		}
