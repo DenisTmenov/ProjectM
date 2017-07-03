@@ -1,5 +1,6 @@
 package com.project.m.frame;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
@@ -8,18 +9,30 @@ import com.project.m.dao.sql.DboJobEntriesDaoImpl;
 import com.project.m.dao.sql.DboJobHistoriesDaoImpl;
 import com.project.m.entity.DboJobEntriesEntity;
 import com.project.m.entity.DboJobHistoriesEntity;
+import com.project.m.exceptions.FrameException;
 import com.project.m.utils.StringUtils;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class JobHistoriesFrame implements Initializable {
-
+	private Stage dialogWindow;
+	private Parent JobEntriesFrame;
+	private Scene JobEntriesScene;
+	
 	@FXML
 	private TableColumn<DboJobHistoriesEntity, String> jobIdColumn, jobStatusColumn, timeStartedColumn,
 			timeFinishedColumn, targetTypeColumn, sourceTypeColumn, dateFromColumn, dateToColumn, ItemsTotalColumn,
@@ -35,6 +48,29 @@ public class JobHistoriesFrame implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		showTable();
+		
+		jobHistoriesTable.setOnMousePressed(new EventHandler<MouseEvent>() {
+			@Override
+			public void handle(MouseEvent event) {
+				if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+
+					dialogWindow = new Stage();
+					dialogWindow.setTitle("JobHistories");
+					FXMLLoader loader = new FXMLLoader();
+					loader.setLocation(getClass().getResource("/fxml/JobEntriesFrame.fxml"));
+					try {
+						JobEntriesFrame = loader.load();
+					} catch (IOException e) {
+						throw new FrameException("Problem in LOADER JobHistoriesFrame.fxml", e);
+					}
+					JobEntriesScene = new Scene(JobEntriesFrame);
+					dialogWindow.setScene(JobEntriesScene);
+					dialogWindow.setResizable(true);
+					dialogWindow.initModality(Modality.APPLICATION_MODAL);
+					dialogWindow.showAndWait();
+				}
+			}
+		});
 	}
 
 	private void showTable() {

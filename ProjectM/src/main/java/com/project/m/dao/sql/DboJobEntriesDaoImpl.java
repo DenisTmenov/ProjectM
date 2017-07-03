@@ -1,10 +1,12 @@
 package com.project.m.dao.sql;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
+import java.util.Properties;
 
 import com.project.m.dao.DboBatchesDao;
 import com.project.m.dao.DboJobEntriesDao;
@@ -13,6 +15,7 @@ import com.project.m.entity.DboBatchesEntity;
 import com.project.m.entity.DboJobEntriesEntity;
 import com.project.m.entity.EntityCreator;
 import com.project.m.exceptions.SqlException;
+import com.project.m.utils.PropertiesClass;
 
 public class DboJobEntriesDaoImpl implements DboJobEntriesDao {
 
@@ -37,8 +40,27 @@ public class DboJobEntriesDaoImpl implements DboJobEntriesDao {
 		LinkedList<DboJobEntriesEntity> result = new LinkedList<DboJobEntriesEntity>();
 
 		try {
-			connection = ConnectionSQL.getInstance().getConnection();
-			statement = connection.prepareStatement("SELECT * FROM [dbo].[JobEntries] WHERE BatchId = ?");
+//connection = ConnectionSQL.getInstance().getConnection();
+			
+			
+			Properties jdbcSettings = PropertiesClass.getSettings("jdbc");
+
+			String url = (String) jdbcSettings.getProperty("jdbc.url");
+			String driverName = (String) jdbcSettings.getProperty("jdbc.driver.name");
+
+			try {
+				Class.forName(driverName);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			connection = DriverManager.getConnection(url);
+			
+			
+			
+			
+			
+			statement = connection.prepareStatement("SELECT * FROM [dbo].[JobEntries] WHERE JobId = ?");
 			statement.setInt(1, batchId);
 			
 			set = statement.executeQuery();

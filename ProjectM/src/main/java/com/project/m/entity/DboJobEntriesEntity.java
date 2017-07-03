@@ -5,7 +5,6 @@ import java.util.Date;
 import javafx.beans.property.SimpleStringProperty;
 
 public class DboJobEntriesEntity {
-// add Simple Properties !!!!!!!!!!!!!!
 	private String entryId;
 	private Integer jobId;
 	private Integer itemStatus;
@@ -17,7 +16,7 @@ public class DboJobEntriesEntity {
 	private String author;
 	private String recipients;
 	private Date receivedDate;
-	private String size; // BigInteger
+	private String size;
 	private String messageClass;
 	private String itemType;
 	private String owner;
@@ -27,13 +26,13 @@ public class DboJobEntriesEntity {
 	private Date discoveryDate;
 	private String path;
 	private String name;
-	private String folderCount; // BigInteger
-	private String messageCount; // BigInteger
-	private String emailCount; // BigInteger
-	private String calendarCount; // BigInteger
-	private String taskCount; // BigInteger
-	private String contactCount; // BigInteger
-	private String otherCount; // BigInteger
+	private String folderCount;
+	private String messageCount;
+	private String emailCount;
+	private String calendarCount;
+	private String taskCount;
+	private String contactCount;
+	private String otherCount;
 	private String owner1;
 	private String owner2;
 	private String owner3;
@@ -41,17 +40,12 @@ public class DboJobEntriesEntity {
 	private Integer folderId;
 	private Integer failedCount;
 	private Date statusDate;
-	private Boolean hashBytes;
+	private String hashBytes;
 	private String extraData;
 	private String messageId;
 
 	public String getEntryId() {
 		return entryId;
-	}
-
-	public SimpleStringProperty getEntryIdSimple() {
-		SimpleStringProperty entryIdSimple = new SimpleStringProperty(String.valueOf(getEntryId()));
-		return entryIdSimple;
 	}
 
 	public void setEntryId(String entryId) {
@@ -60,11 +54,6 @@ public class DboJobEntriesEntity {
 
 	public Integer getJobId() {
 		return jobId;
-	}
-	
-	public SimpleStringProperty getJobIdSimple() {
-		SimpleStringProperty jobIdSimple = new SimpleStringProperty(String.valueOf(getJobId()));
-		return jobIdSimple;
 	}
 
 	public void setJobId(Integer jobId) {
@@ -335,11 +324,11 @@ public class DboJobEntriesEntity {
 		this.statusDate = statusDate;
 	}
 
-	public Boolean getHashBytes() {
+	public String getHashBytes() {
 		return hashBytes;
 	}
 
-	public void setHashBytes(Boolean hashBytes) {
+	public void setHashBytes(String hashBytes) {
 		this.hashBytes = hashBytes;
 	}
 
@@ -620,6 +609,196 @@ public class DboJobEntriesEntity {
 				+ ", originalId=" + originalId + ", folderId=" + folderId + ", failedCount=" + failedCount
 				+ ", statusDate=" + statusDate + ", hashBytes=" + hashBytes + ", extraData=" + extraData
 				+ ", messageId=" + messageId + "]";
+	}
+
+	public SimpleStringProperty getEntryIdSimple() {
+		SimpleStringProperty entryIdSimple = new SimpleStringProperty(String.valueOf(getEntryId()));
+		return entryIdSimple;
+	}
+
+	public SimpleStringProperty getJobIdSimple() {
+		SimpleStringProperty jobIdSimple = new SimpleStringProperty(String.valueOf(getJobId()));
+		return jobIdSimple;
+	}
+
+	public SimpleStringProperty getItemStatusSimple() {
+		SimpleStringProperty itemStatusSimple = new SimpleStringProperty(String.valueOf(getItemStatus()));
+		return itemStatusSimple;
+	}
+
+	public SimpleStringProperty getMailboxSimple() {
+		SimpleStringProperty mailboxSimple = new SimpleStringProperty(String.valueOf(getMailbox()));
+		return mailboxSimple;
+	}
+
+	public SimpleStringProperty getMsgIdSimple() {
+		SimpleStringProperty msgIdSimple = new SimpleStringProperty(String.valueOf(getMsgId()));
+		return msgIdSimple;
+	}
+
+	public SimpleStringProperty getDateCreatedSimple() {
+		SimpleStringProperty dateCreatedSimple = new SimpleStringProperty(String.valueOf(getDateCreated()));
+		return dateCreatedSimple;
+	}
+
+	public SimpleStringProperty getFolderSimple() {
+		SimpleStringProperty folderSimple = new SimpleStringProperty(String.valueOf(getFolder()));
+		return folderSimple;
+	}
+
+	public SimpleStringProperty getSubjectSimple() {
+		SimpleStringProperty subjectSimple = new SimpleStringProperty(String.valueOf(getSubject()));
+		return subjectSimple;
+	}
+
+	public SimpleStringProperty getAuthorSimple() {
+		SimpleStringProperty authorSimple = new SimpleStringProperty(String.valueOf(getAuthor()));
+		return authorSimple;
+	}
+
+	public SimpleStringProperty getRecipientsSimple() {
+		SimpleStringProperty recipientsSimple = new SimpleStringProperty(String.valueOf(getRecipients()));
+		return recipientsSimple;
+	}
+
+	public SimpleStringProperty getReceivedDateSimple() {
+		SimpleStringProperty receivedDateSimple = new SimpleStringProperty(String.valueOf(getReceivedDate()));
+		return receivedDateSimple;
+	}
+
+	public SimpleStringProperty getSizeSimple() {
+		SimpleStringProperty sizeSimple = new SimpleStringProperty(String.valueOf(getSize()));
+		return sizeSimple;
+	}
+
+	public SimpleStringProperty getMessageClassSimple() {
+		SimpleStringProperty messageClassSimple = new SimpleStringProperty(String.valueOf(getMessageClass()));
+		return messageClassSimple;
+	}
+
+	public SimpleStringProperty getItemTypeSimple() {
+		SimpleStringProperty itemTypeSimple = new SimpleStringProperty(String.valueOf(getItemType()));
+		return itemTypeSimple;
+	}
+
+	public SimpleStringProperty getOwnerSimple() {
+		SimpleStringProperty ownerSimple = new SimpleStringProperty(String.valueOf(getOwner()));
+		return ownerSimple;
+	}
+
+	public SimpleStringProperty getFileNameSimple() {
+		SimpleStringProperty fileNameSimple = new SimpleStringProperty(String.valueOf(getFileName()));
+		return fileNameSimple;
+	}
+
+	public SimpleStringProperty getDateModifiedSimple() {
+		SimpleStringProperty dateModifiedSimple = new SimpleStringProperty(String.valueOf(getDateModified()));
+		return dateModifiedSimple;
+	}
+
+	public SimpleStringProperty getStatusMessageSimple() {
+		SimpleStringProperty statusMessageSimple = new SimpleStringProperty(String.valueOf(getStatusMessage()));
+		return statusMessageSimple;
+	}
+
+	public SimpleStringProperty getDiscoveryDateSimple() {
+		SimpleStringProperty discoveryDateSimple = new SimpleStringProperty(String.valueOf(getDiscoveryDate()));
+		return discoveryDateSimple;
+	}
+
+	public SimpleStringProperty getPathSimple() {
+		SimpleStringProperty pathSimple = new SimpleStringProperty(String.valueOf(getPath()));
+		return pathSimple;
+	}
+
+	public SimpleStringProperty getNameSimple() {
+		SimpleStringProperty nameSimple = new SimpleStringProperty(String.valueOf(getName()));
+		return nameSimple;
+	}
+
+	public SimpleStringProperty getFolderCountSimple() {
+		SimpleStringProperty folderCountSimple = new SimpleStringProperty(String.valueOf(getFolderCount()));
+		return folderCountSimple;
+	}
+
+	public SimpleStringProperty getMessageCountSimple() {
+		SimpleStringProperty messageCountSimple = new SimpleStringProperty(String.valueOf(getMessageCount()));
+		return messageCountSimple;
+	}
+
+	public SimpleStringProperty getEmailCountSimple() {
+		SimpleStringProperty emailCountSimple = new SimpleStringProperty(String.valueOf(getEmailCount()));
+		return emailCountSimple;
+	}
+
+	public SimpleStringProperty getCalendarCountSimple() {
+		SimpleStringProperty calendarCountSimple = new SimpleStringProperty(String.valueOf(getCalendarCount()));
+		return calendarCountSimple;
+	}
+
+	public SimpleStringProperty getTaskCountSimple() {
+		SimpleStringProperty taskCountSimple = new SimpleStringProperty(String.valueOf(getTaskCount()));
+		return taskCountSimple;
+	}
+
+	public SimpleStringProperty getContactCountSimple() {
+		SimpleStringProperty contactCountSimple = new SimpleStringProperty(String.valueOf(getContactCount()));
+		return contactCountSimple;
+	}
+
+	public SimpleStringProperty getOtherCountSimple() {
+		SimpleStringProperty otherCountSimple = new SimpleStringProperty(String.valueOf(getOtherCount()));
+		return otherCountSimple;
+	}
+
+	public SimpleStringProperty getOwner1Simple() {
+		SimpleStringProperty owner1Simple = new SimpleStringProperty(String.valueOf(getOwner1()));
+		return owner1Simple;
+	}
+
+	public SimpleStringProperty getOwner2Simple() {
+		SimpleStringProperty owner2Simple = new SimpleStringProperty(String.valueOf(getOwner2()));
+		return owner2Simple;
+	}
+
+	public SimpleStringProperty getOwner3Simple() {
+		SimpleStringProperty owner3Simple = new SimpleStringProperty(String.valueOf(getOwner3()));
+		return owner3Simple;
+	}
+
+	public SimpleStringProperty getOriginalIdSimple() {
+		SimpleStringProperty originalIdSimple = new SimpleStringProperty(String.valueOf(getOriginalId()));
+		return originalIdSimple;
+	}
+
+	public SimpleStringProperty getFolderIdSimple() {
+		SimpleStringProperty folderIdSimple = new SimpleStringProperty(String.valueOf(getFolderId()));
+		return folderIdSimple;
+	}
+
+	public SimpleStringProperty getFailedCountSimple() {
+		SimpleStringProperty failedCountSimple = new SimpleStringProperty(String.valueOf(getFailedCount()));
+		return failedCountSimple;
+	}
+
+	public SimpleStringProperty getStatusDateSimple() {
+		SimpleStringProperty statusDateSimple = new SimpleStringProperty(String.valueOf(getStatusDate()));
+		return statusDateSimple;
+	}
+
+	public SimpleStringProperty getHashBytesSimple() {
+		SimpleStringProperty hashBytesSimple = new SimpleStringProperty(String.valueOf(getHashBytes()));
+		return hashBytesSimple;
+	}
+
+	public SimpleStringProperty getExtraDataSimple() {
+		SimpleStringProperty extraDataSimple = new SimpleStringProperty(String.valueOf(getExtraData()));
+		return extraDataSimple;
+	}
+
+	public SimpleStringProperty getMessageIdSimple() {
+		SimpleStringProperty messageIdSimple = new SimpleStringProperty(String.valueOf(getMessageId()));
+		return messageIdSimple;
 	}
 
 }
