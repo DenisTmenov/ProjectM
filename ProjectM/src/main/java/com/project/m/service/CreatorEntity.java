@@ -1,9 +1,12 @@
-package com.project.m.entity;
+package com.project.m.service;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
 
+import com.project.m.entity.EntityBatches;
+import com.project.m.entity.EntityJobEntries;
+import com.project.m.entity.EntityJobHistories;
 import com.project.m.exceptions.EntityException;
 
 public class CreatorEntity {

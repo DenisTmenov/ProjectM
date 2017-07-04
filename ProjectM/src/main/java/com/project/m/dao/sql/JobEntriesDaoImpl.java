@@ -10,8 +10,8 @@ import com.project.m.dao.JobEntriesDao;
 import com.project.m.dao.db.ConnectionPool;
 import com.project.m.entity.EntityBatches;
 import com.project.m.entity.EntityJobEntries;
-import com.project.m.entity.CreatorEntity;
 import com.project.m.exceptions.SqlException;
+import com.project.m.service.CreatorEntity;
 
 public class JobEntriesDaoImpl implements JobEntriesDao {
 

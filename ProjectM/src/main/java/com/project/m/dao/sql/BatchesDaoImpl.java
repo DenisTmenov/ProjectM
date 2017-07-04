@@ -9,8 +9,8 @@ import java.util.LinkedList;
 import com.project.m.dao.BatchesDao;
 import com.project.m.dao.db.ConnectionPool;
 import com.project.m.entity.EntityBatches;
-import com.project.m.entity.CreatorEntity;
 import com.project.m.exceptions.SqlException;
+import com.project.m.service.CreatorEntity;
 
 public class BatchesDaoImpl implements BatchesDao {
 
