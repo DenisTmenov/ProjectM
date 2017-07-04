@@ -10,21 +10,21 @@ import com.project.m.dao.JobEntriesDao;
 import com.project.m.dao.db.ConnectionPool;
 import com.project.m.entity.EntityBatches;
 import com.project.m.entity.EntityJobEntries;
-import com.project.m.exceptions.SqlException;
+import com.project.m.exceptions.DaoException;
 import com.project.m.service.CreatorEntity;
 
 public class JobEntriesDaoImpl implements JobEntriesDao {
 
 	@Override
-	public void save(EntityBatches bean) throws SqlException {
+	public void save(EntityBatches bean) throws DaoException {
 	}
 
 	@Override
-	public void update(EntityBatches bean) throws SqlException {
+	public void update(EntityBatches bean) throws DaoException {
 	}
 
 	@Override
-	public void remove(Integer batchId) throws SqlException {
+	public void remove(Integer batchId) throws DaoException {
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class JobEntriesDaoImpl implements JobEntriesDao {
 				result.add(entity);
 			}
 		} catch (SQLException e) {
-			throw new SqlException("Exception in loadJobEntriesByBatchId().", e);
+			throw new DaoException("Exception in loadJobEntriesByBatchId().", e);
 		} finally {
 			ConnectionPool.closeDbResources(connection, statement, set);
 		}

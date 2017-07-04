@@ -4,15 +4,15 @@ import java.util.LinkedList;
 
 import com.project.m.entity.EntityBatches;
 import com.project.m.entity.EntityJobEntries;
-import com.project.m.exceptions.SqlException;
+import com.project.m.exceptions.DaoException;
 
 public interface JobEntriesDao {
 	
-	void save(EntityBatches bean) throws SqlException;
+	void save(EntityBatches bean) throws DaoException;
 
-	void update(EntityBatches bean) throws SqlException;
+	void update(EntityBatches bean) throws DaoException;
 
-	void remove(Integer batchId) throws SqlException;
+	void remove(Integer batchId) throws DaoException;
 	
 	public LinkedList<EntityJobEntries> loadJobEntriesByBatchId(Integer batchId);
 

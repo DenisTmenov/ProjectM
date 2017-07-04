@@ -12,21 +12,21 @@ import com.project.m.dao.JobHistoriesDao;
 import com.project.m.dao.db.ConnectionPool;
 import com.project.m.entity.EntityBatches;
 import com.project.m.entity.EntityJobHistories;
-import com.project.m.exceptions.SqlException;
+import com.project.m.exceptions.DaoException;
 import com.project.m.service.CreatorEntity;
 
 public class JobHistoriesDaoImpl implements JobHistoriesDao {
 
 	@Override
-	public void save(EntityBatches bean) throws SqlException {
+	public void save(EntityBatches bean) throws DaoException {
 	}
 
 	@Override
-	public void update(EntityBatches bean) throws SqlException {
+	public void update(EntityBatches bean) throws DaoException {
 	}
 
 	@Override
-	public void remove(Integer batchId) throws SqlException {
+	public void remove(Integer batchId) throws DaoException {
 	}
 
 	@Override
@@ -49,7 +49,7 @@ public class JobHistoriesDaoImpl implements JobHistoriesDao {
 				result.add(entity);
 			}
 		} catch (SQLException e) {
-			throw new SqlException("Exception in loadJobHistoriesByBatchId().", e);
+			throw new DaoException("Exception in loadJobHistoriesByBatchId().", e);
 		} finally {
 			ConnectionPool.closeDbResources(connection, statement, set);
 		}
