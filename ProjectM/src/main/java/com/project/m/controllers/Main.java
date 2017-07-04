@@ -1,4 +1,4 @@
-package com.project.m.frame;
+package com.project.m.controllers;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

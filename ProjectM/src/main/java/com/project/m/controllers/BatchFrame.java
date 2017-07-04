@@ -1,4 +1,4 @@
-package com.project.m.frame;
+package com.project.m.controllers;
 
 import java.io.IOException;
 import java.net.URL;
