@@ -23,6 +23,7 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -34,12 +35,12 @@ public class JobHistoriesFrame implements Initializable {
 
 	@FXML
 	private TableColumn<EntityJobHistories, String> jobIdColumn, jobStatusColumn, timeStartedColumn, timeFinishedColumn,
-			targetTypeColumn, sourceTypeColumn, dateFromColumn, dateToColumn, ItemsTotalColumn, itemsFailedColumn,
-			itemsRemainingColumn, sMVersionColumn, sourceColumn, targetColumn, jobCreatedByColumn, jobModifiedByColumn,
+			 itemsTotalColumn, itemsFailedColumn,
+			itemsRemainingColumn, sourceColumn, targetColumn, jobCreatedByColumn, jobModifiedByColumn,
 			jobCreatedColumn, jobModifiedColumn, batchIdColumn, failedCountColumn, processingInBatchColumn,
-			processingOnMachineColumn, processingRateColumn, lastUpdateColumn, configColumn, statusMessageColumn,
+			processingOnMachineColumn, processingRateColumn, lastUpdateColumn, statusMessageColumn,
 			priorityColumn, percentCompleteColumn, sourceMailboxColumn, targetMailboxColumn, processingItemsColumn,
-			statusDateColumn, rehydrationTypeColumn, ownerIdColumn;
+			statusDateColumn, rehydrationTypeColumn;
 
 	@FXML
 	private TableView<EntityJobHistories> jobHistoriesTable;
@@ -55,6 +56,7 @@ public class JobHistoriesFrame implements Initializable {
 
 					dialogWindow = new Stage();
 					dialogWindow.setTitle("JobHistories");
+					dialogWindow.getIcons().add(new Image("/style/simply_migrate_-_icon-0.png"));
 					FXMLLoader loader = new FXMLLoader();
 					loader.setLocation(getClass().getResource("/fxml/JobEntriesFrame.fxml"));
 					try {
@@ -77,7 +79,7 @@ public class JobHistoriesFrame implements Initializable {
 		DaoFactory daoFactory = DaoFactory.getFactory();
 		JobHistoriesDaoImpl dbo = daoFactory.getJobHistoriesDao();
 
-		LinkedList<EntityJobHistories> jobHistoriesRows = dbo.loadJobHistoriesByBatchId(batchId);
+		LinkedList<EntityJobHistories> jobHistoriesRows = dbo.loadAllJobHistories();
 
 		ObservableList<EntityJobHistories> jobHistoriesOblist = FXCollections.observableArrayList();
 		jobHistoriesOblist.addAll(jobHistoriesRows);
@@ -90,22 +92,12 @@ public class JobHistoriesFrame implements Initializable {
 		timeStartedColumn.setCellValueFactory(cellData -> cellData.getValue().getTimeStartedSimple());
 		timeFinishedColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		timeFinishedColumn.setCellValueFactory(cellData -> cellData.getValue().getTimeFinishedSimple());
-		targetTypeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		targetTypeColumn.setCellValueFactory(cellData -> cellData.getValue().getTargetTypeSimple());
-		sourceTypeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		sourceTypeColumn.setCellValueFactory(cellData -> cellData.getValue().getSourceTypeSimple());
-		dateFromColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		dateFromColumn.setCellValueFactory(cellData -> cellData.getValue().getDateFromSimple());
-		dateToColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		dateToColumn.setCellValueFactory(cellData -> cellData.getValue().getDateToSimple());
-		ItemsTotalColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		ItemsTotalColumn.setCellValueFactory(cellData -> cellData.getValue().getItemsTotalSimple());
+		itemsTotalColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+		itemsTotalColumn.setCellValueFactory(cellData -> cellData.getValue().getItemsTotalSimple());
 		itemsFailedColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		itemsFailedColumn.setCellValueFactory(cellData -> cellData.getValue().getItemsFailedSimple());
 		itemsRemainingColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		itemsRemainingColumn.setCellValueFactory(cellData -> cellData.getValue().getItemsRemainingSimple());
-		sMVersionColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		sMVersionColumn.setCellValueFactory(cellData -> cellData.getValue().getSMVersionSimple());
 		sourceColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		sourceColumn.setCellValueFactory(cellData -> cellData.getValue().getSourceSimple());
 		targetColumn.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -130,8 +122,6 @@ public class JobHistoriesFrame implements Initializable {
 		processingRateColumn.setCellValueFactory(cellData -> cellData.getValue().getProcessingRateSimple());
 		lastUpdateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		lastUpdateColumn.setCellValueFactory(cellData -> cellData.getValue().getLastUpdateSimple());
-		configColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		configColumn.setCellValueFactory(cellData -> cellData.getValue().getConfigSimple());
 		statusMessageColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		statusMessageColumn.setCellValueFactory(cellData -> cellData.getValue().getStatusMessageSimple());
 		priorityColumn.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -148,8 +138,6 @@ public class JobHistoriesFrame implements Initializable {
 		statusDateColumn.setCellValueFactory(cellData -> cellData.getValue().getStatusDateSimple());
 		rehydrationTypeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		rehydrationTypeColumn.setCellValueFactory(cellData -> cellData.getValue().getRehydrationTypeSimple());
-		ownerIdColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		ownerIdColumn.setCellValueFactory(cellData -> cellData.getValue().getOwnerIdSimple());
 
 		jobHistoriesTable.setItems(jobHistoriesOblist);
 

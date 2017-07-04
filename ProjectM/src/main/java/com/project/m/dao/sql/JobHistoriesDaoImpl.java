@@ -37,8 +37,34 @@ public class JobHistoriesDaoImpl implements JobHistoriesDao {
 
 		try {
 			connection = ConnectionPool.getInstance().getConnection();
-			statement = connection.prepareStatement("SELECT * FROM [dbo].[JobHistories] WHERE BatchId = ?"); // WHERE
+			statement = connection.prepareStatement("SELECT * FROM [dbo].[JobHistories] WHERE BatchId = ?"); 
 			statement.setInt(1, batchId);
+
+			set = statement.executeQuery();
+
+			while (set.next()) {
+				EntityJobHistories entity = CreatorEntity.createDboJobHistoriesEntity(set);
+				result.add(entity);
+			}
+		} catch (SQLException e) {
+			throw new DaoException("Exception in loadJobHistoriesByBatchId().", e);
+		} finally {
+			ConnectionPool.closeDbResources(connection, statement, set);
+		}
+
+		return result;
+	}
+	
+	public LinkedList<EntityJobHistories> loadAllJobHistories() {
+		Connection connection = null;
+		PreparedStatement statement = null;
+		ResultSet set = null;
+
+		LinkedList<EntityJobHistories> result = new LinkedList<EntityJobHistories>();
+
+		try {
+			connection = ConnectionPool.getInstance().getConnection();
+			statement = connection.prepareStatement("SELECT * FROM [dbo].[JobHistories]"); 
 
 			set = statement.executeQuery();
 

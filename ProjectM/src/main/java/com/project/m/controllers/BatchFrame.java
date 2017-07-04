@@ -27,6 +27,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.image.Image;
 import javafx.scene.input.Clipboard;
 import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.MouseEvent;
@@ -62,6 +63,7 @@ public class BatchFrame implements Initializable {
 
 					dialogWindow = new Stage();
 					dialogWindow.setTitle("JobHistories");
+					dialogWindow.getIcons().add(new Image("/style/simply_migrate_-_icon-0.png"));
 					FXMLLoader loader = new FXMLLoader();
 					loader.setLocation(getClass().getResource("/fxml/JobHistoriesFrame.fxml"));
 					try {
