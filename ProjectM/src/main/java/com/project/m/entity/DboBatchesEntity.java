@@ -2,6 +2,8 @@ package com.project.m.entity;
 
 import java.util.Date;
 
+import com.project.m.utils.SimpleObject;
+
 import javafx.beans.property.SimpleStringProperty;
 
 public class DboBatchesEntity {
@@ -14,12 +16,6 @@ public class DboBatchesEntity {
 	public Integer getBatchesId() {
 		return batchesId;
 	}
-	
-	public SimpleStringProperty getBatchesIdSimple() {
-		SimpleStringProperty batchesIdSimple = new SimpleStringProperty(String.valueOf(getBatchesId()));
-		return batchesIdSimple;
-	}
-	
 
 	public void setBatchesId(Integer batchesId) {
 		this.batchesId = batchesId;
@@ -27,11 +23,6 @@ public class DboBatchesEntity {
 
 	public String getBatchesName() {
 		return batchesName;
-	}
-	
-	public SimpleStringProperty getBatchesNameSimple() {
-		SimpleStringProperty batchesNameSimple = new SimpleStringProperty(String.valueOf(getBatchesName()));
-		return batchesNameSimple;
 	}
 
 	public void setBatchesName(String batchesName) {
@@ -101,6 +92,30 @@ public class DboBatchesEntity {
 	public String toString() {
 		return "DboBatchesDao [batchesId=" + batchesId + ", batchesName=" + batchesName + ", createDate=" + createDate
 				+ ", isActive=" + isActive + "]";
+	}
+
+	public SimpleStringProperty getBatchesIdSimple() {
+		SimpleStringProperty batchesIdSimple = new SimpleStringProperty(String.valueOf(getBatchesId()));
+		batchesIdSimple = SimpleObject.convertNullToSpace(batchesIdSimple);
+		return batchesIdSimple;
+	}
+
+	public SimpleStringProperty getBatchesNameSimple() {
+		SimpleStringProperty batchesNameSimple = new SimpleStringProperty(String.valueOf(getBatchesName()));
+		batchesNameSimple = SimpleObject.convertNullToSpace(batchesNameSimple);
+		return batchesNameSimple;
+	}
+
+	public SimpleStringProperty getCreateDateSimple() {
+		SimpleStringProperty createDateSimple = new SimpleStringProperty(String.valueOf(getCreateDate()));
+		createDateSimple = SimpleObject.convertNullToSpace(createDateSimple);
+		return createDateSimple;
+	}
+
+	public SimpleStringProperty getIsActiveSimple() {
+		SimpleStringProperty isActiveSimple = new SimpleStringProperty(String.valueOf(getIsActive()));
+		isActiveSimple = SimpleObject.convertNullToSpace(isActiveSimple);
+		return isActiveSimple;
 	}
 
 }

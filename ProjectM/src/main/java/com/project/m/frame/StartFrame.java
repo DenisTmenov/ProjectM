@@ -76,8 +76,6 @@ public class StartFrame implements Initializable {
 		DboBatchesDaoImpl dbo = new DboBatchesDaoImpl();
 		LinkedList<DboBatchesEntity> allBatchesRows = dbo.loadAllBatches();
 
-		convertNull(allBatchesRows);
-
 		ObservableList<DboBatchesEntity> batchesOblist = FXCollections.observableArrayList();
 		batchesOblist.addAll(allBatchesRows);
 
@@ -89,13 +87,6 @@ public class StartFrame implements Initializable {
 		// jobCountColumn.setCellValueFactory(cellData -> cellData.getValue().get);
 
 		batchTable.setItems(batchesOblist);
-	}
-
-	private LinkedList<DboBatchesEntity> convertNull(LinkedList<DboBatchesEntity> list) {
-		for (DboBatchesEntity entity : list) {
-			entity.setBatchesName(StringUtils.convertNullToSpace(entity.getBatchesName()));
-		}
-		return list;
 	}
 
 	public static Integer getBatchId() {

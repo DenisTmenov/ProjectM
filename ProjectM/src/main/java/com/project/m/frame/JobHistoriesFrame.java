@@ -32,7 +32,7 @@ public class JobHistoriesFrame implements Initializable {
 	private Stage dialogWindow;
 	private Parent JobEntriesFrame;
 	private Scene JobEntriesScene;
-	
+
 	@FXML
 	private TableColumn<DboJobHistoriesEntity, String> jobIdColumn, jobStatusColumn, timeStartedColumn,
 			timeFinishedColumn, targetTypeColumn, sourceTypeColumn, dateFromColumn, dateToColumn, ItemsTotalColumn,
@@ -48,7 +48,7 @@ public class JobHistoriesFrame implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		showTable();
-		
+
 		jobHistoriesTable.setOnMousePressed(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent event) {
@@ -78,8 +78,6 @@ public class JobHistoriesFrame implements Initializable {
 		DboJobHistoriesDaoImpl dbo = new DboJobHistoriesDaoImpl();
 
 		LinkedList<DboJobHistoriesEntity> jobHistoriesRows = dbo.loadJobHistoriesByBatchId(batchId);
-
-		// convertNull(allBatchesRows);
 
 		ObservableList<DboJobHistoriesEntity> jobHistoriesOblist = FXCollections.observableArrayList();
 		jobHistoriesOblist.addAll(jobHistoriesRows);
@@ -114,8 +112,10 @@ public class JobHistoriesFrame implements Initializable {
 		targetColumn.setCellValueFactory(cellData -> cellData.getValue().getTargetSimple());
 		jobCreatedByColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		jobCreatedByColumn.setCellValueFactory(cellData -> cellData.getValue().getJobCreatedBySimple());
+
 		jobModifiedByColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		jobModifiedByColumn.setCellValueFactory(cellData -> cellData.getValue().getJobModifiedBySimple());
+
 		jobCreatedColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		jobCreatedColumn.setCellValueFactory(cellData -> cellData.getValue().getJobCreatedSimple());
 		jobModifiedColumn.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -157,12 +157,6 @@ public class JobHistoriesFrame implements Initializable {
 
 	}
 
-	/*
-	 * private LinkedList<DboJobEntriesEntity>
-	 * convertNull(LinkedList<DboJobEntriesEntity> list) { for (DboJobEntriesEntity
-	 * entity : list) {
-	 * entity.setBatchesName(StringUtils.convertNullToSpace(entity.getBatchesName())
-	 * ); } return list; }
-	 */
+	
 
 }
