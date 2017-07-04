@@ -74,7 +74,7 @@ public class JobHistoriesFrame implements Initializable {
 	}
 
 	private void showTable() {
-		Integer batchId = StartFrame.getBatchId();
+		Integer batchId = BatchFrame.getBatchId();
 		DboJobHistoriesDaoImpl dbo = new DboJobHistoriesDaoImpl();
 
 		LinkedList<DboJobHistoriesEntity> jobHistoriesRows = dbo.loadJobHistoriesByBatchId(batchId);
@@ -112,10 +112,8 @@ public class JobHistoriesFrame implements Initializable {
 		targetColumn.setCellValueFactory(cellData -> cellData.getValue().getTargetSimple());
 		jobCreatedByColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		jobCreatedByColumn.setCellValueFactory(cellData -> cellData.getValue().getJobCreatedBySimple());
-
 		jobModifiedByColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		jobModifiedByColumn.setCellValueFactory(cellData -> cellData.getValue().getJobModifiedBySimple());
-
 		jobCreatedColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		jobCreatedColumn.setCellValueFactory(cellData -> cellData.getValue().getJobCreatedSimple());
 		jobModifiedColumn.setCellFactory(TextFieldTableCell.forTableColumn());

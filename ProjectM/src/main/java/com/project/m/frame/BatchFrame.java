@@ -26,7 +26,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class StartFrame implements Initializable {
+public class BatchFrame implements Initializable {
 	private Stage dialogWindow;
 	private Parent JobHistoriesFrame;
 	private Scene JobHistoriesScene;

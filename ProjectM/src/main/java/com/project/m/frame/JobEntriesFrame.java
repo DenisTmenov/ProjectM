@@ -34,7 +34,7 @@ public class JobEntriesFrame implements Initializable {
 	}
 
 	private void showTable() {
-		Integer batchId = StartFrame.getBatchId();
+		Integer batchId = BatchFrame.getBatchId();
 		DboJobEntriesDaoImpl dbo = new DboJobEntriesDaoImpl();
 
 		LinkedList<DboJobEntriesEntity> jobEntriesRows = dbo.loadJobEntriesByBatchId(batchId);
