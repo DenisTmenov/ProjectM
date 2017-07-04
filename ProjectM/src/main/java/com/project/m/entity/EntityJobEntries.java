@@ -46,6 +46,10 @@ public class EntityJobEntries {
 	private String extraData;
 	private String messageId;
 
+	public EntityJobEntries() {
+		super();
+	}
+
 	public String getEntryId() {
 		return entryId;
 	}

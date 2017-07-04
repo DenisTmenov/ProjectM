@@ -13,6 +13,10 @@ public class EntityBatches {
 	private Date createDate;
 	private Boolean isActive;
 
+	public EntityBatches() {
+		super();
+	}
+
 	public Integer getBatchesId() {
 		return batchesId;
 	}

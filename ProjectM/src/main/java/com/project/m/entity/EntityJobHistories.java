@@ -42,6 +42,10 @@ public class EntityJobHistories {
 	private Integer rehydrationType;
 	private Integer ownerId;
 
+	public EntityJobHistories() {
+		super();
+	}
+
 	public Integer getJobId() {
 		return jobId;
 	}
