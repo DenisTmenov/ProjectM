@@ -6,12 +6,10 @@ import java.util.LinkedList;
 import java.util.ResourceBundle;
 
 import com.project.m.dao.factory.DaoFactory;
-import com.project.m.dao.sql.JobEntriesDaoImpl;
 import com.project.m.dao.sql.JobHistoriesDaoImpl;
-import com.project.m.entity.EntityJobEntries;
 import com.project.m.entity.EntityJobHistories;
 import com.project.m.exceptions.FrameException;
-import com.project.m.utils.StringUtils;
+import com.project.m.utils.TableUtils;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -21,8 +19,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
@@ -35,13 +33,13 @@ public class JobHistoriesFrame implements Initializable {
 	private Scene JobEntriesScene;
 
 	@FXML
-	private TableColumn<EntityJobHistories, String> jobIdColumn, jobStatusColumn, timeStartedColumn,
-			timeFinishedColumn, targetTypeColumn, sourceTypeColumn, dateFromColumn, dateToColumn, ItemsTotalColumn,
-			itemsFailedColumn, itemsRemainingColumn, sMVersionColumn, sourceColumn, targetColumn, jobCreatedByColumn,
-			jobModifiedByColumn, jobCreatedColumn, jobModifiedColumn, batchIdColumn, failedCountColumn,
-			processingInBatchColumn, processingOnMachineColumn, processingRateColumn, lastUpdateColumn, configColumn,
-			statusMessageColumn, priorityColumn, percentCompleteColumn, sourceMailboxColumn, targetMailboxColumn,
-			processingItemsColumn, statusDateColumn, rehydrationTypeColumn, ownerIdColumn;
+	private TableColumn<EntityJobHistories, String> jobIdColumn, jobStatusColumn, timeStartedColumn, timeFinishedColumn,
+			targetTypeColumn, sourceTypeColumn, dateFromColumn, dateToColumn, ItemsTotalColumn, itemsFailedColumn,
+			itemsRemainingColumn, sMVersionColumn, sourceColumn, targetColumn, jobCreatedByColumn, jobModifiedByColumn,
+			jobCreatedColumn, jobModifiedColumn, batchIdColumn, failedCountColumn, processingInBatchColumn,
+			processingOnMachineColumn, processingRateColumn, lastUpdateColumn, configColumn, statusMessageColumn,
+			priorityColumn, percentCompleteColumn, sourceMailboxColumn, targetMailboxColumn, processingItemsColumn,
+			statusDateColumn, rehydrationTypeColumn, ownerIdColumn;
 
 	@FXML
 	private TableView<EntityJobHistories> jobHistoriesTable;
@@ -155,8 +153,11 @@ public class JobHistoriesFrame implements Initializable {
 
 		jobHistoriesTable.setItems(jobHistoriesOblist);
 
-	}
+		jobHistoriesTable.getSelectionModel().setCellSelectionEnabled(true);
+		jobHistoriesTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		TableUtils.installCopyPasteHandler(jobHistoriesTable);
+		TableUtils.installCopyPasteMenu(jobHistoriesTable);
 
-	
+	}
 
 }

@@ -3,7 +3,6 @@ package com.project.m.dao;
 import java.util.LinkedList;
 
 import com.project.m.entity.EntityBatches;
-import com.project.m.entity.EntityJobEntries;
 import com.project.m.entity.EntityJobHistories;
 import com.project.m.exceptions.DaoException;
 

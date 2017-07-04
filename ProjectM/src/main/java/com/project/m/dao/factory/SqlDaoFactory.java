@@ -24,7 +24,7 @@ public class SqlDaoFactory extends DaoFactory {
 	}
 
 	@Override
-	public JobEntriesDaoImpl JobEntriesDao() {
+	public JobEntriesDaoImpl getJobEntriesDao() {
 		try {
 			Class<?> daoClass = Class.forName("com.project.m.dao.sql.JobEntriesDaoImpl");
 			Object daoObject = daoClass.newInstance();
@@ -36,7 +36,7 @@ public class SqlDaoFactory extends DaoFactory {
 	}
 
 	@Override
-	public JobHistoriesDaoImpl JobHistoriesDao() {
+	public JobHistoriesDaoImpl getJobHistoriesDao() {
 		try {
 			Class<?> daoClass = Class.forName("com.project.m.dao.sql.JobHistoriesDaoImpl");
 			Object daoObject = daoClass.newInstance();

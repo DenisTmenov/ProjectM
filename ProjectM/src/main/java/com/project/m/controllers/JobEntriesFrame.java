@@ -7,11 +7,13 @@ import java.util.ResourceBundle;
 import com.project.m.dao.factory.DaoFactory;
 import com.project.m.dao.sql.JobEntriesDaoImpl;
 import com.project.m.entity.EntityJobEntries;
+import com.project.m.utils.TableUtils;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
@@ -124,6 +126,11 @@ public class JobEntriesFrame implements Initializable {
 		messageIdColumn.setCellValueFactory(cellData -> cellData.getValue().getMessageIdSimple());
 
 		jobEntriesTable.setItems(jobEntriesOblist);
+		
+		jobEntriesTable.getSelectionModel().setCellSelectionEnabled(true);
+		jobEntriesTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		TableUtils.installCopyPasteHandler(jobEntriesTable);
+		TableUtils.installCopyPasteMenu(jobEntriesTable);
 	}
 
 }
