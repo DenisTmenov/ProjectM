@@ -6,7 +6,7 @@ import com.project.m.utils.SimpleObject;
 
 import javafx.beans.property.SimpleStringProperty;
 
-public class DboJobEntriesEntity {
+public class EntityJobEntries {
 	private String entryId;
 	private Integer jobId;
 	private Integer itemStatus;
@@ -403,7 +403,7 @@ public class DboJobEntriesEntity {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		DboJobEntriesEntity other = (DboJobEntriesEntity) obj;
+		EntityJobEntries other = (EntityJobEntries) obj;
 		if (author == null) {
 			if (other.author != null)
 				return false;

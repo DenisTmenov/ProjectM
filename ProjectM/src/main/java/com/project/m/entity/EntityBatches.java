@@ -6,7 +6,7 @@ import com.project.m.utils.SimpleObject;
 
 import javafx.beans.property.SimpleStringProperty;
 
-public class DboBatchesEntity {
+public class EntityBatches {
 
 	private Integer batchesId;
 	private String batchesName;
@@ -64,7 +64,7 @@ public class DboBatchesEntity {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		DboBatchesEntity other = (DboBatchesEntity) obj;
+		EntityBatches other = (EntityBatches) obj;
 		if (batchesId == null) {
 			if (other.batchesId != null)
 				return false;

@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.ResourceBundle;
 
 import com.project.m.dao.sql.DboJobEntriesDaoImpl;
-import com.project.m.entity.DboJobEntriesEntity;
+import com.project.m.entity.EntityJobEntries;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,7 +17,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 
 public class JobEntriesFrame implements Initializable {
 	@FXML
-	private TableColumn<DboJobEntriesEntity, String> entryIdColumn, jobIdColumn, itemStatusColumn, mailboxColumn,
+	private TableColumn<EntityJobEntries, String> entryIdColumn, jobIdColumn, itemStatusColumn, mailboxColumn,
 			msgIdColumn, dateCreatedColumn, folderColumn, subjectColumn, authorColumn, recipientsColumn,
 			receivedDateColumn, sizeColumn, messageClassColumn, itemTypeColumn, ownerColumn, fileNameColumn,
 			dateModifiedColumn, statusMessageColumn, discoveryDateColumn, pathColumn, nameColumn, folderCountColumn,
@@ -26,7 +26,7 @@ public class JobEntriesFrame implements Initializable {
 			failedCountColumn, statusDateColumn, hashBytesColumn, extraDataColumn, messageIdColumn;
 
 	@FXML
-	private TableView<DboJobEntriesEntity> jobEntriesTable;
+	private TableView<EntityJobEntries> jobEntriesTable;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -37,11 +37,11 @@ public class JobEntriesFrame implements Initializable {
 		Integer batchId = BatchFrame.getBatchId();
 		DboJobEntriesDaoImpl dbo = new DboJobEntriesDaoImpl();
 
-		LinkedList<DboJobEntriesEntity> jobEntriesRows = dbo.loadJobEntriesByBatchId(batchId);
+		LinkedList<EntityJobEntries> jobEntriesRows = dbo.loadJobEntriesByBatchId(batchId);
 
 		// convertNull(allBatchesRows);
 
-		ObservableList<DboJobEntriesEntity> jobEntriesOblist = FXCollections.observableArrayList();
+		ObservableList<EntityJobEntries> jobEntriesOblist = FXCollections.observableArrayList();
 		jobEntriesOblist.addAll(jobEntriesRows);
 
 		entryIdColumn.setCellFactory(TextFieldTableCell.forTableColumn());

@@ -8,19 +8,19 @@ import java.util.LinkedList;
 
 import com.project.m.dao.DboJobEntriesDao;
 import com.project.m.dao.db.ConnectionPool;
-import com.project.m.entity.DboBatchesEntity;
-import com.project.m.entity.DboJobEntriesEntity;
-import com.project.m.entity.EntityCreator;
+import com.project.m.entity.EntityBatches;
+import com.project.m.entity.EntityJobEntries;
+import com.project.m.entity.CreatorEntity;
 import com.project.m.exceptions.SqlException;
 
 public class DboJobEntriesDaoImpl implements DboJobEntriesDao {
 
 	@Override
-	public void save(DboBatchesEntity bean) throws SqlException {
+	public void save(EntityBatches bean) throws SqlException {
 	}
 
 	@Override
-	public void update(DboBatchesEntity bean) throws SqlException {
+	public void update(EntityBatches bean) throws SqlException {
 	}
 
 	@Override
@@ -28,12 +28,12 @@ public class DboJobEntriesDaoImpl implements DboJobEntriesDao {
 	}
 
 	@Override
-	public LinkedList<DboJobEntriesEntity> loadJobEntriesByBatchId(Integer batchId) {
+	public LinkedList<EntityJobEntries> loadJobEntriesByBatchId(Integer batchId) {
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet set = null;
 
-		LinkedList<DboJobEntriesEntity> result = new LinkedList<DboJobEntriesEntity>();
+		LinkedList<EntityJobEntries> result = new LinkedList<EntityJobEntries>();
 
 		try {
 			connection = ConnectionPool.getInstance().getConnection();
@@ -43,7 +43,7 @@ public class DboJobEntriesDaoImpl implements DboJobEntriesDao {
 			set = statement.executeQuery();
 
 			while (set.next()) {
-				DboJobEntriesEntity entity = EntityCreator.createDboJobEntriesEntity(set);
+				EntityJobEntries entity = CreatorEntity.createDboJobEntriesEntity(set);
 				result.add(entity);
 			}
 		} catch (SQLException e) {

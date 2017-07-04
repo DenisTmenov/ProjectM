@@ -8,18 +8,18 @@ import java.util.LinkedList;
 
 import com.project.m.dao.DboBatchesDao;
 import com.project.m.dao.db.ConnectionPool;
-import com.project.m.entity.DboBatchesEntity;
-import com.project.m.entity.EntityCreator;
+import com.project.m.entity.EntityBatches;
+import com.project.m.entity.CreatorEntity;
 import com.project.m.exceptions.SqlException;
 
 public class DboBatchesDaoImpl implements DboBatchesDao {
 
 	@Override
-	public void save(DboBatchesEntity bean) throws SqlException {
+	public void save(EntityBatches bean) throws SqlException {
 	}
 
 	@Override
-	public void update(DboBatchesEntity bean) throws SqlException {
+	public void update(EntityBatches bean) throws SqlException {
 	}
 
 	@Override
@@ -27,12 +27,12 @@ public class DboBatchesDaoImpl implements DboBatchesDao {
 	}
 
 	@Override
-	public LinkedList<DboBatchesEntity> loadAllBatches() {
+	public LinkedList<EntityBatches> loadAllBatches() {
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet set = null;
 
-		LinkedList<DboBatchesEntity> result = new LinkedList<DboBatchesEntity>();
+		LinkedList<EntityBatches> result = new LinkedList<EntityBatches>();
 
 		try {
 			connection = ConnectionPool.getInstance().getConnection();
@@ -40,7 +40,7 @@ public class DboBatchesDaoImpl implements DboBatchesDao {
 			set = statement.executeQuery();
 
 			while (set.next()) {
-				DboBatchesEntity entity = EntityCreator.createDboBatchesEntity(set);
+				EntityBatches entity = CreatorEntity.createDboBatchesEntity(set);
 				result.add(entity);
 			}
 		} catch (SQLException e) {

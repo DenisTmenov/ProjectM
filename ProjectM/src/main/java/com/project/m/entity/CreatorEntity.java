@@ -6,9 +6,9 @@ import java.util.Date;
 
 import com.project.m.exceptions.EntityException;
 
-public class EntityCreator {
+public class CreatorEntity {
 
-	public static DboBatchesEntity createDboBatchesEntity(ResultSet set) {
+	public static EntityBatches createDboBatchesEntity(ResultSet set) {
 		Integer batchId = null;
 		String batchName = null;
 		Date createdDate = null;
@@ -22,7 +22,7 @@ public class EntityCreator {
 			throw new EntityException("Exception in createDboBatchesEntity().", e);
 		}
 
-		DboBatchesEntity entity = new DboBatchesEntity();
+		EntityBatches entity = new EntityBatches();
 
 		entity.setBatchesId(batchId);
 		entity.setBatchesName(batchName);
@@ -32,7 +32,7 @@ public class EntityCreator {
 		return entity;
 	}
 
-	public static DboJobHistoriesEntity createDboJobHistoriesEntity(ResultSet set) {
+	public static EntityJobHistories createDboJobHistoriesEntity(ResultSet set) {
 		Integer jobId = null;
 		Integer jobStatus = null;
 		Date timeStarted = null;
@@ -108,7 +108,7 @@ public class EntityCreator {
 			throw new EntityException("Exception in createDboJobHistoriesEntity().", e);
 		}
 
-		DboJobHistoriesEntity entity = new DboJobHistoriesEntity();
+		EntityJobHistories entity = new EntityJobHistories();
 
 		entity.setJobId(jobId);
 		entity.setJobStatus(jobStatus);
@@ -148,7 +148,7 @@ public class EntityCreator {
 		return entity;
 	}
 
-	public static DboJobEntriesEntity createDboJobEntriesEntity(ResultSet set) {
+	public static EntityJobEntries createDboJobEntriesEntity(ResultSet set) {
 		String entryId = null;
 		Integer jobId = null;
 		Integer itemStatus = null;
@@ -232,7 +232,7 @@ public class EntityCreator {
 			throw new EntityException("Exception in createDboJobEntriesEntity().", e);
 		}
 
-		DboJobEntriesEntity entity = new DboJobEntriesEntity();
+		EntityJobEntries entity = new EntityJobEntries();
 
 		entity.setEntryId(entryId);
 		entity.setJobId(jobId);

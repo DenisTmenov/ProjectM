@@ -7,8 +7,8 @@ import java.util.ResourceBundle;
 
 import com.project.m.dao.sql.DboJobEntriesDaoImpl;
 import com.project.m.dao.sql.DboJobHistoriesDaoImpl;
-import com.project.m.entity.DboJobEntriesEntity;
-import com.project.m.entity.DboJobHistoriesEntity;
+import com.project.m.entity.EntityJobEntries;
+import com.project.m.entity.EntityJobHistories;
 import com.project.m.exceptions.FrameException;
 import com.project.m.utils.StringUtils;
 
@@ -34,7 +34,7 @@ public class JobHistoriesFrame implements Initializable {
 	private Scene JobEntriesScene;
 
 	@FXML
-	private TableColumn<DboJobHistoriesEntity, String> jobIdColumn, jobStatusColumn, timeStartedColumn,
+	private TableColumn<EntityJobHistories, String> jobIdColumn, jobStatusColumn, timeStartedColumn,
 			timeFinishedColumn, targetTypeColumn, sourceTypeColumn, dateFromColumn, dateToColumn, ItemsTotalColumn,
 			itemsFailedColumn, itemsRemainingColumn, sMVersionColumn, sourceColumn, targetColumn, jobCreatedByColumn,
 			jobModifiedByColumn, jobCreatedColumn, jobModifiedColumn, batchIdColumn, failedCountColumn,
@@ -43,7 +43,7 @@ public class JobHistoriesFrame implements Initializable {
 			processingItemsColumn, statusDateColumn, rehydrationTypeColumn, ownerIdColumn;
 
 	@FXML
-	private TableView<DboJobHistoriesEntity> jobHistoriesTable;
+	private TableView<EntityJobHistories> jobHistoriesTable;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -77,9 +77,9 @@ public class JobHistoriesFrame implements Initializable {
 		Integer batchId = BatchFrame.getBatchId();
 		DboJobHistoriesDaoImpl dbo = new DboJobHistoriesDaoImpl();
 
-		LinkedList<DboJobHistoriesEntity> jobHistoriesRows = dbo.loadJobHistoriesByBatchId(batchId);
+		LinkedList<EntityJobHistories> jobHistoriesRows = dbo.loadJobHistoriesByBatchId(batchId);
 
-		ObservableList<DboJobHistoriesEntity> jobHistoriesOblist = FXCollections.observableArrayList();
+		ObservableList<EntityJobHistories> jobHistoriesOblist = FXCollections.observableArrayList();
 		jobHistoriesOblist.addAll(jobHistoriesRows);
 
 		jobIdColumn.setCellFactory(TextFieldTableCell.forTableColumn());

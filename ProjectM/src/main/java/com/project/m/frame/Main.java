@@ -22,9 +22,9 @@ public class Main extends Application {
 		windows = Stage;
 		windows.setTitle("ProjectM");
 		try {
-			page = FXMLLoader.load(getClass().getResource("/fxml/StartFrame.fxml"));
+			page = FXMLLoader.load(getClass().getResource("/fxml/BatchFrame.fxml"));
 		} catch (IOException e) {
-			throw new FrameException("Problem in LOADER StartFrame.fxml", e);
+			throw new FrameException("Problem in LOADER BatchFrame.fxml", e);
 		}
 		sceneBatchTable = new Scene(page);
 		windows.setScene(sceneBatchTable);

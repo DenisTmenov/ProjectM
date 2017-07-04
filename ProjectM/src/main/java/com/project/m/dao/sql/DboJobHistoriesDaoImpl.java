@@ -10,19 +10,19 @@ import org.apache.commons.dbcp2.BasicDataSource;
 
 import com.project.m.dao.DboJobHistoriesDao;
 import com.project.m.dao.db.ConnectionPool;
-import com.project.m.entity.DboBatchesEntity;
-import com.project.m.entity.DboJobHistoriesEntity;
-import com.project.m.entity.EntityCreator;
+import com.project.m.entity.EntityBatches;
+import com.project.m.entity.EntityJobHistories;
+import com.project.m.entity.CreatorEntity;
 import com.project.m.exceptions.SqlException;
 
 public class DboJobHistoriesDaoImpl implements DboJobHistoriesDao {
 
 	@Override
-	public void save(DboBatchesEntity bean) throws SqlException {
+	public void save(EntityBatches bean) throws SqlException {
 	}
 
 	@Override
-	public void update(DboBatchesEntity bean) throws SqlException {
+	public void update(EntityBatches bean) throws SqlException {
 	}
 
 	@Override
@@ -30,12 +30,12 @@ public class DboJobHistoriesDaoImpl implements DboJobHistoriesDao {
 	}
 
 	@Override
-	public LinkedList<DboJobHistoriesEntity> loadJobHistoriesByBatchId(Integer batchId) {
+	public LinkedList<EntityJobHistories> loadJobHistoriesByBatchId(Integer batchId) {
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet set = null;
 
-		LinkedList<DboJobHistoriesEntity> result = new LinkedList<DboJobHistoriesEntity>();
+		LinkedList<EntityJobHistories> result = new LinkedList<EntityJobHistories>();
 
 		try {
 			connection = ConnectionPool.getInstance().getConnection();
@@ -45,7 +45,7 @@ public class DboJobHistoriesDaoImpl implements DboJobHistoriesDao {
 			set = statement.executeQuery();
 
 			while (set.next()) {
-				DboJobHistoriesEntity entity = EntityCreator.createDboJobHistoriesEntity(set);
+				EntityJobHistories entity = CreatorEntity.createDboJobHistoriesEntity(set);
 				result.add(entity);
 			}
 		} catch (SQLException e) {

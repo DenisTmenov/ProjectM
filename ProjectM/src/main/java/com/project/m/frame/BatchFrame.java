@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.ResourceBundle;
 
 import com.project.m.dao.sql.DboBatchesDaoImpl;
-import com.project.m.entity.DboBatchesEntity;
+import com.project.m.entity.EntityBatches;
 import com.project.m.exceptions.FrameException;
 import com.project.m.utils.StringUtils;
 
@@ -34,10 +34,10 @@ public class BatchFrame implements Initializable {
 	private static Integer batchId;
 
 	@FXML
-	private TableColumn<DboBatchesEntity, String> batchIdColumn, batchNameColumn, jobCountColumn;
+	private TableColumn<EntityBatches, String> batchIdColumn, batchNameColumn, jobCountColumn;
 
 	@FXML
-	private TableView<DboBatchesEntity> batchTable;
+	private TableView<EntityBatches> batchTable;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -74,9 +74,9 @@ public class BatchFrame implements Initializable {
 
 	private void showTable() {
 		DboBatchesDaoImpl dbo = new DboBatchesDaoImpl();
-		LinkedList<DboBatchesEntity> allBatchesRows = dbo.loadAllBatches();
+		LinkedList<EntityBatches> allBatchesRows = dbo.loadAllBatches();
 
-		ObservableList<DboBatchesEntity> batchesOblist = FXCollections.observableArrayList();
+		ObservableList<EntityBatches> batchesOblist = FXCollections.observableArrayList();
 		batchesOblist.addAll(allBatchesRows);
 
 		batchIdColumn.setCellFactory(TextFieldTableCell.forTableColumn());
