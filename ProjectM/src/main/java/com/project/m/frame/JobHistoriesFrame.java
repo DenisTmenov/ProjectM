@@ -5,8 +5,8 @@ import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 
-import com.project.m.dao.sql.DboJobEntriesDaoImpl;
-import com.project.m.dao.sql.DboJobHistoriesDaoImpl;
+import com.project.m.dao.sql.JobEntriesDaoImpl;
+import com.project.m.dao.sql.JobHistoriesDaoImpl;
 import com.project.m.entity.EntityJobEntries;
 import com.project.m.entity.EntityJobHistories;
 import com.project.m.exceptions.FrameException;
@@ -75,7 +75,7 @@ public class JobHistoriesFrame implements Initializable {
 
 	private void showTable() {
 		Integer batchId = BatchFrame.getBatchId();
-		DboJobHistoriesDaoImpl dbo = new DboJobHistoriesDaoImpl();
+		JobHistoriesDaoImpl dbo = new JobHistoriesDaoImpl();
 
 		LinkedList<EntityJobHistories> jobHistoriesRows = dbo.loadJobHistoriesByBatchId(batchId);
 

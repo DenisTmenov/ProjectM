@@ -6,14 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 
-import com.project.m.dao.DboJobEntriesDao;
+import com.project.m.dao.BatchesDao;
 import com.project.m.dao.db.ConnectionPool;
 import com.project.m.entity.EntityBatches;
-import com.project.m.entity.EntityJobEntries;
 import com.project.m.entity.CreatorEntity;
 import com.project.m.exceptions.SqlException;
 
-public class DboJobEntriesDaoImpl implements DboJobEntriesDao {
+public class BatchesDaoImpl implements BatchesDao {
 
 	@Override
 	public void save(EntityBatches bean) throws SqlException {
@@ -28,26 +27,24 @@ public class DboJobEntriesDaoImpl implements DboJobEntriesDao {
 	}
 
 	@Override
-	public LinkedList<EntityJobEntries> loadJobEntriesByBatchId(Integer batchId) {
+	public LinkedList<EntityBatches> loadAllBatches() {
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet set = null;
 
-		LinkedList<EntityJobEntries> result = new LinkedList<EntityJobEntries>();
+		LinkedList<EntityBatches> result = new LinkedList<EntityBatches>();
 
 		try {
 			connection = ConnectionPool.getInstance().getConnection();
-			statement = connection.prepareStatement("SELECT * FROM [dbo].[JobEntries] WHERE JobId = ?");
-			statement.setInt(1, batchId);
-
+			statement = connection.prepareStatement("SELECT * FROM [dbo].[Batches]");
 			set = statement.executeQuery();
 
 			while (set.next()) {
-				EntityJobEntries entity = CreatorEntity.createDboJobEntriesEntity(set);
+				EntityBatches entity = CreatorEntity.createDboBatchesEntity(set);
 				result.add(entity);
 			}
 		} catch (SQLException e) {
-			throw new SqlException("Exception in loadJobEntriesByBatchId().", e);
+			throw new SqlException("Exception in loadAllBatches().", e);
 		} finally {
 			ConnectionPool.closeDbResources(connection, statement, set);
 		}
@@ -55,4 +52,5 @@ public class DboJobEntriesDaoImpl implements DboJobEntriesDao {
 		return result;
 	}
 
+	
 }

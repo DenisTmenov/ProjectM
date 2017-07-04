@@ -6,16 +6,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 
-import org.apache.commons.dbcp2.BasicDataSource;
-
-import com.project.m.dao.DboJobHistoriesDao;
+import com.project.m.dao.JobEntriesDao;
 import com.project.m.dao.db.ConnectionPool;
 import com.project.m.entity.EntityBatches;
-import com.project.m.entity.EntityJobHistories;
+import com.project.m.entity.EntityJobEntries;
 import com.project.m.entity.CreatorEntity;
 import com.project.m.exceptions.SqlException;
 
-public class DboJobHistoriesDaoImpl implements DboJobHistoriesDao {
+public class JobEntriesDaoImpl implements JobEntriesDao {
 
 	@Override
 	public void save(EntityBatches bean) throws SqlException {
@@ -30,26 +28,26 @@ public class DboJobHistoriesDaoImpl implements DboJobHistoriesDao {
 	}
 
 	@Override
-	public LinkedList<EntityJobHistories> loadJobHistoriesByBatchId(Integer batchId) {
+	public LinkedList<EntityJobEntries> loadJobEntriesByBatchId(Integer batchId) {
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet set = null;
 
-		LinkedList<EntityJobHistories> result = new LinkedList<EntityJobHistories>();
+		LinkedList<EntityJobEntries> result = new LinkedList<EntityJobEntries>();
 
 		try {
 			connection = ConnectionPool.getInstance().getConnection();
-			statement = connection.prepareStatement("SELECT * FROM [dbo].[JobHistories] WHERE BatchId = ?"); // WHERE
+			statement = connection.prepareStatement("SELECT * FROM [dbo].[JobEntries] WHERE JobId = ?");
 			statement.setInt(1, batchId);
 
 			set = statement.executeQuery();
 
 			while (set.next()) {
-				EntityJobHistories entity = CreatorEntity.createDboJobHistoriesEntity(set);
+				EntityJobEntries entity = CreatorEntity.createDboJobEntriesEntity(set);
 				result.add(entity);
 			}
 		} catch (SQLException e) {
-			throw new SqlException("Exception in loadJobHistoriesByBatchId().", e);
+			throw new SqlException("Exception in loadJobEntriesByBatchId().", e);
 		} finally {
 			ConnectionPool.closeDbResources(connection, statement, set);
 		}

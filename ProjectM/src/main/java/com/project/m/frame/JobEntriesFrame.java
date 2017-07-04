@@ -4,7 +4,7 @@ import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 
-import com.project.m.dao.sql.DboJobEntriesDaoImpl;
+import com.project.m.dao.sql.JobEntriesDaoImpl;
 import com.project.m.entity.EntityJobEntries;
 
 import javafx.collections.FXCollections;
@@ -35,7 +35,7 @@ public class JobEntriesFrame implements Initializable {
 
 	private void showTable() {
 		Integer batchId = BatchFrame.getBatchId();
-		DboJobEntriesDaoImpl dbo = new DboJobEntriesDaoImpl();
+		JobEntriesDaoImpl dbo = new JobEntriesDaoImpl();
 
 		LinkedList<EntityJobEntries> jobEntriesRows = dbo.loadJobEntriesByBatchId(batchId);
 

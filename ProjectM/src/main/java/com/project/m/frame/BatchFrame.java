@@ -5,7 +5,7 @@ import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 
-import com.project.m.dao.sql.DboBatchesDaoImpl;
+import com.project.m.dao.sql.BatchesDaoImpl;
 import com.project.m.entity.EntityBatches;
 import com.project.m.exceptions.FrameException;
 import com.project.m.utils.StringUtils;
@@ -73,7 +73,7 @@ public class BatchFrame implements Initializable {
 	}
 
 	private void showTable() {
-		DboBatchesDaoImpl dbo = new DboBatchesDaoImpl();
+		BatchesDaoImpl dbo = new BatchesDaoImpl();
 		LinkedList<EntityBatches> allBatchesRows = dbo.loadAllBatches();
 
 		ObservableList<EntityBatches> batchesOblist = FXCollections.observableArrayList();
