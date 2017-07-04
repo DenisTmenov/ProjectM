@@ -1,27 +1,28 @@
 package com.project.m.dao.db;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
+import org.apache.commons.dbcp2.BasicDataSource;
+
 import com.project.m.utils.PropertiesClass;
 
-public class ConnectionSQL {
-	private static Connection connection;
+public class ConnectionPool {
+	private BasicDataSource ds;
 
-	private ConnectionSQL() {
+	private ConnectionPool() {
 		try {
-
 			Properties jdbcSettings = PropertiesClass.getSettings("jdbc");
 
 			String url = (String) jdbcSettings.getProperty("jdbc.url");
 			String driverName = (String) jdbcSettings.getProperty("jdbc.driver.name");
 
-			Class.forName(driverName);
-			connection = DriverManager.getConnection(url);
+			ds = new BasicDataSource();
+			ds.setDriverClassName(driverName);
+			ds.setUrl(url);
 
 		} catch (Exception e) {
 			throw new RuntimeException("Some errors occurred during create connection!", e);
@@ -29,16 +30,16 @@ public class ConnectionSQL {
 	}
 
 	public static class SingletonHolder {
-		public static final ConnectionSQL HOLDER_INSTANCE = new ConnectionSQL();
+		public static final ConnectionPool HOLDER_INSTANCE = new ConnectionPool();
 	}
 
-	public static ConnectionSQL getInstance() {
+	public static ConnectionPool getInstance() {
 
 		return SingletonHolder.HOLDER_INSTANCE;
 	}
 
-	public Connection getConnection() {
-		return connection;
+	public Connection getConnection() throws SQLException {
+		return this.ds.getConnection();
 	}
 
 	public static void closeDbResources(Connection connection, PreparedStatement statement, ResultSet resultSet) {
@@ -49,10 +50,9 @@ public class ConnectionSQL {
 
 	private static void closeConnection(Connection connection) {
 		if (connection != null) {
-			/*try {
-				connection.close();
-			} catch (SQLException e) {
-			}*/
+			/*
+			 * try { connection.close(); } catch (SQLException e) { }
+			 */
 		}
 	}
 
