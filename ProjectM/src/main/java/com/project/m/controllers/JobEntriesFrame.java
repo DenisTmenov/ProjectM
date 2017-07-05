@@ -5,7 +5,10 @@ import java.util.LinkedList;
 import java.util.ResourceBundle;
 
 import com.project.m.dao.factory.DaoFactory;
-import com.project.m.dao.sql.JobEntriesDaoImpl;
+import com.project.m.dao.factory.DtoFactory;
+import com.project.m.dao.sql.JobEntriesDao;
+import com.project.m.domian.DtoJobEntries;
+import com.project.m.domian.DtoJobHistories;
 import com.project.m.entity.EntityJobEntries;
 import com.project.m.utils.TableUtils;
 
@@ -20,16 +23,16 @@ import javafx.scene.control.cell.TextFieldTableCell;
 
 public class JobEntriesFrame implements Initializable {
 	@FXML
-	private TableColumn<EntityJobEntries, String> entryIdColumn, jobIdColumn, itemStatusColumn, mailboxColumn,
-			msgIdColumn, dateCreatedColumn, folderColumn, subjectColumn, authorColumn, recipientsColumn,
-			receivedDateColumn, sizeColumn, messageClassColumn, itemTypeColumn, ownerColumn, fileNameColumn,
-			dateModifiedColumn, statusMessageColumn, discoveryDateColumn, pathColumn, nameColumn, folderCountColumn,
-			messageCountColumn, emailCountColumn, calendarCountColumn, taskCountColumn, contactCountColumn,
-			otherCountColumn, owner1Column, owner2Column, owner3Column, originalIdColumn, folderIdColumn,
-			failedCountColumn, statusDateColumn, hashBytesColumn, extraDataColumn, messageIdColumn;
+	private TableColumn<DtoJobEntries, String> entryIdColumn, jobIdColumn, itemStatusColumn, mailboxColumn, msgIdColumn,
+			dateCreatedColumn, folderColumn, subjectColumn, authorColumn, recipientsColumn, receivedDateColumn,
+			sizeColumn, messageClassColumn, itemTypeColumn, ownerColumn, fileNameColumn, dateModifiedColumn,
+			statusMessageColumn, discoveryDateColumn, pathColumn, nameColumn, folderCountColumn, messageCountColumn,
+			emailCountColumn, calendarCountColumn, taskCountColumn, contactCountColumn, otherCountColumn, owner1Column,
+			owner2Column, owner3Column, originalIdColumn, folderIdColumn, failedCountColumn, statusDateColumn,
+			hashBytesColumn, extraDataColumn, messageIdColumn;
 
 	@FXML
-	private TableView<EntityJobEntries> jobEntriesTable;
+	private TableView<DtoJobEntries> jobEntriesTable;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -37,15 +40,13 @@ public class JobEntriesFrame implements Initializable {
 	}
 
 	private void showTable() {
-		Integer batchId = BatchFrame.getBatchId();
-		DaoFactory daoFactory = DaoFactory.getFactory();
-		JobEntriesDaoImpl dbo = daoFactory.getJobEntriesDao();
+		Integer batchId = JobHistoriesFrame.getBatchId();
 
-		LinkedList<EntityJobEntries> jobEntriesRows = dbo.loadJobEntriesByBatchId(batchId);
+		DtoFactory dtoFactory = DtoFactory.getFactory();
 
-		// convertNull(allBatchesRows);
+		LinkedList<DtoJobEntries> jobEntriesRows = dtoFactory.getJobEntries(batchId);
 
-		ObservableList<EntityJobEntries> jobEntriesOblist = FXCollections.observableArrayList();
+		ObservableList<DtoJobEntries> jobEntriesOblist = FXCollections.observableArrayList();
 		jobEntriesOblist.addAll(jobEntriesRows);
 
 		entryIdColumn.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -126,7 +127,7 @@ public class JobEntriesFrame implements Initializable {
 		messageIdColumn.setCellValueFactory(cellData -> cellData.getValue().getMessageIdSimple());
 
 		jobEntriesTable.setItems(jobEntriesOblist);
-		
+
 		jobEntriesTable.getSelectionModel().setCellSelectionEnabled(true);
 		jobEntriesTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		TableUtils.installCopyPasteHandler(jobEntriesTable);

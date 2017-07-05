@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import com.project.m.entity.EntityBatches;
 import com.project.m.exceptions.DaoException;
 
-public interface BatchesDao {
+public interface BatchesDaoInterface {
 	
 	void save(EntityBatches bean) throws DaoException;
 

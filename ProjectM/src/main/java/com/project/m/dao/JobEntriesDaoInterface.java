@@ -6,7 +6,7 @@ import com.project.m.entity.EntityBatches;
 import com.project.m.entity.EntityJobEntries;
 import com.project.m.exceptions.DaoException;
 
-public interface JobEntriesDao {
+public interface JobEntriesDaoInterface {
 	
 	void save(EntityBatches bean) throws DaoException;
 

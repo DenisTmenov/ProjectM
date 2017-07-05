@@ -1,20 +1,19 @@
-package com.project.m.entity;
+package com.project.m.domian;
 
 import java.util.Date;
 
-public class EntityJobHistories {
+import com.project.m.utils.SimpleObject;
+
+import javafx.beans.property.SimpleStringProperty;
+
+public class DtoJobHistories {
 	private Integer jobId;
 	private Integer jobStatus;
 	private Date timeStarted;
 	private Date timeFinished;
-	private String targetType;
-	private String sourceType;
-	private Date dateFrom;
-	private Date dateTo;
-	private String ItemsTotal; // BigInteger
+	private String itemsTotal; // BigInteger
 	private String itemsFailed; // BigInteger
 	private String itemsRemaining; // BigInteger
-	private String sMVersion;
 	private Integer source;
 	private Integer target;
 	private String jobCreatedBy;
@@ -27,7 +26,6 @@ public class EntityJobHistories {
 	private String processingOnMachine;
 	private Integer processingRate;
 	private Date lastUpdate;
-	private String config;
 	private String statusMessage;
 	private Integer priority;
 	private Integer percentComplete;
@@ -36,9 +34,8 @@ public class EntityJobHistories {
 	private Integer processingItems;
 	private Date statusDate;
 	private Integer rehydrationType;
-	private Integer ownerId;
 
-	public EntityJobHistories() {
+	public DtoJobHistories() {
 		super();
 	}
 
@@ -74,44 +71,12 @@ public class EntityJobHistories {
 		this.timeFinished = timeFinished;
 	}
 
-	public String getTargetType() {
-		return targetType;
-	}
-
-	public void setTargetType(String targetType) {
-		this.targetType = targetType;
-	}
-
-	public String getSourceType() {
-		return sourceType;
-	}
-
-	public void setSourceType(String sourceType) {
-		this.sourceType = sourceType;
-	}
-
-	public Date getDateFrom() {
-		return dateFrom;
-	}
-
-	public void setDateFrom(Date dateFrom) {
-		this.dateFrom = dateFrom;
-	}
-
-	public Date getDateTo() {
-		return dateTo;
-	}
-
-	public void setDateTo(Date dateTo) {
-		this.dateTo = dateTo;
-	}
-
 	public String getItemsTotal() {
-		return ItemsTotal;
+		return itemsTotal;
 	}
 
 	public void setItemsTotal(String itemsTotal) {
-		ItemsTotal = itemsTotal;
+		this.itemsTotal = itemsTotal;
 	}
 
 	public String getItemsFailed() {
@@ -128,14 +93,6 @@ public class EntityJobHistories {
 
 	public void setItemsRemaining(String itemsRemaining) {
 		this.itemsRemaining = itemsRemaining;
-	}
-
-	public String getSMVersion() {
-		return sMVersion;
-	}
-
-	public void setSMVersion(String sMVersion) {
-		this.sMVersion = sMVersion;
 	}
 
 	public Integer getSource() {
@@ -234,14 +191,6 @@ public class EntityJobHistories {
 		this.lastUpdate = lastUpdate;
 	}
 
-	public String getConfig() {
-		return config;
-	}
-
-	public void setConfig(String config) {
-		this.config = config;
-	}
-
 	public String getStatusMessage() {
 		return statusMessage;
 	}
@@ -306,23 +255,12 @@ public class EntityJobHistories {
 		this.rehydrationType = rehydrationType;
 	}
 
-	public Integer getOwnerId() {
-		return ownerId;
-	}
-
-	public void setOwnerId(Integer ownerId) {
-		this.ownerId = ownerId;
-	}
-
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((ItemsTotal == null) ? 0 : ItemsTotal.hashCode());
+		result = prime * result + ((itemsTotal == null) ? 0 : itemsTotal.hashCode());
 		result = prime * result + ((batchId == null) ? 0 : batchId.hashCode());
-		result = prime * result + ((config == null) ? 0 : config.hashCode());
-		result = prime * result + ((dateFrom == null) ? 0 : dateFrom.hashCode());
-		result = prime * result + ((dateTo == null) ? 0 : dateTo.hashCode());
 		result = prime * result + ((failedCount == null) ? 0 : failedCount.hashCode());
 		result = prime * result + ((itemsFailed == null) ? 0 : itemsFailed.hashCode());
 		result = prime * result + ((itemsRemaining == null) ? 0 : itemsRemaining.hashCode());
@@ -333,7 +271,6 @@ public class EntityJobHistories {
 		result = prime * result + ((jobModifiedBy == null) ? 0 : jobModifiedBy.hashCode());
 		result = prime * result + ((jobStatus == null) ? 0 : jobStatus.hashCode());
 		result = prime * result + ((lastUpdate == null) ? 0 : lastUpdate.hashCode());
-		result = prime * result + ((ownerId == null) ? 0 : ownerId.hashCode());
 		result = prime * result + ((percentComplete == null) ? 0 : percentComplete.hashCode());
 		result = prime * result + ((priority == null) ? 0 : priority.hashCode());
 		result = prime * result + ((processingInBatch == null) ? 0 : processingInBatch.hashCode());
@@ -341,15 +278,12 @@ public class EntityJobHistories {
 		result = prime * result + ((processingOnMachine == null) ? 0 : processingOnMachine.hashCode());
 		result = prime * result + ((processingRate == null) ? 0 : processingRate.hashCode());
 		result = prime * result + ((rehydrationType == null) ? 0 : rehydrationType.hashCode());
-		result = prime * result + ((sMVersion == null) ? 0 : sMVersion.hashCode());
 		result = prime * result + ((source == null) ? 0 : source.hashCode());
 		result = prime * result + ((sourceMailbox == null) ? 0 : sourceMailbox.hashCode());
-		result = prime * result + ((sourceType == null) ? 0 : sourceType.hashCode());
 		result = prime * result + ((statusDate == null) ? 0 : statusDate.hashCode());
 		result = prime * result + ((statusMessage == null) ? 0 : statusMessage.hashCode());
 		result = prime * result + ((target == null) ? 0 : target.hashCode());
 		result = prime * result + ((targetMailbox == null) ? 0 : targetMailbox.hashCode());
-		result = prime * result + ((targetType == null) ? 0 : targetType.hashCode());
 		result = prime * result + ((timeFinished == null) ? 0 : timeFinished.hashCode());
 		result = prime * result + ((timeStarted == null) ? 0 : timeStarted.hashCode());
 		return result;
@@ -363,31 +297,16 @@ public class EntityJobHistories {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		EntityJobHistories other = (EntityJobHistories) obj;
-		if (ItemsTotal == null) {
-			if (other.ItemsTotal != null)
+		DtoJobHistories other = (DtoJobHistories) obj;
+		if (itemsTotal == null) {
+			if (other.itemsTotal != null)
 				return false;
-		} else if (!ItemsTotal.equals(other.ItemsTotal))
+		} else if (!itemsTotal.equals(other.itemsTotal))
 			return false;
 		if (batchId == null) {
 			if (other.batchId != null)
 				return false;
 		} else if (!batchId.equals(other.batchId))
-			return false;
-		if (config == null) {
-			if (other.config != null)
-				return false;
-		} else if (!config.equals(other.config))
-			return false;
-		if (dateFrom == null) {
-			if (other.dateFrom != null)
-				return false;
-		} else if (!dateFrom.equals(other.dateFrom))
-			return false;
-		if (dateTo == null) {
-			if (other.dateTo != null)
-				return false;
-		} else if (!dateTo.equals(other.dateTo))
 			return false;
 		if (failedCount == null) {
 			if (other.failedCount != null)
@@ -439,11 +358,6 @@ public class EntityJobHistories {
 				return false;
 		} else if (!lastUpdate.equals(other.lastUpdate))
 			return false;
-		if (ownerId == null) {
-			if (other.ownerId != null)
-				return false;
-		} else if (!ownerId.equals(other.ownerId))
-			return false;
 		if (percentComplete == null) {
 			if (other.percentComplete != null)
 				return false;
@@ -479,11 +393,6 @@ public class EntityJobHistories {
 				return false;
 		} else if (!rehydrationType.equals(other.rehydrationType))
 			return false;
-		if (sMVersion == null) {
-			if (other.sMVersion != null)
-				return false;
-		} else if (!sMVersion.equals(other.sMVersion))
-			return false;
 		if (source == null) {
 			if (other.source != null)
 				return false;
@@ -493,11 +402,6 @@ public class EntityJobHistories {
 			if (other.sourceMailbox != null)
 				return false;
 		} else if (!sourceMailbox.equals(other.sourceMailbox))
-			return false;
-		if (sourceType == null) {
-			if (other.sourceType != null)
-				return false;
-		} else if (!sourceType.equals(other.sourceType))
 			return false;
 		if (statusDate == null) {
 			if (other.statusDate != null)
@@ -519,11 +423,6 @@ public class EntityJobHistories {
 				return false;
 		} else if (!targetMailbox.equals(other.targetMailbox))
 			return false;
-		if (targetType == null) {
-			if (other.targetType != null)
-				return false;
-		} else if (!targetType.equals(other.targetType))
-			return false;
 		if (timeFinished == null) {
 			if (other.timeFinished != null)
 				return false;
@@ -539,21 +438,19 @@ public class EntityJobHistories {
 
 	@Override
 	public String toString() {
-		return "DboJobHistoriesEntity [jobId=" + jobId + ", jobStatus=" + jobStatus + ", timeStarted=" + timeStarted
-				+ ", timeFinished=" + timeFinished + ", targetType=" + targetType + ", sourceType=" + sourceType
-				+ ", dateFrom=" + dateFrom + ", dateTo=" + dateTo + ", ItemsTotal=" + ItemsTotal + ", itemsFailed="
-				+ itemsFailed + ", itemsRemaining=" + itemsRemaining + ", sMVersion=" + sMVersion + ", source=" + source
-				+ ", target=" + target + ", jobCreatedBy=" + jobCreatedBy + ", jobModifiedBy=" + jobModifiedBy
-				+ ", jobCreated=" + jobCreated + ", jobModified=" + jobModified + ", batchId=" + batchId
-				+ ", failedCount=" + failedCount + ", processingInBatch=" + processingInBatch + ", processingOnMachine="
-				+ processingOnMachine + ", processingRate=" + processingRate + ", lastUpdate=" + lastUpdate
-				+ ", config=" + config + ", statusMessage=" + statusMessage + ", priority=" + priority
-				+ ", percentComplete=" + percentComplete + ", sourceMailbox=" + sourceMailbox + ", targetMailbox="
-				+ targetMailbox + ", processingItems=" + processingItems + ", statusDate=" + statusDate
-				+ ", rehydrationType=" + rehydrationType + ", ownerId=" + ownerId + "]";
+		return "DtoJobHistories [jobId=" + jobId + ", jobStatus=" + jobStatus + ", timeStarted=" + timeStarted
+				+ ", timeFinished=" + timeFinished + ", itemsTotal=" + itemsTotal + ", itemsFailed=" + itemsFailed
+				+ ", itemsRemaining=" + itemsRemaining + ", source=" + source + ", target=" + target + ", jobCreatedBy="
+				+ jobCreatedBy + ", jobModifiedBy=" + jobModifiedBy + ", jobCreated=" + jobCreated + ", jobModified="
+				+ jobModified + ", batchId=" + batchId + ", failedCount=" + failedCount + ", processingInBatch="
+				+ processingInBatch + ", processingOnMachine=" + processingOnMachine + ", processingRate="
+				+ processingRate + ", lastUpdate=" + lastUpdate + ", statusMessage=" + statusMessage + ", priority="
+				+ priority + ", percentComplete=" + percentComplete + ", sourceMailbox=" + sourceMailbox
+				+ ", targetMailbox=" + targetMailbox + ", processingItems=" + processingItems + ", statusDate="
+				+ statusDate + ", rehydrationType=" + rehydrationType + "]";
 	}
 
-	/*public SimpleStringProperty getJobIdSimple() {
+	public SimpleStringProperty getJobIdSimple() {
 		SimpleStringProperty jobIdSimple = new SimpleStringProperty(String.valueOf(getJobId()));
 		jobIdSimple = SimpleObject.convertNullToSpace(jobIdSimple);
 		return jobIdSimple;
@@ -577,30 +474,6 @@ public class EntityJobHistories {
 		return timeFinishedSimple;
 	}
 
-	public SimpleStringProperty getTargetTypeSimple() {
-		SimpleStringProperty targetTypeSimple = new SimpleStringProperty(String.valueOf(getTargetType()));
-		targetTypeSimple = SimpleObject.convertNullToSpace(targetTypeSimple);
-		return targetTypeSimple;
-	}
-
-	public SimpleStringProperty getSourceTypeSimple() {
-		SimpleStringProperty sourceTypeSimple = new SimpleStringProperty(String.valueOf(getSourceType()));
-		sourceTypeSimple = SimpleObject.convertNullToSpace(sourceTypeSimple);
-		return sourceTypeSimple;
-	}
-
-	public SimpleStringProperty getDateFromSimple() {
-		SimpleStringProperty dateFromSimple = new SimpleStringProperty(String.valueOf(getDateFrom()));
-		dateFromSimple = SimpleObject.convertNullToSpace(dateFromSimple);
-		return dateFromSimple;
-	}
-
-	public SimpleStringProperty getDateToSimple() {
-		SimpleStringProperty dateToSimple = new SimpleStringProperty(String.valueOf(getDateTo()));
-		dateToSimple = SimpleObject.convertNullToSpace(dateToSimple);
-		return dateToSimple;
-	}
-
 	public SimpleStringProperty getItemsTotalSimple() {
 		SimpleStringProperty itemsTotalSimple = new SimpleStringProperty(String.valueOf(getItemsTotal()));
 		itemsTotalSimple = SimpleObject.convertNullToSpace(itemsTotalSimple);
@@ -617,12 +490,6 @@ public class EntityJobHistories {
 		SimpleStringProperty itemsRemainingSimple = new SimpleStringProperty(String.valueOf(getItemsRemaining()));
 		itemsRemainingSimple = SimpleObject.convertNullToSpace(itemsRemainingSimple);
 		return itemsRemainingSimple;
-	}
-
-	public SimpleStringProperty getSMVersionSimple() {
-		SimpleStringProperty sMVersionSimple = new SimpleStringProperty(String.valueOf(getSMVersion()));
-		sMVersionSimple = SimpleObject.convertNullToSpace(sMVersionSimple);
-		return sMVersionSimple;
 	}
 
 	public SimpleStringProperty getSourceSimple() {
@@ -698,12 +565,6 @@ public class EntityJobHistories {
 		return lastUpdateSimple;
 	}
 
-	public SimpleStringProperty getConfigSimple() {
-		SimpleStringProperty configSimple = new SimpleStringProperty(String.valueOf(getConfig()));
-		configSimple = SimpleObject.convertNullToSpace(configSimple);
-		return configSimple;
-	}
-
 	public SimpleStringProperty getStatusMessageSimple() {
 		SimpleStringProperty statusMessageSimple = new SimpleStringProperty(String.valueOf(getStatusMessage()));
 		statusMessageSimple = SimpleObject.convertNullToSpace(statusMessageSimple);
@@ -751,11 +612,5 @@ public class EntityJobHistories {
 		rehydrationTypeSimple = SimpleObject.convertNullToSpace(rehydrationTypeSimple);
 		return rehydrationTypeSimple;
 	}
-
-	public SimpleStringProperty getOwnerIdSimple() {
-		SimpleStringProperty ownerIdSimple = new SimpleStringProperty(String.valueOf(getOwnerId()));
-		ownerIdSimple = SimpleObject.convertNullToSpace(ownerIdSimple);
-		return ownerIdSimple;
-	}*/
 
 }

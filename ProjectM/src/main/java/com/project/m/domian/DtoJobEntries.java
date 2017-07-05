@@ -1,4 +1,4 @@
-package com.project.m.entity;
+package com.project.m.domian;
 
 import java.util.Date;
 
@@ -6,7 +6,7 @@ import com.project.m.utils.SimpleObject;
 
 import javafx.beans.property.SimpleStringProperty;
 
-public class EntityJobEntries {
+public class DtoJobEntries {
 	private String entryId;
 	private Integer jobId;
 	private Integer itemStatus;
@@ -46,7 +46,7 @@ public class EntityJobEntries {
 	private String extraData;
 	private String messageId;
 
-	public EntityJobEntries() {
+	public DtoJobEntries() {
 		super();
 	}
 
@@ -407,7 +407,7 @@ public class EntityJobEntries {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		EntityJobEntries other = (EntityJobEntries) obj;
+		DtoJobEntries other = (DtoJobEntries) obj;
 		if (author == null) {
 			if (other.author != null)
 				return false;
@@ -615,6 +615,234 @@ public class EntityJobEntries {
 				+ ", originalId=" + originalId + ", folderId=" + folderId + ", failedCount=" + failedCount
 				+ ", statusDate=" + statusDate + ", hashBytes=" + hashBytes + ", extraData=" + extraData
 				+ ", messageId=" + messageId + "]";
+	}
+
+	public SimpleStringProperty getEntryIdSimple() {
+		SimpleStringProperty entryIdSimple = new SimpleStringProperty(String.valueOf(getEntryId()));
+		entryIdSimple = SimpleObject.convertNullToSpace(entryIdSimple);
+		return entryIdSimple;
+	}
+
+	public SimpleStringProperty getJobIdSimple() {
+		SimpleStringProperty jobIdSimple = new SimpleStringProperty(String.valueOf(getJobId()));
+		jobIdSimple = SimpleObject.convertNullToSpace(jobIdSimple);
+		return jobIdSimple;
+	}
+
+	public SimpleStringProperty getItemStatusSimple() {
+		SimpleStringProperty itemStatusSimple = new SimpleStringProperty(String.valueOf(getItemStatus()));
+		itemStatusSimple = SimpleObject.convertNullToSpace(itemStatusSimple);
+		return itemStatusSimple;
+	}
+
+	public SimpleStringProperty getMailboxSimple() {
+		SimpleStringProperty mailboxSimple = new SimpleStringProperty(String.valueOf(getMailbox()));
+		mailboxSimple = SimpleObject.convertNullToSpace(mailboxSimple);
+		return mailboxSimple;
+	}
+
+	public SimpleStringProperty getMsgIdSimple() {
+		SimpleStringProperty msgIdSimple = new SimpleStringProperty(String.valueOf(getMsgId()));
+		msgIdSimple = SimpleObject.convertNullToSpace(msgIdSimple);
+		return msgIdSimple;
+	}
+
+	public SimpleStringProperty getDateCreatedSimple() {
+		SimpleStringProperty dateCreatedSimple = new SimpleStringProperty(String.valueOf(getDateCreated()));
+		dateCreatedSimple = SimpleObject.convertNullToSpace(dateCreatedSimple);
+		return dateCreatedSimple;
+	}
+
+	public SimpleStringProperty getFolderSimple() {
+		SimpleStringProperty folderSimple = new SimpleStringProperty(String.valueOf(getFolder()));
+		folderSimple = SimpleObject.convertNullToSpace(folderSimple);
+		return folderSimple;
+	}
+
+	public SimpleStringProperty getSubjectSimple() {
+		SimpleStringProperty subjectSimple = new SimpleStringProperty(String.valueOf(getSubject()));
+		subjectSimple = SimpleObject.convertNullToSpace(subjectSimple);
+		return subjectSimple;
+	}
+
+	public SimpleStringProperty getAuthorSimple() {
+		SimpleStringProperty authorSimple = new SimpleStringProperty(String.valueOf(getAuthor()));
+		authorSimple = SimpleObject.convertNullToSpace(authorSimple);
+		return authorSimple;
+	}
+
+	public SimpleStringProperty getRecipientsSimple() {
+		SimpleStringProperty recipientsSimple = new SimpleStringProperty(String.valueOf(getRecipients()));
+		recipientsSimple = SimpleObject.convertNullToSpace(recipientsSimple);
+		return recipientsSimple;
+	}
+
+	public SimpleStringProperty getReceivedDateSimple() {
+		SimpleStringProperty receivedDateSimple = new SimpleStringProperty(String.valueOf(getReceivedDate()));
+		receivedDateSimple = SimpleObject.convertNullToSpace(receivedDateSimple);
+		return receivedDateSimple;
+	}
+
+	public SimpleStringProperty getSizeSimple() {
+		SimpleStringProperty sizeSimple = new SimpleStringProperty(String.valueOf(getSize()));
+		sizeSimple = SimpleObject.convertNullToSpace(sizeSimple);
+		return sizeSimple;
+	}
+
+	public SimpleStringProperty getMessageClassSimple() {
+		SimpleStringProperty messageClassSimple = new SimpleStringProperty(String.valueOf(getMessageClass()));
+		messageClassSimple = SimpleObject.convertNullToSpace(messageClassSimple);
+		return messageClassSimple;
+	}
+
+	public SimpleStringProperty getItemTypeSimple() {
+		SimpleStringProperty itemTypeSimple = new SimpleStringProperty(String.valueOf(getItemType()));
+		itemTypeSimple = SimpleObject.convertNullToSpace(itemTypeSimple);
+		return itemTypeSimple;
+	}
+
+	public SimpleStringProperty getOwnerSimple() {
+		SimpleStringProperty ownerSimple = new SimpleStringProperty(String.valueOf(getOwner()));
+		ownerSimple = SimpleObject.convertNullToSpace(ownerSimple);
+		return ownerSimple;
+	}
+
+	public SimpleStringProperty getFileNameSimple() {
+		SimpleStringProperty fileNameSimple = new SimpleStringProperty(String.valueOf(getFileName()));
+		fileNameSimple = SimpleObject.convertNullToSpace(fileNameSimple);
+		return fileNameSimple;
+	}
+
+	public SimpleStringProperty getDateModifiedSimple() {
+		SimpleStringProperty dateModifiedSimple = new SimpleStringProperty(String.valueOf(getDateModified()));
+		dateModifiedSimple = SimpleObject.convertNullToSpace(dateModifiedSimple);
+		return dateModifiedSimple;
+	}
+
+	public SimpleStringProperty getStatusMessageSimple() {
+		SimpleStringProperty statusMessageSimple = new SimpleStringProperty(String.valueOf(getStatusMessage()));
+		statusMessageSimple = SimpleObject.convertNullToSpace(statusMessageSimple);
+		return statusMessageSimple;
+	}
+
+	public SimpleStringProperty getDiscoveryDateSimple() {
+		SimpleStringProperty discoveryDateSimple = new SimpleStringProperty(String.valueOf(getDiscoveryDate()));
+		discoveryDateSimple = SimpleObject.convertNullToSpace(discoveryDateSimple);
+		return discoveryDateSimple;
+	}
+
+	public SimpleStringProperty getPathSimple() {
+		SimpleStringProperty pathSimple = new SimpleStringProperty(String.valueOf(getPath()));
+		pathSimple = SimpleObject.convertNullToSpace(pathSimple);
+		return pathSimple;
+	}
+
+	public SimpleStringProperty getNameSimple() {
+		SimpleStringProperty nameSimple = new SimpleStringProperty(String.valueOf(getName()));
+		nameSimple = SimpleObject.convertNullToSpace(nameSimple);
+		return nameSimple;
+	}
+
+	public SimpleStringProperty getFolderCountSimple() {
+		SimpleStringProperty folderCountSimple = new SimpleStringProperty(String.valueOf(getFolderCount()));
+		folderCountSimple = SimpleObject.convertNullToSpace(folderCountSimple);
+		return folderCountSimple;
+	}
+
+	public SimpleStringProperty getMessageCountSimple() {
+		SimpleStringProperty messageCountSimple = new SimpleStringProperty(String.valueOf(getMessageCount()));
+		messageCountSimple = SimpleObject.convertNullToSpace(messageCountSimple);
+		return messageCountSimple;
+	}
+
+	public SimpleStringProperty getEmailCountSimple() {
+		SimpleStringProperty emailCountSimple = new SimpleStringProperty(String.valueOf(getEmailCount()));
+		emailCountSimple = SimpleObject.convertNullToSpace(emailCountSimple);
+		return emailCountSimple;
+	}
+
+	public SimpleStringProperty getCalendarCountSimple() {
+		SimpleStringProperty calendarCountSimple = new SimpleStringProperty(String.valueOf(getCalendarCount()));
+		calendarCountSimple = SimpleObject.convertNullToSpace(calendarCountSimple);
+		return calendarCountSimple;
+	}
+
+	public SimpleStringProperty getTaskCountSimple() {
+		SimpleStringProperty taskCountSimple = new SimpleStringProperty(String.valueOf(getTaskCount()));
+		taskCountSimple = SimpleObject.convertNullToSpace(taskCountSimple);
+		return taskCountSimple;
+	}
+
+	public SimpleStringProperty getContactCountSimple() {
+		SimpleStringProperty contactCountSimple = new SimpleStringProperty(String.valueOf(getContactCount()));
+		contactCountSimple = SimpleObject.convertNullToSpace(contactCountSimple);
+		return contactCountSimple;
+	}
+
+	public SimpleStringProperty getOtherCountSimple() {
+		SimpleStringProperty otherCountSimple = new SimpleStringProperty(String.valueOf(getOtherCount()));
+		otherCountSimple = SimpleObject.convertNullToSpace(otherCountSimple);
+		return otherCountSimple;
+	}
+
+	public SimpleStringProperty getOwner1Simple() {
+		SimpleStringProperty owner1Simple = new SimpleStringProperty(String.valueOf(getOwner1()));
+		owner1Simple = SimpleObject.convertNullToSpace(owner1Simple);
+		return owner1Simple;
+	}
+
+	public SimpleStringProperty getOwner2Simple() {
+		SimpleStringProperty owner2Simple = new SimpleStringProperty(String.valueOf(getOwner2()));
+		owner2Simple = SimpleObject.convertNullToSpace(owner2Simple);
+		return owner2Simple;
+	}
+
+	public SimpleStringProperty getOwner3Simple() {
+		SimpleStringProperty owner3Simple = new SimpleStringProperty(String.valueOf(getOwner3()));
+		owner3Simple = SimpleObject.convertNullToSpace(owner3Simple);
+		return owner3Simple;
+	}
+
+	public SimpleStringProperty getOriginalIdSimple() {
+		SimpleStringProperty originalIdSimple = new SimpleStringProperty(String.valueOf(getOriginalId()));
+		originalIdSimple = SimpleObject.convertNullToSpace(originalIdSimple);
+		return originalIdSimple;
+	}
+
+	public SimpleStringProperty getFolderIdSimple() {
+		SimpleStringProperty folderIdSimple = new SimpleStringProperty(String.valueOf(getFolderId()));
+		folderIdSimple = SimpleObject.convertNullToSpace(folderIdSimple);
+		return folderIdSimple;
+	}
+
+	public SimpleStringProperty getFailedCountSimple() {
+		SimpleStringProperty failedCountSimple = new SimpleStringProperty(String.valueOf(getFailedCount()));
+		failedCountSimple = SimpleObject.convertNullToSpace(failedCountSimple);
+		return failedCountSimple;
+	}
+
+	public SimpleStringProperty getStatusDateSimple() {
+		SimpleStringProperty statusDateSimple = new SimpleStringProperty(String.valueOf(getStatusDate()));
+		statusDateSimple = SimpleObject.convertNullToSpace(statusDateSimple);
+		return statusDateSimple;
+	}
+
+	public SimpleStringProperty getHashBytesSimple() {
+		SimpleStringProperty hashBytesSimple = new SimpleStringProperty(String.valueOf(getHashBytes()));
+		hashBytesSimple = SimpleObject.convertNullToSpace(hashBytesSimple);
+		return hashBytesSimple;
+	}
+
+	public SimpleStringProperty getExtraDataSimple() {
+		SimpleStringProperty extraDataSimple = new SimpleStringProperty(String.valueOf(getExtraData()));
+		extraDataSimple = SimpleObject.convertNullToSpace(extraDataSimple);
+		return extraDataSimple;
+	}
+
+	public SimpleStringProperty getMessageIdSimple() {
+		SimpleStringProperty messageIdSimple = new SimpleStringProperty(String.valueOf(getMessageId()));
+		messageIdSimple = SimpleObject.convertNullToSpace(messageIdSimple);
+		return messageIdSimple;
 	}
 
 }

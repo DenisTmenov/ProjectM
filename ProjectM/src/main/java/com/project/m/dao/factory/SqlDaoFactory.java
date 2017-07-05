@@ -1,8 +1,8 @@
 package com.project.m.dao.factory;
 
-import com.project.m.dao.sql.BatchesDaoImpl;
-import com.project.m.dao.sql.JobEntriesDaoImpl;
-import com.project.m.dao.sql.JobHistoriesDaoImpl;
+import com.project.m.dao.sql.BatchesDao;
+import com.project.m.dao.sql.JobEntriesDao;
+import com.project.m.dao.sql.JobHistoriesDao;
 import com.project.m.exceptions.UnsupportedDaoTypeException;
 
 public class SqlDaoFactory extends DaoFactory {
@@ -12,36 +12,36 @@ public class SqlDaoFactory extends DaoFactory {
 	}
 
 	@Override
-	public BatchesDaoImpl getBatchesDao() {
+	public BatchesDao getBatchesDao() {
 		try {
 			Class<?> daoClass = Class.forName("com.project.m.dao.sql.BatchesDaoImpl");
 			Object daoObject = daoClass.newInstance();
 
-			return ((BatchesDaoImpl) daoObject);
+			return ((BatchesDao) daoObject);
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
 			throw new UnsupportedDaoTypeException();
 		}
 	}
 
 	@Override
-	public JobEntriesDaoImpl getJobEntriesDao() {
+	public JobEntriesDao getJobEntriesDao() {
 		try {
 			Class<?> daoClass = Class.forName("com.project.m.dao.sql.JobEntriesDaoImpl");
 			Object daoObject = daoClass.newInstance();
 
-			return ((JobEntriesDaoImpl) daoObject);
+			return ((JobEntriesDao) daoObject);
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
 			throw new UnsupportedDaoTypeException();
 		}
 	}
 
 	@Override
-	public JobHistoriesDaoImpl getJobHistoriesDao() {
+	public JobHistoriesDao getJobHistoriesDao() {
 		try {
 			Class<?> daoClass = Class.forName("com.project.m.dao.sql.JobHistoriesDaoImpl");
 			Object daoObject = daoClass.newInstance();
 
-			return ((JobHistoriesDaoImpl) daoObject);
+			return ((JobHistoriesDao) daoObject);
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
 			throw new UnsupportedDaoTypeException();
 		}

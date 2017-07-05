@@ -6,14 +6,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 
-import com.project.m.dao.JobHistoriesDao;
+import com.project.m.dao.JobHistoriesDaoInterface;
 import com.project.m.dao.db.ConnectionPool;
 import com.project.m.entity.EntityBatches;
 import com.project.m.entity.EntityJobHistories;
 import com.project.m.exceptions.DaoException;
 import com.project.m.service.CreatorEntity;
 
-public class JobHistoriesDaoImpl implements JobHistoriesDao {
+public class JobHistoriesDao implements JobHistoriesDaoInterface {
 
 	@Override
 	public void save(EntityBatches bean) throws DaoException {

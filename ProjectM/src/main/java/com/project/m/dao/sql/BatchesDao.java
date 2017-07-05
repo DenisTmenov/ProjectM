@@ -6,13 +6,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 
-import com.project.m.dao.BatchesDao;
+import com.project.m.dao.BatchesDaoInterface;
 import com.project.m.dao.db.ConnectionPool;
 import com.project.m.entity.EntityBatches;
 import com.project.m.exceptions.DaoException;
 import com.project.m.service.CreatorEntity;
 
-public class BatchesDaoImpl implements BatchesDao {
+public class BatchesDao implements BatchesDaoInterface {
 
 	@Override
 	public void save(EntityBatches bean) throws DaoException {

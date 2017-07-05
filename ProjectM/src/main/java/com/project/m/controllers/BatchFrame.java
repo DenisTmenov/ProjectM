@@ -6,30 +6,25 @@ import java.util.LinkedList;
 import java.util.ResourceBundle;
 
 import com.project.m.dao.factory.DaoFactory;
-import com.project.m.dao.sql.BatchesDaoImpl;
+import com.project.m.dao.sql.BatchesDao;
 import com.project.m.entity.EntityBatches;
 import com.project.m.exceptions.FrameException;
 import com.project.m.utils.TableUtils;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.ContextMenu;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
-import javafx.scene.input.Clipboard;
-import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -82,8 +77,8 @@ public class BatchFrame implements Initializable {
 	}
 
 	private void showTable() {
-		DaoFactory daoFactory = DaoFactory.getFactory();
-		BatchesDaoImpl dbo = daoFactory.getBatchesDao();
+		DaoFactory daoFactory = DaoFactory.getSqlFactory();
+		BatchesDao dbo = daoFactory.getBatchesDao();
 		LinkedList<EntityBatches> allBatchesRows = dbo.loadAllBatches();
 
 		ObservableList<EntityBatches> batchesOblist = FXCollections.observableArrayList();

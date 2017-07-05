@@ -1,4 +1,4 @@
-package com.project.m.dao.factory;
+package com.project.m.dao.factory.type;
 
 public enum StoradgeTypes {
 

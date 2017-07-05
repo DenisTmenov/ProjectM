@@ -1,19 +1,20 @@
 package com.project.m.dao.factory;
 
-import com.project.m.dao.sql.BatchesDaoImpl;
-import com.project.m.dao.sql.JobEntriesDaoImpl;
-import com.project.m.dao.sql.JobHistoriesDaoImpl;
+import com.project.m.dao.factory.type.StoradgeTypes;
+import com.project.m.dao.sql.BatchesDao;
+import com.project.m.dao.sql.JobEntriesDao;
+import com.project.m.dao.sql.JobHistoriesDao;
 import com.project.m.exceptions.UnsupportedStoradgeTypeException;
 
 public abstract class DaoFactory {
 
-	public abstract BatchesDaoImpl getBatchesDao();
+	public abstract BatchesDao getBatchesDao();
 
-	public abstract JobEntriesDaoImpl getJobEntriesDao();
+	public abstract JobEntriesDao getJobEntriesDao();
 	
-	public abstract JobHistoriesDaoImpl getJobHistoriesDao();
+	public abstract JobHistoriesDao getJobHistoriesDao();
 	
-	public static DaoFactory getFactory() {
+	public static DaoFactory getSqlFactory() {
 		return getFactory(StoradgeTypes.Sql);
 	}
 

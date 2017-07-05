@@ -5,9 +5,8 @@ import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 
-import com.project.m.dao.factory.DaoFactory;
-import com.project.m.dao.sql.JobHistoriesDaoImpl;
-import com.project.m.entity.EntityJobHistories;
+import com.project.m.dao.factory.DtoFactory;
+import com.project.m.domian.DtoJobHistories;
 import com.project.m.exceptions.FrameException;
 import com.project.m.utils.TableUtils;
 
@@ -21,6 +20,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.image.Image;
@@ -32,9 +32,11 @@ public class JobHistoriesFrame implements Initializable {
 	private Stage dialogWindow;
 	private Parent JobEntriesFrame;
 	private Scene JobEntriesScene;
+	
+	private static Integer batchId;
 
 	@FXML
-	private TableColumn<EntityJobHistories, String> jobIdColumn, jobStatusColumn, timeStartedColumn, timeFinishedColumn,
+	private TableColumn<DtoJobHistories, String> jobIdColumn, jobStatusColumn, timeStartedColumn, timeFinishedColumn,
 			 itemsTotalColumn, itemsFailedColumn,
 			itemsRemainingColumn, sourceColumn, targetColumn, jobCreatedByColumn, jobModifiedByColumn,
 			jobCreatedColumn, jobModifiedColumn, batchIdColumn, failedCountColumn, processingInBatchColumn,
@@ -43,7 +45,7 @@ public class JobHistoriesFrame implements Initializable {
 			statusDateColumn, rehydrationTypeColumn;
 
 	@FXML
-	private TableView<EntityJobHistories> jobHistoriesTable;
+	private TableView<DtoJobHistories> jobHistoriesTable;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -53,6 +55,11 @@ public class JobHistoriesFrame implements Initializable {
 			@Override
 			public void handle(MouseEvent event) {
 				if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
+					TablePosition<?, ?> pos = jobHistoriesTable.getSelectionModel().getSelectedCells().get(0);
+					int index = pos.getRow();
+					Integer batchId = jobHistoriesTable.getItems().get(index).getBatchId();
+
+					setBatchId(batchId);
 
 					dialogWindow = new Stage();
 					dialogWindow.setTitle("JobHistories");
@@ -75,13 +82,11 @@ public class JobHistoriesFrame implements Initializable {
 	}
 
 	private void showTable() {
-		Integer batchId = BatchFrame.getBatchId();
-		DaoFactory daoFactory = DaoFactory.getFactory();
-		JobHistoriesDaoImpl dbo = daoFactory.getJobHistoriesDao();
+		DtoFactory dtoFactory = DtoFactory.getFactory();
 
-		LinkedList<EntityJobHistories> jobHistoriesRows = dbo.loadAllJobHistories();
+		LinkedList<DtoJobHistories> jobHistoriesRows = dtoFactory.getAllJobHistories();
 
-		ObservableList<EntityJobHistories> jobHistoriesOblist = FXCollections.observableArrayList();
+		ObservableList<DtoJobHistories> jobHistoriesOblist = FXCollections.observableArrayList();
 		jobHistoriesOblist.addAll(jobHistoriesRows);
 
 		jobIdColumn.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -146,6 +151,14 @@ public class JobHistoriesFrame implements Initializable {
 		TableUtils.installCopyPasteHandler(jobHistoriesTable);
 		TableUtils.installCopyPasteMenu(jobHistoriesTable);
 
+	}
+	
+	public static Integer getBatchId() {
+		return batchId;
+	}
+
+	private void setBatchId(Integer batchIdnew) {
+		batchId = batchIdnew;
 	}
 
 }

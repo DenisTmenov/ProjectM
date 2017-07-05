@@ -6,7 +6,7 @@ import com.project.m.utils.SimpleObject;
 
 import javafx.beans.property.SimpleStringProperty;
 
-public class DboBatches {
+public class DtoBatches {
 
 	private Integer batchesId;
 	private String batchesName;
@@ -14,7 +14,7 @@ public class DboBatches {
 	private Boolean isActive;
 	private Integer jobCount;
 
-	public DboBatches() {
+	public DtoBatches() {
 		super();
 	}
 
