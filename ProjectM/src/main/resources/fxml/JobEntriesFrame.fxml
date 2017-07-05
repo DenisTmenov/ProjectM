@@ -13,24 +13,24 @@ fx:controller="com.project.m.controllers.JobEntriesFrame">
             <TableView fx:id="jobEntriesTable" stylesheets="@../style/projectStyle.css">
               <columns>
                 <TableColumn fx:id="entryIdColumn" prefWidth="75.0" text="Entry Id"/>
-				<TableColumn fx:id="jobIdColumn" prefWidth="75.0" text="Job Id"/>
-				<TableColumn fx:id="itemStatusColumn" prefWidth="75.0" text="Item Status"/>
+				<TableColumn fx:id="jobIdColumn" prefWidth="75.0" styleClass="columnRight" text="Job Id"/>
+				<TableColumn fx:id="itemStatusColumn" prefWidth="75.0" styleClass="columnRight" text="Item Status"/>
 				<TableColumn fx:id="mailboxColumn" prefWidth="75.0" text="Mailbox"/>
 				<TableColumn fx:id="msgIdColumn" prefWidth="75.0" text="MsgId"/>
-				<TableColumn fx:id="dateCreatedColumn" prefWidth="75.0" text="Date Created"/>
+				<TableColumn fx:id="dateCreatedColumn" prefWidth="75.0" styleClass="columnRight" text="Date Created"/>
 				<TableColumn fx:id="folderColumn" prefWidth="75.0" text="Folder"/>
 				<TableColumn fx:id="subjectColumn" prefWidth="75.0" text="Subject"/>
 				<TableColumn fx:id="authorColumn" prefWidth="75.0" text="Author"/>
 				<TableColumn fx:id="recipientsColumn" prefWidth="75.0" text="Recipients"/>
-				<TableColumn fx:id="receivedDateColumn" prefWidth="75.0" text="Received Date"/>
+				<TableColumn fx:id="receivedDateColumn" prefWidth="75.0" styleClass="columnRight" text="Received Date"/>
 				<TableColumn fx:id="sizeColumn" prefWidth="75.0" text="Size"/>
 				<TableColumn fx:id="messageClassColumn" prefWidth="75.0" text="Message Class"/>
 				<TableColumn fx:id="itemTypeColumn" prefWidth="75.0" text="Item Type"/>
 				<TableColumn fx:id="ownerColumn" prefWidth="75.0" text="Owner"/>
 				<TableColumn fx:id="fileNameColumn" prefWidth="75.0" text="File Name"/>
-				<TableColumn fx:id="dateModifiedColumn" prefWidth="75.0" text="Date Modified"/>
+				<TableColumn fx:id="dateModifiedColumn" prefWidth="75.0" styleClass="columnRight" text="Date Modified"/>
 				<TableColumn fx:id="statusMessageColumn" prefWidth="75.0" text="Status Message"/>
-				<TableColumn fx:id="discoveryDateColumn" prefWidth="75.0" text="Discovery Date"/>
+				<TableColumn fx:id="discoveryDateColumn" prefWidth="75.0" styleClass="columnRight" text="Discovery Date"/>
 				<TableColumn fx:id="pathColumn" prefWidth="75.0" text="Path"/>
 				<TableColumn fx:id="nameColumn" prefWidth="75.0" text="Name"/>
 				<TableColumn fx:id="folderCountColumn" prefWidth="75.0" text="Folder Count"/>
@@ -44,9 +44,9 @@ fx:controller="com.project.m.controllers.JobEntriesFrame">
 				<TableColumn fx:id="owner2Column" prefWidth="75.0" text="Owner2"/>
 				<TableColumn fx:id="owner3Column" prefWidth="75.0" text="Owner3"/>
 				<TableColumn fx:id="originalIdColumn" prefWidth="75.0" text="Original Id"/>
-				<TableColumn fx:id="folderIdColumn" prefWidth="75.0" text="Folder Id"/>
-				<TableColumn fx:id="failedCountColumn" prefWidth="75.0" text="Failed Count"/>
-				<TableColumn fx:id="statusDateColumn" prefWidth="75.0" text="Status Date"/>
+				<TableColumn fx:id="folderIdColumn" prefWidth="75.0" styleClass="columnRight" text="Folder Id"/>
+				<TableColumn fx:id="failedCountColumn" prefWidth="75.0" styleClass="columnRight" text="Failed Count"/>
+				<TableColumn fx:id="statusDateColumn" prefWidth="75.0" styleClass="columnRight" text="Status Date"/>
 				<TableColumn fx:id="hashBytesColumn" prefWidth="75.0" text="Hash Bytes"/>
 				<TableColumn fx:id="extraDataColumn" prefWidth="75.0" text="Extra Data"/>
 				<TableColumn fx:id="messageIdColumn" prefWidth="75.0" text="Message Id"/>
