@@ -98,28 +98,4 @@ public class EntityBatches {
 				+ ", isActive=" + isActive + "]";
 	}
 
-	public SimpleStringProperty getBatchesIdSimple() {
-		SimpleStringProperty batchesIdSimple = new SimpleStringProperty(String.valueOf(getBatchesId()));
-		batchesIdSimple = SimpleObject.convertNullToSpace(batchesIdSimple);
-		return batchesIdSimple;
-	}
-
-	public SimpleStringProperty getBatchesNameSimple() {
-		SimpleStringProperty batchesNameSimple = new SimpleStringProperty(String.valueOf(getBatchesName()));
-		batchesNameSimple = SimpleObject.convertNullToSpace(batchesNameSimple);
-		return batchesNameSimple;
-	}
-
-	public SimpleStringProperty getCreateDateSimple() {
-		SimpleStringProperty createDateSimple = new SimpleStringProperty(String.valueOf(getCreateDate()));
-		createDateSimple = SimpleObject.convertNullToSpace(createDateSimple);
-		return createDateSimple;
-	}
-
-	public SimpleStringProperty getIsActiveSimple() {
-		SimpleStringProperty isActiveSimple = new SimpleStringProperty(String.valueOf(getIsActive()));
-		isActiveSimple = SimpleObject.convertNullToSpace(isActiveSimple);
-		return isActiveSimple;
-	}
-
 }

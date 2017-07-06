@@ -12,7 +12,7 @@
             <TableView fx:id="jobHistoriesTable" stylesheets="@../style/projectStyle.css">
               <columns>
                 <TableColumn fx:id="jobIdColumn" prefWidth="75.0" styleClass="columnRight" text="Job Id" />
-  				<TableColumn fx:id="jobStatusColumn" prefWidth="75.0" styleClass="columnRight" text="Job Status" />
+  				<TableColumn fx:id="jobStatusColumn" prefWidth="75.0" text="Job Status" />
   				<TableColumn fx:id="timeStartedColumn" prefWidth="75.0" styleClass="columnRight" text="Time Started" />
   				<TableColumn fx:id="timeFinishedColumn" prefWidth="75.0" styleClass="columnRight" text="Time Finished" />
   				<TableColumn fx:id="itemsTotalColumn" prefWidth="75.0" styleClass="columnRight" text="Items Total" />

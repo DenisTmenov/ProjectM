@@ -30,7 +30,7 @@ public class ConnectionPool {
 	}
 
 	public static class SingletonHolder {
-		public static final ConnectionPool HOLDER_INSTANCE = new ConnectionPool();
+		private static final ConnectionPool HOLDER_INSTANCE = new ConnectionPool();
 	}
 
 	public static ConnectionPool getInstance() {
@@ -39,7 +39,7 @@ public class ConnectionPool {
 	}
 
 	public Connection getConnection() throws SQLException {
-		return this.ds.getConnection();
+		return ds.getConnection();
 	}
 
 	public static void closeDbResources(Connection connection, PreparedStatement statement, ResultSet resultSet) {

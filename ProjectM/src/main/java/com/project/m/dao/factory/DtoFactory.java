@@ -1,10 +1,12 @@
 package com.project.m.dao.factory;
 
 import java.util.LinkedList;
+import java.util.Map;
 
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 
+import com.project.m.dao.sql.EnumJobStatusDao;
 import com.project.m.dao.sql.JobEntriesDao;
 import com.project.m.dao.sql.JobHistoriesDao;
 import com.project.m.domian.DtoJobEntries;
@@ -29,6 +31,14 @@ public class DtoFactory {
 		for (EntityJobHistories entity : entityJobHistories) {
 			Mapper mapper = new DozerBeanMapper();
 			DtoJobHistories dto = mapper.map(entity, DtoJobHistories.class);
+			
+			EnumJobStatusDao enumJobStatusDao = daoFactory.getEnumJobStatusDao();
+			Map<Integer, String> enumJobStatus = enumJobStatusDao.loadEnumJobStatus();
+			
+			String jobStatus = dto.getJobStatus();
+			String textJobStatus = enumJobStatus.get(Integer.parseInt(jobStatus));
+			
+			dto.setJobStatus(textJobStatus);
 
 			dtoLinkedList.add(dto);
 		}

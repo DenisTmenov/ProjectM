@@ -8,7 +8,7 @@ import javafx.beans.property.SimpleStringProperty;
 
 public class DtoJobHistories {
 	private Integer jobId;
-	private Integer jobStatus;
+	private String jobStatus;
 	private Date timeStarted;
 	private Date timeFinished;
 	private String itemsTotal; // BigInteger
@@ -47,11 +47,11 @@ public class DtoJobHistories {
 		this.jobId = jobId;
 	}
 
-	public Integer getJobStatus() {
+	public String getJobStatus() {
 		return jobStatus;
 	}
 
-	public void setJobStatus(Integer jobStatus) {
+	public void setJobStatus(String jobStatus) {
 		this.jobStatus = jobStatus;
 	}
 
@@ -256,14 +256,28 @@ public class DtoJobHistories {
 	}
 
 	@Override
+	public String toString() {
+		return "DtoJobHistories [jobId=" + jobId + ", jobStatus=" + jobStatus + ", timeStarted=" + timeStarted
+				+ ", timeFinished=" + timeFinished + ", itemsTotal=" + itemsTotal + ", itemsFailed=" + itemsFailed
+				+ ", itemsRemaining=" + itemsRemaining + ", source=" + source + ", target=" + target + ", jobCreatedBy="
+				+ jobCreatedBy + ", jobModifiedBy=" + jobModifiedBy + ", jobCreated=" + jobCreated + ", jobModified="
+				+ jobModified + ", batchId=" + batchId + ", failedCount=" + failedCount + ", processingInBatch="
+				+ processingInBatch + ", processingOnMachine=" + processingOnMachine + ", processingRate="
+				+ processingRate + ", lastUpdate=" + lastUpdate + ", statusMessage=" + statusMessage + ", priority="
+				+ priority + ", percentComplete=" + percentComplete + ", sourceMailbox=" + sourceMailbox
+				+ ", targetMailbox=" + targetMailbox + ", processingItems=" + processingItems + ", statusDate="
+				+ statusDate + ", rehydrationType=" + rehydrationType + "]";
+	}
+
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((itemsTotal == null) ? 0 : itemsTotal.hashCode());
 		result = prime * result + ((batchId == null) ? 0 : batchId.hashCode());
 		result = prime * result + ((failedCount == null) ? 0 : failedCount.hashCode());
 		result = prime * result + ((itemsFailed == null) ? 0 : itemsFailed.hashCode());
 		result = prime * result + ((itemsRemaining == null) ? 0 : itemsRemaining.hashCode());
+		result = prime * result + ((itemsTotal == null) ? 0 : itemsTotal.hashCode());
 		result = prime * result + ((jobCreated == null) ? 0 : jobCreated.hashCode());
 		result = prime * result + ((jobCreatedBy == null) ? 0 : jobCreatedBy.hashCode());
 		result = prime * result + ((jobId == null) ? 0 : jobId.hashCode());
@@ -298,11 +312,6 @@ public class DtoJobHistories {
 		if (getClass() != obj.getClass())
 			return false;
 		DtoJobHistories other = (DtoJobHistories) obj;
-		if (itemsTotal == null) {
-			if (other.itemsTotal != null)
-				return false;
-		} else if (!itemsTotal.equals(other.itemsTotal))
-			return false;
 		if (batchId == null) {
 			if (other.batchId != null)
 				return false;
@@ -322,6 +331,11 @@ public class DtoJobHistories {
 			if (other.itemsRemaining != null)
 				return false;
 		} else if (!itemsRemaining.equals(other.itemsRemaining))
+			return false;
+		if (itemsTotal == null) {
+			if (other.itemsTotal != null)
+				return false;
+		} else if (!itemsTotal.equals(other.itemsTotal))
 			return false;
 		if (jobCreated == null) {
 			if (other.jobCreated != null)
@@ -434,20 +448,6 @@ public class DtoJobHistories {
 		} else if (!timeStarted.equals(other.timeStarted))
 			return false;
 		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "DtoJobHistories [jobId=" + jobId + ", jobStatus=" + jobStatus + ", timeStarted=" + timeStarted
-				+ ", timeFinished=" + timeFinished + ", itemsTotal=" + itemsTotal + ", itemsFailed=" + itemsFailed
-				+ ", itemsRemaining=" + itemsRemaining + ", source=" + source + ", target=" + target + ", jobCreatedBy="
-				+ jobCreatedBy + ", jobModifiedBy=" + jobModifiedBy + ", jobCreated=" + jobCreated + ", jobModified="
-				+ jobModified + ", batchId=" + batchId + ", failedCount=" + failedCount + ", processingInBatch="
-				+ processingInBatch + ", processingOnMachine=" + processingOnMachine + ", processingRate="
-				+ processingRate + ", lastUpdate=" + lastUpdate + ", statusMessage=" + statusMessage + ", priority="
-				+ priority + ", percentComplete=" + percentComplete + ", sourceMailbox=" + sourceMailbox
-				+ ", targetMailbox=" + targetMailbox + ", processingItems=" + processingItems + ", statusDate="
-				+ statusDate + ", rehydrationType=" + rehydrationType + "]";
 	}
 
 	public SimpleStringProperty getJobIdSimple() {

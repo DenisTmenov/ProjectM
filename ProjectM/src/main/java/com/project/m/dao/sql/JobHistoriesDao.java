@@ -37,7 +37,7 @@ public class JobHistoriesDao implements JobHistoriesDaoInterface {
 
 		try {
 			connection = ConnectionPool.getInstance().getConnection();
-			statement = connection.prepareStatement("SELECT * FROM [dbo].[JobHistories] WHERE BatchId = ?"); 
+			statement = connection.prepareStatement("SELECT * FROM [dbo].[JobHistories] WHERE BatchId = ?");
 			statement.setInt(1, batchId);
 
 			set = statement.executeQuery();
@@ -54,7 +54,8 @@ public class JobHistoriesDao implements JobHistoriesDaoInterface {
 
 		return result;
 	}
-	
+
+	@Override
 	public LinkedList<EntityJobHistories> loadAllJobHistories() {
 		Connection connection = null;
 		PreparedStatement statement = null;
@@ -64,7 +65,7 @@ public class JobHistoriesDao implements JobHistoriesDaoInterface {
 
 		try {
 			connection = ConnectionPool.getInstance().getConnection();
-			statement = connection.prepareStatement("SELECT * FROM [dbo].[JobHistories]"); 
+			statement = connection.prepareStatement("SELECT * FROM [dbo].[JobHistories]");
 
 			set = statement.executeQuery();
 
