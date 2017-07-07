@@ -85,9 +85,9 @@ public class BatchFrame implements Initializable {
 		batchesOblist.addAll(allBatchesRows);
 
 		batchIdColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		batchIdColumn.setCellValueFactory(cellData -> cellData.getValue().getBatchesIdSimple());
+		//batchIdColumn.setCellValueFactory(cellData -> cellData.getValue().getBatchesIdSimple());
 		batchNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		batchNameColumn.setCellValueFactory(cellData -> cellData.getValue().getBatchesNameSimple());
+		//batchNameColumn.setCellValueFactory(cellData -> cellData.getValue().getBatchesNameSimple());
 		// jobCountColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		// jobCountColumn.setCellValueFactory(cellData -> cellData.getValue().get);
 
