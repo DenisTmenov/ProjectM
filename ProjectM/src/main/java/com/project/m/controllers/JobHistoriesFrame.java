@@ -1,8 +1,10 @@
 package com.project.m.controllers;
 
 import java.net.URL;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
+import java.util.Set;
 
 import com.project.m.dao.factory.DtoFactory;
 import com.project.m.domian.DtoJobHistories;
@@ -10,19 +12,25 @@ import com.project.m.service.FrameManager;
 import com.project.m.utils.TableUtils;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 
 public class JobHistoriesFrame implements Initializable {
 	private static Integer batchId;
+	private String columnName;
+	private String itemJobStatusCombo;
+	private LinkedList<DtoJobHistories> jobHistoriesRows;
+	private LinkedList<DtoJobHistories> showRows;
 
 	@FXML
 	private TableColumn<DtoJobHistories, String> jobIdColumn, jobStatusColumn, timeStartedColumn, timeFinishedColumn,
@@ -34,36 +42,71 @@ public class JobHistoriesFrame implements Initializable {
 
 	@FXML
 	private TableView<DtoJobHistories> jobHistoriesTable;
+	@FXML
+	private ComboBox<String> sortJobStatusCombo;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		showTable();
+		initializeData();
+		show();
 
 		jobHistoriesTable.setOnMousePressed(new EventHandler<MouseEvent>() {
 			@Override
-			public void handle(MouseEvent event) {
-				if (event.isPrimaryButtonDown() && event.getClickCount() == 2) {
-					TablePosition<?, ?> pos = jobHistoriesTable.getSelectionModel().getSelectedCells().get(0);
-					int index = pos.getRow();
-					Integer batchId = jobHistoriesTable.getItems().get(index).getBatchId();
+			public void handle(MouseEvent mouseEvent) {
+				if (mouseEvent.getButton().equals(MouseButton.PRIMARY) && mouseEvent.getClickCount() == 2) {
+					// It does not work well
+					discoverColumnName();
 
-					setBatchId(batchId);
+					if (columnName.equals("Batch Id")) {
+						batchIdColumn.setSortType(TableColumn.SortType.ASCENDING);
+						jobHistoriesTable.getSortOrder().add(batchIdColumn);
 
-					FrameManager frameManager = FrameManager.getFrameManager();
-					frameManager.openFrame("JobEntriesFrame", "JobHistories", true, false, true);
+					} else if (columnName.equals("Batch Name")) {
+						// this column didn't create
+						jobHistoriesTable.getSortOrder().add(batchIdColumn);
+					} else {
+						discoverBatchId();
+
+						FrameManager frameManager = FrameManager.getFrameManager();
+						frameManager.openFrame("JobEntriesFrame", "JobHistories", true, false, true);
+					}
+
 				}
 			}
 		});
+
+		sortJobStatusCombo.setOnAction((event) -> {
+			String selected = sortJobStatusCombo.getSelectionModel().getSelectedItem();
+			itemJobStatusCombo = selected;
+			generateNewRows();
+			show();
+		});
+
 	}
 
-	private void showTable() {
-		DtoFactory dtoFactory = DtoFactory.getFactory();
+	private void show() {
+		SortedList<DtoJobHistories> jobHistoriesList = new SortedList<DtoJobHistories>(
+				FXCollections.observableArrayList(showRows));
 
-		LinkedList<DtoJobHistories> jobHistoriesRows = dtoFactory.getAllJobHistories();
+		jobHistoriesList.comparatorProperty().bind(jobHistoriesTable.comparatorProperty());
 
-		ObservableList<DtoJobHistories> jobHistoriesOblist = FXCollections.observableArrayList();
-		jobHistoriesOblist.addAll(jobHistoriesRows);
+		jobHistoriesTable.setItems(jobHistoriesList);
 
+		jobHistoriesTable.getSelectionModel().setCellSelectionEnabled(true);
+		jobHistoriesTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		TableUtils.installCopyPasteHandler(jobHistoriesTable);
+		TableUtils.installCopyPasteMenu(jobHistoriesTable);
+
+	}
+
+	private void initializeData() {
+		initializeAllColumn();
+		initializeRows();
+		initializeJobHistoriesRow();
+		initializeComboJobStatus();
+	}
+
+	private void initializeAllColumn() {
 		jobIdColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		jobIdColumn.setCellValueFactory(cellData -> cellData.getValue().getJobIdSimple());
 		jobStatusColumn.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -118,13 +161,67 @@ public class JobHistoriesFrame implements Initializable {
 		statusDateColumn.setCellValueFactory(cellData -> cellData.getValue().getStatusDateSimple());
 		rehydrationTypeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		rehydrationTypeColumn.setCellValueFactory(cellData -> cellData.getValue().getRehydrationTypeSimple());
+	}
 
-		jobHistoriesTable.setItems(jobHistoriesOblist);
+	private void initializeRows() {
+		DtoFactory dtoFactory = DtoFactory.getFactory();
+		jobHistoriesRows = dtoFactory.getAllJobHistories();
+		showRows = jobHistoriesRows;
+	}
 
-		jobHistoriesTable.getSelectionModel().setCellSelectionEnabled(true);
-		jobHistoriesTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-		TableUtils.installCopyPasteHandler(jobHistoriesTable);
-		TableUtils.installCopyPasteMenu(jobHistoriesTable);
+	private void initializeJobHistoriesRow() {
+		DtoFactory dtoFactory = DtoFactory.getFactory();
+		jobHistoriesRows = dtoFactory.getAllJobHistories();
+	}
+
+	private void initializeComboJobStatus() {
+		Set<String> statusJobList = loadJobStatus(jobHistoriesRows);
+		sortJobStatusCombo.getItems().addAll(statusJobList);
+	}
+
+	private void generateNewRows() {
+		if (!itemJobStatusCombo.equals("")) {
+			showRows = getRowsByStatus(itemJobStatusCombo);
+		} else {
+			showRows = jobHistoriesRows;
+		}
+	}
+
+	private LinkedList<DtoJobHistories> getRowsByStatus(String jobStatus) {
+		LinkedList<DtoJobHistories> result = new LinkedList<DtoJobHistories>();
+
+		for (DtoJobHistories rows : jobHistoriesRows) {
+			if (rows.getJobStatus().equals(jobStatus)) {
+				result.add(rows);
+			}
+		}
+		return result;
+	}
+
+	private Set<String> loadJobStatus(LinkedList<DtoJobHistories> jobHistoriesRows) {
+		Set<String> statusJob = new HashSet<String>();
+		statusJob.add("");
+
+		for (DtoJobHistories dtoJobHistories : jobHistoriesRows) {
+			statusJob.add(dtoJobHistories.getJobStatus());
+		}
+
+		return statusJob;
+
+	}
+
+	private void discoverColumnName() {
+		TablePosition<?, ?> pos = jobHistoriesTable.getSelectionModel().getSelectedCells().get(0);
+		String columnName = pos.getTableColumn().getText();
+		this.columnName = columnName;
+
+	}
+
+	private void discoverBatchId() {
+		TablePosition<?, ?> pos = jobHistoriesTable.getSelectionModel().getSelectedCells().get(0);
+		int index = pos.getRow();
+		Integer batchId = jobHistoriesTable.getItems().get(index).getBatchId();
+		setBatchId(batchId);
 
 	}
 
