@@ -10,7 +10,7 @@
 	</organization>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<project.version>0.0.12-SNAPSHOT</project.version>
+		<project.version>0.0.13-SNAPSHOT</project.version>
 		<junit.version>3.8.1</junit.version>
 		<sqljdbc.version>4.0</sqljdbc.version>
 		<maven.compiler.plugin.version>3.6.1</maven.compiler.plugin.version>
@@ -52,10 +52,6 @@
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>${slf4j.log4j12.version}</version>
 		</dependency>
-
-
-
-
 	</dependencies>
 	<build>
 		<plugins>
