@@ -21,7 +21,7 @@ public class FrameManager {
 		return new FrameManager();
 	}
 
-	public void openFrame(String nameFrame, String title, Boolean resizableFrame, Boolean oneFrame) {
+	public void openFrame(String nameFrame, String title, Boolean resizableFrame, Boolean oneFrame, Boolean showAndWait) {
 		Stage frame = new Stage();
 		frame.setTitle(title);
 		addIcon(frame);
@@ -39,8 +39,13 @@ public class FrameManager {
 		if (oneFrame) {
 			frame.initModality(Modality.APPLICATION_MODAL);
 		}
+		if(showAndWait) {
+			frame.showAndWait();
+		} else {
+			frame.show();
+		}
 
-		frame.showAndWait();
+		
 	}
 
 	private void addIcon(Stage frame) {
