@@ -16,12 +16,12 @@ public class FrameManager {
 	private FrameManager() {
 
 	}
-	
+
 	public static FrameManager getFrameManager() {
 		return new FrameManager();
 	}
 
-	public void openFrame(String nameFrame, String title, Boolean resizableFrame) {
+	public void openFrame(String nameFrame, String title, Boolean resizableFrame, Boolean oneFrame) {
 		Stage frame = new Stage();
 		frame.setTitle(title);
 		addIcon(frame);
@@ -36,7 +36,10 @@ public class FrameManager {
 		Scene scene = new Scene(parent);
 		frame.setScene(scene);
 		frame.setResizable(resizableFrame);
-		frame.initModality(Modality.APPLICATION_MODAL);
+		if (oneFrame) {
+			frame.initModality(Modality.APPLICATION_MODAL);
+		}
+
 		frame.showAndWait();
 	}
 
