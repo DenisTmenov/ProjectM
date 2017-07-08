@@ -2,10 +2,6 @@ package com.project.m.entity;
 
 import java.util.Date;
 
-import com.project.m.utils.SimpleObject;
-
-import javafx.beans.property.SimpleStringProperty;
-
 public class EntityJobEntries {
 	private String entryId;
 	private Integer jobId;

@@ -4,12 +4,8 @@ import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 
-import com.project.m.dao.factory.DaoFactory;
 import com.project.m.dao.factory.DtoFactory;
-import com.project.m.dao.sql.JobEntriesDao;
 import com.project.m.domian.DtoJobEntries;
-import com.project.m.domian.DtoJobHistories;
-import com.project.m.entity.EntityJobEntries;
 import com.project.m.utils.TableUtils;
 
 import javafx.collections.FXCollections;
