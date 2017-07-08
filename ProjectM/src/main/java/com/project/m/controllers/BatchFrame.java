@@ -1,37 +1,27 @@
 package com.project.m.controllers;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 
 import com.project.m.dao.factory.DtoFactory;
 import com.project.m.domian.DtoBatches;
-import com.project.m.exceptions.FrameException;
+import com.project.m.service.FrameManager;
 import com.project.m.utils.TableUtils;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
 public class BatchFrame implements Initializable {
-	private Stage dialogWindow;
-	private Parent JobHistoriesFrame;
-	private Scene JobHistoriesScene;
 
 	private static Integer batchId;
 
@@ -55,21 +45,9 @@ public class BatchFrame implements Initializable {
 
 					setBatchId(batchId);
 
-					dialogWindow = new Stage();
-					dialogWindow.setTitle("JobHistories");
-					dialogWindow.getIcons().add(new Image("/style/simply_migrate_-_icon-0.png"));
-					FXMLLoader loader = new FXMLLoader();
-					loader.setLocation(getClass().getResource("/fxml/JobHistoriesFrame.fxml"));
-					try {
-						JobHistoriesFrame = loader.load();
-					} catch (IOException e) {
-						throw new FrameException("Problem in LOADER StartFrame.fxml", e);
-					}
-					JobHistoriesScene = new Scene(JobHistoriesFrame);
-					dialogWindow.setScene(JobHistoriesScene);
-					dialogWindow.setResizable(true);
-					dialogWindow.initModality(Modality.APPLICATION_MODAL);
-					dialogWindow.showAndWait();
+					FrameManager frameManager = FrameManager.getFrameManager();
+					frameManager.openFrame("JobHistoriesFrame", "JobHistories", true, false, true);
+
 				}
 			}
 		});

@@ -1,48 +1,36 @@
 package com.project.m.controllers;
 
-import java.io.IOException;
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 
 import com.project.m.dao.factory.DtoFactory;
 import com.project.m.domian.DtoJobHistories;
-import com.project.m.exceptions.FrameException;
+import com.project.m.service.FrameManager;
 import com.project.m.utils.TableUtils;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
 public class JobHistoriesFrame implements Initializable {
-	private Stage dialogWindow;
-	private Parent JobEntriesFrame;
-	private Scene JobEntriesScene;
-	
 	private static Integer batchId;
 
 	@FXML
 	private TableColumn<DtoJobHistories, String> jobIdColumn, jobStatusColumn, timeStartedColumn, timeFinishedColumn,
-			 itemsTotalColumn, itemsFailedColumn,
-			itemsRemainingColumn, sourceColumn, targetColumn, jobCreatedByColumn, jobModifiedByColumn,
-			jobCreatedColumn, jobModifiedColumn, batchIdColumn, failedCountColumn, processingInBatchColumn,
-			processingOnMachineColumn, processingRateColumn, lastUpdateColumn, statusMessageColumn,
-			priorityColumn, percentCompleteColumn, sourceMailboxColumn, targetMailboxColumn, processingItemsColumn,
-			statusDateColumn, rehydrationTypeColumn;
+			itemsTotalColumn, itemsFailedColumn, itemsRemainingColumn, sourceColumn, targetColumn, jobCreatedByColumn,
+			jobModifiedByColumn, jobCreatedColumn, jobModifiedColumn, batchIdColumn, failedCountColumn,
+			processingInBatchColumn, processingOnMachineColumn, processingRateColumn, lastUpdateColumn,
+			statusMessageColumn, priorityColumn, percentCompleteColumn, sourceMailboxColumn, targetMailboxColumn,
+			processingItemsColumn, statusDateColumn, rehydrationTypeColumn;
 
 	@FXML
 	private TableView<DtoJobHistories> jobHistoriesTable;
@@ -61,21 +49,8 @@ public class JobHistoriesFrame implements Initializable {
 
 					setBatchId(batchId);
 
-					dialogWindow = new Stage();
-					dialogWindow.setTitle("JobHistories");
-					dialogWindow.getIcons().add(new Image("/style/simply_migrate_-_icon-0.png"));
-					FXMLLoader loader = new FXMLLoader();
-					loader.setLocation(getClass().getResource("/fxml/JobEntriesFrame.fxml"));
-					try {
-						JobEntriesFrame = loader.load();
-					} catch (IOException e) {
-						throw new FrameException("Problem in LOADER JobHistoriesFrame.fxml", e);
-					}
-					JobEntriesScene = new Scene(JobEntriesFrame);
-					dialogWindow.setScene(JobEntriesScene);
-					dialogWindow.setResizable(true);
-					dialogWindow.initModality(Modality.APPLICATION_MODAL);
-					dialogWindow.showAndWait();
+					FrameManager frameManager = FrameManager.getFrameManager();
+					frameManager.openFrame("JobEntriesFrame", "JobHistories", true, false, true);
 				}
 			}
 		});
@@ -152,7 +127,7 @@ public class JobHistoriesFrame implements Initializable {
 		TableUtils.installCopyPasteMenu(jobHistoriesTable);
 
 	}
-	
+
 	public static Integer getBatchId() {
 		return batchId;
 	}
