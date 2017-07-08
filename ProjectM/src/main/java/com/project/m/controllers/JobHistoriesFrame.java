@@ -180,7 +180,7 @@ public class JobHistoriesFrame implements Initializable {
 	}
 
 	private void generateNewRows() {
-		if (!itemJobStatusCombo.equals("")) {
+		if (!itemJobStatusCombo.equals("All")) {
 			showRows = getRowsByStatus(itemJobStatusCombo);
 		} else {
 			showRows = jobHistoriesRows;
@@ -200,7 +200,7 @@ public class JobHistoriesFrame implements Initializable {
 
 	private Set<String> loadJobStatus(LinkedList<DtoJobHistories> jobHistoriesRows) {
 		Set<String> statusJob = new HashSet<String>();
-		statusJob.add("");
+		statusJob.add("All");
 
 		for (DtoJobHistories dtoJobHistories : jobHistoriesRows) {
 			statusJob.add(dtoJobHistories.getJobStatus());
