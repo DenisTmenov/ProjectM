@@ -16,7 +16,7 @@
             <ComboBox fx:id="sortJobStatusCombo" prefWidth="150.0" />
          </items>
       </ToolBar>
-      <ScrollPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+      <ScrollPane fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
          <content>
             <TableView fx:id="jobHistoriesTable" stylesheets="@../style/projectStyle.css">
               <columns>
@@ -48,9 +48,6 @@
   				<TableColumn fx:id="statusDateColumn" prefWidth="75.0" styleClass="columnRight" text="Status Date" />
   				<TableColumn fx:id="rehydrationTypeColumn" prefWidth="75.0" text="Rehydration Type" />
               </columns>
-               <columnResizePolicy>
-                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-               </columnResizePolicy>
             </TableView>
          </content>
       </ScrollPane>
