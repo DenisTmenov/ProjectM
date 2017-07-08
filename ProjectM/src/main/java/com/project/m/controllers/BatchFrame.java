@@ -5,9 +5,8 @@ import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 
-import com.project.m.dao.factory.DaoFactory;
-import com.project.m.dao.sql.BatchesDao;
-import com.project.m.entity.EntityBatches;
+import com.project.m.dao.factory.DtoFactory;
+import com.project.m.domian.DtoBatches;
 import com.project.m.exceptions.FrameException;
 import com.project.m.utils.TableUtils;
 
@@ -37,10 +36,10 @@ public class BatchFrame implements Initializable {
 	private static Integer batchId;
 
 	@FXML
-	private TableColumn<EntityBatches, String> batchIdColumn, batchNameColumn, jobCountColumn;
+	private TableColumn<DtoBatches, String> batchIdColumn, batchNameColumn, jobCountColumn;
 
 	@FXML
-	private TableView<EntityBatches> batchTable;
+	private TableView<DtoBatches> batchTable;
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -77,18 +76,18 @@ public class BatchFrame implements Initializable {
 	}
 
 	private void showTable() {
-		DaoFactory daoFactory = DaoFactory.getSqlFactory();
-		BatchesDao dbo = daoFactory.getBatchesDao();
-		LinkedList<EntityBatches> allBatchesRows = dbo.loadAllBatches();
+		DtoFactory dtoFactory = DtoFactory.getFactory();
 
-		ObservableList<EntityBatches> batchesOblist = FXCollections.observableArrayList();
-		batchesOblist.addAll(allBatchesRows);
+		LinkedList<DtoBatches> batchesRows = dtoFactory.getAllBatches();
+
+		ObservableList<DtoBatches> batchesOblist = FXCollections.observableArrayList();
+		batchesOblist.addAll(batchesRows);
 
 		batchIdColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		//batchIdColumn.setCellValueFactory(cellData -> cellData.getValue().getBatchesIdSimple());
+		batchIdColumn.setCellValueFactory(cellData -> cellData.getValue().getBatchesIdSimple());
 		batchNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		//batchNameColumn.setCellValueFactory(cellData -> cellData.getValue().getBatchesNameSimple());
-		// jobCountColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+		batchNameColumn.setCellValueFactory(cellData -> cellData.getValue().getBatchesNameSimple());
+		jobCountColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		// jobCountColumn.setCellValueFactory(cellData -> cellData.getValue().get);
 
 		batchTable.setItems(batchesOblist);
@@ -96,8 +95,9 @@ public class BatchFrame implements Initializable {
 		batchTable.getSelectionModel().setCellSelectionEnabled(true);
 		batchTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		TableUtils.installCopyPasteHandler(batchTable);
-		TableUtils.installCopyPasteMenu(batchTable);;
-		
+		TableUtils.installCopyPasteMenu(batchTable);
+		;
+
 	}
 
 	public static Integer getBatchId() {
