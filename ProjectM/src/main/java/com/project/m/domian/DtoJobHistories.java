@@ -34,9 +34,18 @@ public class DtoJobHistories {
 	private Integer processingItems;
 	private Date statusDate;
 	private Integer rehydrationType;
+	private String batchName;
 
 	public DtoJobHistories() {
 		super();
+	}
+
+	public String getBatchName() {
+		return batchName;
+	}
+
+	public void setBatchName(String batchName) {
+		this.batchName = batchName;
 	}
 
 	public Integer getJobId() {
@@ -266,7 +275,7 @@ public class DtoJobHistories {
 				+ processingRate + ", lastUpdate=" + lastUpdate + ", statusMessage=" + statusMessage + ", priority="
 				+ priority + ", percentComplete=" + percentComplete + ", sourceMailbox=" + sourceMailbox
 				+ ", targetMailbox=" + targetMailbox + ", processingItems=" + processingItems + ", statusDate="
-				+ statusDate + ", rehydrationType=" + rehydrationType + "]";
+				+ statusDate + ", rehydrationType=" + rehydrationType + ", batchName=" + batchName + "]";
 	}
 
 	@Override
@@ -274,6 +283,7 @@ public class DtoJobHistories {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((batchId == null) ? 0 : batchId.hashCode());
+		result = prime * result + ((batchName == null) ? 0 : batchName.hashCode());
 		result = prime * result + ((failedCount == null) ? 0 : failedCount.hashCode());
 		result = prime * result + ((itemsFailed == null) ? 0 : itemsFailed.hashCode());
 		result = prime * result + ((itemsRemaining == null) ? 0 : itemsRemaining.hashCode());
@@ -316,6 +326,11 @@ public class DtoJobHistories {
 			if (other.batchId != null)
 				return false;
 		} else if (!batchId.equals(other.batchId))
+			return false;
+		if (batchName == null) {
+			if (other.batchName != null)
+				return false;
+		} else if (!batchName.equals(other.batchName))
 			return false;
 		if (failedCount == null) {
 			if (other.failedCount != null)
@@ -611,6 +626,12 @@ public class DtoJobHistories {
 		SimpleStringProperty rehydrationTypeSimple = new SimpleStringProperty(String.valueOf(getRehydrationType()));
 		rehydrationTypeSimple = SimpleObject.convertNullToSpace(rehydrationTypeSimple);
 		return rehydrationTypeSimple;
+	}
+	
+	public SimpleStringProperty getBatchNameSimple() {
+		SimpleStringProperty batchNameSimple = new SimpleStringProperty(String.valueOf(getBatchName()));
+		batchNameSimple = SimpleObject.convertNullToSpace(batchNameSimple);
+		return batchNameSimple;
 	}
 
 }
