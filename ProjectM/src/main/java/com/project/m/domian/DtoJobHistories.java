@@ -14,8 +14,8 @@ public class DtoJobHistories {
 	private String itemsTotal; // BigInteger
 	private String itemsFailed; // BigInteger
 	private String itemsRemaining; // BigInteger
-	private Integer source;
-	private Integer target;
+	private String source;
+	private String target;
 	private String jobCreatedBy;
 	private String jobModifiedBy;
 	private Date jobCreated;
@@ -33,7 +33,7 @@ public class DtoJobHistories {
 	private String targetMailbox;
 	private Integer processingItems;
 	private Date statusDate;
-	private Integer rehydrationType;
+	private String rehydrationType;
 	private String batchName;
 
 	public DtoJobHistories() {
@@ -104,19 +104,19 @@ public class DtoJobHistories {
 		this.itemsRemaining = itemsRemaining;
 	}
 
-	public Integer getSource() {
+	public String getSource() {
 		return source;
 	}
 
-	public void setSource(Integer source) {
+	public void setSource(String source) {
 		this.source = source;
 	}
 
-	public Integer getTarget() {
+	public String getTarget() {
 		return target;
 	}
 
-	public void setTarget(Integer target) {
+	public void setTarget(String target) {
 		this.target = target;
 	}
 
@@ -256,26 +256,12 @@ public class DtoJobHistories {
 		this.statusDate = statusDate;
 	}
 
-	public Integer getRehydrationType() {
+	public String getRehydrationType() {
 		return rehydrationType;
 	}
 
-	public void setRehydrationType(Integer rehydrationType) {
+	public void setRehydrationType(String rehydrationType) {
 		this.rehydrationType = rehydrationType;
-	}
-
-	@Override
-	public String toString() {
-		return "DtoJobHistories [jobId=" + jobId + ", jobStatus=" + jobStatus + ", timeStarted=" + timeStarted
-				+ ", timeFinished=" + timeFinished + ", itemsTotal=" + itemsTotal + ", itemsFailed=" + itemsFailed
-				+ ", itemsRemaining=" + itemsRemaining + ", source=" + source + ", target=" + target + ", jobCreatedBy="
-				+ jobCreatedBy + ", jobModifiedBy=" + jobModifiedBy + ", jobCreated=" + jobCreated + ", jobModified="
-				+ jobModified + ", batchId=" + batchId + ", failedCount=" + failedCount + ", processingInBatch="
-				+ processingInBatch + ", processingOnMachine=" + processingOnMachine + ", processingRate="
-				+ processingRate + ", lastUpdate=" + lastUpdate + ", statusMessage=" + statusMessage + ", priority="
-				+ priority + ", percentComplete=" + percentComplete + ", sourceMailbox=" + sourceMailbox
-				+ ", targetMailbox=" + targetMailbox + ", processingItems=" + processingItems + ", statusDate="
-				+ statusDate + ", rehydrationType=" + rehydrationType + ", batchName=" + batchName + "]";
 	}
 
 	@Override
@@ -465,6 +451,20 @@ public class DtoJobHistories {
 		return true;
 	}
 
+	@Override
+	public String toString() {
+		return "DtoJobHistories [jobId=" + jobId + ", jobStatus=" + jobStatus + ", timeStarted=" + timeStarted
+				+ ", timeFinished=" + timeFinished + ", itemsTotal=" + itemsTotal + ", itemsFailed=" + itemsFailed
+				+ ", itemsRemaining=" + itemsRemaining + ", source=" + source + ", target=" + target + ", jobCreatedBy="
+				+ jobCreatedBy + ", jobModifiedBy=" + jobModifiedBy + ", jobCreated=" + jobCreated + ", jobModified="
+				+ jobModified + ", batchId=" + batchId + ", failedCount=" + failedCount + ", processingInBatch="
+				+ processingInBatch + ", processingOnMachine=" + processingOnMachine + ", processingRate="
+				+ processingRate + ", lastUpdate=" + lastUpdate + ", statusMessage=" + statusMessage + ", priority="
+				+ priority + ", percentComplete=" + percentComplete + ", sourceMailbox=" + sourceMailbox
+				+ ", targetMailbox=" + targetMailbox + ", processingItems=" + processingItems + ", statusDate="
+				+ statusDate + ", rehydrationType=" + rehydrationType + ", batchName=" + batchName + "]";
+	}
+
 	public SimpleStringProperty getJobIdSimple() {
 		SimpleStringProperty jobIdSimple = new SimpleStringProperty(String.valueOf(getJobId()));
 		jobIdSimple = SimpleObject.convertNullToSpace(jobIdSimple);
@@ -627,7 +627,7 @@ public class DtoJobHistories {
 		rehydrationTypeSimple = SimpleObject.convertNullToSpace(rehydrationTypeSimple);
 		return rehydrationTypeSimple;
 	}
-	
+
 	public SimpleStringProperty getBatchNameSimple() {
 		SimpleStringProperty batchNameSimple = new SimpleStringProperty(String.valueOf(getBatchName()));
 		batchNameSimple = SimpleObject.convertNullToSpace(batchNameSimple);
