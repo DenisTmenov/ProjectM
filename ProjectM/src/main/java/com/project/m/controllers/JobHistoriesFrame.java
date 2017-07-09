@@ -20,6 +20,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseButton;
@@ -47,6 +48,21 @@ public class JobHistoriesFrame implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+
+		jobHistoriesTable.setRowFactory(tv -> new TableRow<DtoJobHistories>() {
+			@Override
+			public void updateItem(DtoJobHistories item, boolean empty) {
+				super.updateItem(item, empty);
+				if (item == null) {
+					setStyle("");
+				} else if (item.getJobStatus().equals("CompleteWithErrors")) {
+					setStyle("-fx-background-color: red;");
+				} else {
+					setStyle("");
+				}
+			}
+		});
+
 		initializeData();
 		show();
 
@@ -93,25 +109,11 @@ public class JobHistoriesFrame implements Initializable {
 
 	}
 
-	private void show() {
-		SortedList<DtoJobHistories> jobHistoriesList = new SortedList<DtoJobHistories>(
-				FXCollections.observableArrayList(showRows));
-
-		jobHistoriesList.comparatorProperty().bind(jobHistoriesTable.comparatorProperty());
-
-		jobHistoriesTable.setItems(jobHistoriesList);
-
-		jobHistoriesTable.getSelectionModel().setCellSelectionEnabled(true);
-		jobHistoriesTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-		TableUtils.installCopyPasteHandler(jobHistoriesTable);
-		TableUtils.installCopyPasteMenu(jobHistoriesTable);
-
-	}
-
 	private void initializeData() {
 		initializeAllColumn();
 		initializeRows();
 		initializeComboJobStatus();
+		addFunction();
 	}
 
 	private void initializeAllColumn() {
@@ -182,6 +184,48 @@ public class JobHistoriesFrame implements Initializable {
 	private void initializeComboJobStatus() {
 		Set<String> statusJobList = loadJobStatus(jobHistoriesRows);
 		sortJobStatusCombo.getItems().addAll(statusJobList);
+	}
+
+	private void show() {
+		SortedList<DtoJobHistories> jobHistoriesList = new SortedList<DtoJobHistories>(
+				FXCollections.observableArrayList(showRows));
+
+		jobHistoriesList.comparatorProperty().bind(jobHistoriesTable.comparatorProperty());
+
+		jobHistoriesTable.setItems(jobHistoriesList);
+
+	}
+
+	private void addFunction() {
+		addMultiSelect();
+		addCopyFunction();
+		addRowColor();
+	}
+
+	private void addMultiSelect() {
+		jobHistoriesTable.getSelectionModel().setCellSelectionEnabled(true);
+		jobHistoriesTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+	}
+
+	private void addCopyFunction() {
+		TableUtils.installCopyPasteHandler(jobHistoriesTable);
+		TableUtils.installCopyPasteMenu(jobHistoriesTable);
+	}
+
+	private void addRowColor() {
+		jobHistoriesTable.setRowFactory(tv -> new TableRow<DtoJobHistories>() {
+			@Override
+			public void updateItem(DtoJobHistories item, boolean empty) {
+				super.updateItem(item, empty);
+				if (item == null) {
+					setStyle("");
+				} else if (item.getJobStatus().equals("CompleteWithErrors")) {
+					setStyle("-fx-background-color: red;");
+				} else {
+					setStyle("");
+				}
+			}
+		});
 	}
 
 	private void generateNewRows() {

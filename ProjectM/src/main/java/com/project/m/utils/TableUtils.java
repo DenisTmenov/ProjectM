@@ -16,6 +16,7 @@ public class TableUtils {
 	public static void installCopyPasteMenu(TableView<?> table) {
 		// Bad version.
 		new TableMenuEventHandler(table);
+		
 
 	}
 
