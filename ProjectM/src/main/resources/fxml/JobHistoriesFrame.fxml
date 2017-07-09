@@ -29,8 +29,8 @@
   				<TableColumn fx:id="itemsTotalColumn" prefWidth="75.0" styleClass="columnRight" text="Items Total" />
   				<TableColumn fx:id="itemsFailedColumn" prefWidth="75.0" styleClass="columnRight" text="Items Failed" />
   				<TableColumn fx:id="itemsRemainingColumn" prefWidth="75.0" styleClass="columnRight" text="Items Remaining" />
-  				<TableColumn fx:id="sourceColumn" prefWidth="75.0" styleClass="columnRight" text="Source" />
-  				<TableColumn fx:id="targetColumn" prefWidth="75.0" styleClass="columnRight" text="Target" />
+  				<TableColumn fx:id="sourceColumn" prefWidth="75.0" text="Source" />
+  				<TableColumn fx:id="targetColumn" prefWidth="75.0" text="Target" />
   				<TableColumn fx:id="jobCreatedByColumn" prefWidth="75.0" text="Job Created By" />
   				<TableColumn fx:id="jobModifiedByColumn" prefWidth="75.0" text="Job Modified By" />
   				<TableColumn fx:id="jobCreatedColumn" prefWidth="75.0" styleClass="columnRight" text="Job Created" />

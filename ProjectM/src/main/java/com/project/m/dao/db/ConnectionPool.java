@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 import org.apache.commons.dbcp2.BasicDataSource;
+import org.apache.log4j.PropertyConfigurator;
 
 import com.project.m.utils.PropertiesClass;
 
@@ -15,6 +16,8 @@ public class ConnectionPool {
 
 	private ConnectionPool() {
 		try {
+			PropertyConfigurator.configure(getClass().getResource("/settings/log4j.properties"));
+			
 			Properties jdbcSettings = PropertiesClass.getSettings("jdbc");
 
 			String url = (String) jdbcSettings.getProperty("jdbc.url");

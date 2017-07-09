@@ -111,7 +111,6 @@ public class JobHistoriesFrame implements Initializable {
 	private void initializeData() {
 		initializeAllColumn();
 		initializeRows();
-		initializeJobHistoriesRow();
 		initializeComboJobStatus();
 	}
 
@@ -178,11 +177,6 @@ public class JobHistoriesFrame implements Initializable {
 		DtoFactory dtoFactory = DtoFactory.getFactory();
 		jobHistoriesRows = dtoFactory.getAllJobHistories();
 		showRows = jobHistoriesRows;
-	}
-
-	private void initializeJobHistoriesRow() {
-		DtoFactory dtoFactory = DtoFactory.getFactory();
-		jobHistoriesRows = dtoFactory.getAllJobHistories();
 	}
 
 	private void initializeComboJobStatus() {
