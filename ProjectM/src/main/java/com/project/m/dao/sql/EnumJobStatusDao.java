@@ -9,22 +9,9 @@ import java.util.Map;
 
 import com.project.m.dao.EnumJobStatusDaoInterface;
 import com.project.m.dao.db.ConnectionPool;
-import com.project.m.entity.EntityBatches;
 import com.project.m.exceptions.DaoException;
 
 public class EnumJobStatusDao implements EnumJobStatusDaoInterface {
-
-	@Override
-	public void save(EntityBatches bean) throws DaoException {
-	}
-
-	@Override
-	public void update(EntityBatches bean) throws DaoException {
-	}
-
-	@Override
-	public void remove(Integer batchId) throws DaoException {
-	}
 
 	@Override
 	public Map<Integer, String> loadEnumJobStatus() {
