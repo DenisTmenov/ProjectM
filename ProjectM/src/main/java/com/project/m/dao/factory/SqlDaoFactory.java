@@ -15,7 +15,7 @@ public class SqlDaoFactory extends DaoFactory {
 	}
 
 	@Override
-	public BatchesDao getBatchesDao() {
+	public BatchesDao getBatches() {
 		try {
 			Class<?> daoClass = Class.forName("com.project.m.dao.sql.BatchesDao");
 			Object daoObject = daoClass.newInstance();
@@ -27,7 +27,7 @@ public class SqlDaoFactory extends DaoFactory {
 	}
 
 	@Override
-	public JobEntriesDao getJobEntriesDao() {
+	public JobEntriesDao getJobEntries() {
 		try {
 			Class<?> daoClass = Class.forName("com.project.m.dao.sql.JobEntriesDao");
 			Object daoObject = daoClass.newInstance();
@@ -39,7 +39,7 @@ public class SqlDaoFactory extends DaoFactory {
 	}
 
 	@Override
-	public JobHistoriesDao getJobHistoriesDao() {
+	public JobHistoriesDao getJobHistories() {
 		try {
 			Class<?> daoClass = Class.forName("com.project.m.dao.sql.JobHistoriesDao");
 			Object daoObject = daoClass.newInstance();
@@ -51,7 +51,7 @@ public class SqlDaoFactory extends DaoFactory {
 	}
 
 	@Override
-	public EnumJobStatusDao getEnumJobStatusDao() {
+	public EnumJobStatusDao getEnumJobStatus() {
 		try {
 			Class<?> daoClass = Class.forName("com.project.m.dao.sql.EnumJobStatusDao");
 			Object daoObject = daoClass.newInstance();
@@ -63,7 +63,7 @@ public class SqlDaoFactory extends DaoFactory {
 	}
 
 	@Override
-	public EnumMigrationTypeDao getEnumMigrationTypeDao() {
+	public EnumMigrationTypeDao getEnumMigrationType() {
 		try {
 			Class<?> daoClass = Class.forName("com.project.m.dao.sql.EnumMigrationTypeDao");
 			Object daoObject = daoClass.newInstance();
@@ -75,7 +75,7 @@ public class SqlDaoFactory extends DaoFactory {
 	}
 
 	@Override
-	public EnumRehydrationTypeDao getEnumRehydrationTypeDao() {
+	public EnumRehydrationTypeDao getEnumRehydrationType() {
 		try {
 			Class<?> daoClass = Class.forName("com.project.m.dao.sql.EnumRehydrationTypeDao");
 			Object daoObject = daoClass.newInstance();
