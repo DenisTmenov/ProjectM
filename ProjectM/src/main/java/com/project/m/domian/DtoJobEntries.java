@@ -9,7 +9,7 @@ import javafx.beans.property.SimpleStringProperty;
 public class DtoJobEntries {
 	private String entryId;
 	private Integer jobId;
-	private Integer itemStatus;
+	private String itemStatus;
 	private String mailbox;
 	private String msgId;
 	private Date dateCreated;
@@ -66,11 +66,11 @@ public class DtoJobEntries {
 		this.jobId = jobId;
 	}
 
-	public Integer getItemStatus() {
+	public String getItemStatus() {
 		return itemStatus;
 	}
 
-	public void setItemStatus(Integer itemStatus) {
+	public void setItemStatus(String itemStatus) {
 		this.itemStatus = itemStatus;
 	}
 
@@ -355,6 +355,21 @@ public class DtoJobEntries {
 	}
 
 	@Override
+	public String toString() {
+		return "DtoJobEntries [entryId=" + entryId + ", jobId=" + jobId + ", itemStatus=" + itemStatus + ", mailbox="
+				+ mailbox + ", msgId=" + msgId + ", dateCreated=" + dateCreated + ", folder=" + folder + ", subject="
+				+ subject + ", author=" + author + ", recipients=" + recipients + ", receivedDate=" + receivedDate
+				+ ", size=" + size + ", messageClass=" + messageClass + ", itemType=" + itemType + ", owner=" + owner
+				+ ", fileName=" + fileName + ", dateModified=" + dateModified + ", statusMessage=" + statusMessage
+				+ ", discoveryDate=" + discoveryDate + ", path=" + path + ", name=" + name + ", folderCount="
+				+ folderCount + ", messageCount=" + messageCount + ", emailCount=" + emailCount + ", calendarCount="
+				+ calendarCount + ", taskCount=" + taskCount + ", contactCount=" + contactCount + ", otherCount="
+				+ otherCount + ", owner1=" + owner1 + ", owner2=" + owner2 + ", owner3=" + owner3 + ", originalId="
+				+ originalId + ", folderId=" + folderId + ", failedCount=" + failedCount + ", statusDate=" + statusDate
+				+ ", hashBytes=" + hashBytes + ", extraData=" + extraData + ", messageId=" + messageId + "]";
+	}
+
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -599,22 +614,6 @@ public class DtoJobEntries {
 		} else if (!taskCount.equals(other.taskCount))
 			return false;
 		return true;
-	}
-
-	@Override
-	public String toString() {
-		return "DboJobEntriesEntity [entryId=" + entryId + ", jobId=" + jobId + ", itemStatus=" + itemStatus
-				+ ", mailbox=" + mailbox + ", msgId=" + msgId + ", dateCreated=" + dateCreated + ", folder=" + folder
-				+ ", subject=" + subject + ", author=" + author + ", recipients=" + recipients + ", receivedDate="
-				+ receivedDate + ", size=" + size + ", messageClass=" + messageClass + ", itemType=" + itemType
-				+ ", owner=" + owner + ", fileName=" + fileName + ", dateModified=" + dateModified + ", statusMessage="
-				+ statusMessage + ", discoveryDate=" + discoveryDate + ", path=" + path + ", name=" + name
-				+ ", folderCount=" + folderCount + ", messageCount=" + messageCount + ", emailCount=" + emailCount
-				+ ", calendarCount=" + calendarCount + ", taskCount=" + taskCount + ", contactCount=" + contactCount
-				+ ", otherCount=" + otherCount + ", owner1=" + owner1 + ", owner2=" + owner2 + ", owner3=" + owner3
-				+ ", originalId=" + originalId + ", folderId=" + folderId + ", failedCount=" + failedCount
-				+ ", statusDate=" + statusDate + ", hashBytes=" + hashBytes + ", extraData=" + extraData
-				+ ", messageId=" + messageId + "]";
 	}
 
 	public SimpleStringProperty getEntryIdSimple() {
