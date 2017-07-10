@@ -1,6 +1,7 @@
 package com.project.m.dao.factory;
 
 import com.project.m.dao.sql.BatchesDao;
+import com.project.m.dao.sql.EnumItemStatusDao;
 import com.project.m.dao.sql.EnumJobStatusDao;
 import com.project.m.dao.sql.EnumMigrationTypeDao;
 import com.project.m.dao.sql.EnumRehydrationTypeDao;
@@ -81,6 +82,18 @@ public class SqlDaoFactory extends DaoFactory {
 			Object daoObject = daoClass.newInstance();
 
 			return ((EnumRehydrationTypeDao) daoObject);
+		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+			throw new UnsupportedDaoTypeException();
+		}
+	}
+
+	@Override
+	public EnumItemStatusDao getEnumItemStatus() {
+		try {
+			Class<?> daoClass = Class.forName("com.project.m.dao.sql.EnumItemStatusDao");
+			Object daoObject = daoClass.newInstance();
+
+			return ((EnumItemStatusDao) daoObject);
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
 			throw new UnsupportedDaoTypeException();
 		}

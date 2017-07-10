@@ -4,9 +4,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Properties;
 
-import org.apache.log4j.PropertyConfigurator;
 import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 
@@ -23,11 +21,10 @@ import com.project.m.domian.DtoJobHistories;
 import com.project.m.entity.EntityBatches;
 import com.project.m.entity.EntityJobEntries;
 import com.project.m.entity.EntityJobHistories;
-import com.project.m.utils.PropertiesClass;
 
 public class DtoFactory {
 	private DtoFactory() {
-		
+
 	}
 
 	public static DtoFactory getFactory() {
@@ -109,13 +106,18 @@ public class DtoFactory {
 
 		DaoFactory daoFactory = DaoFactory.getSqlFactory();
 		JobEntriesDao jobEntriesDao = daoFactory.getJobEntries();
-		
+
 		EnumItemStatusDao enumItemStatusDao = daoFactory.getEnumItemStatus();
+		Map<Integer, String> enumItemStatus = enumItemStatusDao.loadEnumItemStatus();
 
 		LinkedList<EntityJobEntries> entityJobEntries = jobEntriesDao.loadJobEntriesByBatchId(batchId);
 		for (EntityJobEntries entity : entityJobEntries) {
 			Mapper mapper = new DozerBeanMapper();
 			DtoJobEntries dto = mapper.map(entity, DtoJobEntries.class);
+
+			String status = dto.getItemStatus();
+			String textStatus = enumItemStatus.get(Integer.parseInt(status));
+			dto.setItemStatus(textStatus);
 
 			dtoLinkedList.add(dto);
 		}
