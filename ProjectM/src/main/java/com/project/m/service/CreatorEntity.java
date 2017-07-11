@@ -27,8 +27,8 @@ public class CreatorEntity {
 
 		EntityBatches entity = new EntityBatches();
 
-		entity.setBatchesId(batchId);
-		entity.setBatchesName(batchName);
+		entity.setBatchId(batchId);
+		entity.setBatchName(batchName);
 		entity.setCreateDate(createdDate);
 		entity.setIsActive(isActive);
 

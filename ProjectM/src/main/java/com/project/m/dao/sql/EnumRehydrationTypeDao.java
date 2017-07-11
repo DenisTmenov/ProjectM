@@ -7,14 +7,14 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.project.m.dao.EnumJobStatusDaoInterface;
+import com.project.m.dao.EnumRehydrationTypeDaoInterface;
 import com.project.m.dao.db.ConnectionPool;
 import com.project.m.exceptions.DaoException;
 
-public class EnumJobStatusDao implements EnumJobStatusDaoInterface {
+public class EnumRehydrationTypeDao implements EnumRehydrationTypeDaoInterface {
 
 	@Override
-	public Map<Integer, String> loadEnumJobStatus() {
+	public Map<Integer, String> loadEnumRehydrationType() {
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet set = null;
@@ -23,7 +23,7 @@ public class EnumJobStatusDao implements EnumJobStatusDaoInterface {
 
 		try {
 			connection = ConnectionPool.getInstance().getConnection();
-			statement = connection.prepareStatement("SELECT * FROM [dbo].[Enum_JobStatus]");
+			statement = connection.prepareStatement("SELECT * FROM [dbo].[Enum_RehydrationType]");
 
 			set = statement.executeQuery();
 
@@ -31,7 +31,7 @@ public class EnumJobStatusDao implements EnumJobStatusDaoInterface {
 				result.put(set.getInt("Id"), set.getString("Description"));
 			}
 		} catch (SQLException e) {
-			throw new DaoException("Exception in loadJobHistoriesByBatchId().", e);
+			throw new DaoException("Exception in loadEnumMigrationType().", e);
 		} finally {
 			ConnectionPool.closeDbResources(connection, statement, set);
 		}

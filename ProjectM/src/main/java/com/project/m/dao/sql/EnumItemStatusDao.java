@@ -7,14 +7,14 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.project.m.dao.EnumJobStatusDaoInterface;
+import com.project.m.dao.EnumItemStatusDaoInterface;
 import com.project.m.dao.db.ConnectionPool;
 import com.project.m.exceptions.DaoException;
 
-public class EnumJobStatusDao implements EnumJobStatusDaoInterface {
+public class EnumItemStatusDao implements EnumItemStatusDaoInterface {
 
 	@Override
-	public Map<Integer, String> loadEnumJobStatus() {
+	public Map<Integer, String> loadEnumItemStatus() {
 		Connection connection = null;
 		PreparedStatement statement = null;
 		ResultSet set = null;

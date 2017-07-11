@@ -9,7 +9,10 @@ import org.dozer.DozerBeanMapper;
 import org.dozer.Mapper;
 
 import com.project.m.dao.sql.BatchesDao;
+import com.project.m.dao.sql.EnumItemStatusDao;
 import com.project.m.dao.sql.EnumJobStatusDao;
+import com.project.m.dao.sql.EnumMigrationTypeDao;
+import com.project.m.dao.sql.EnumRehydrationTypeDao;
 import com.project.m.dao.sql.JobEntriesDao;
 import com.project.m.dao.sql.JobHistoriesDao;
 import com.project.m.domian.DtoBatches;
@@ -20,6 +23,9 @@ import com.project.m.entity.EntityJobEntries;
 import com.project.m.entity.EntityJobHistories;
 
 public class DtoFactory {
+	private DtoFactory() {
+
+	}
 
 	public static DtoFactory getFactory() {
 		return new DtoFactory();
@@ -27,15 +33,24 @@ public class DtoFactory {
 
 	public LinkedList<DtoJobHistories> getAllJobHistories() {
 
-		LinkedList<DtoJobHistories> dtoLinkedList = new LinkedList<DtoJobHistories>();
+		LinkedList<DtoJobHistories> result = new LinkedList<DtoJobHistories>();
 
 		DaoFactory daoFactory = DaoFactory.getSqlFactory();
-		JobHistoriesDao jobHistoriesDao = daoFactory.getJobHistoriesDao();
+		JobHistoriesDao jobHistoriesDao = daoFactory.getJobHistories();
 
 		LinkedList<EntityJobHistories> entityJobHistories = jobHistoriesDao.loadAllJobHistories();
 
-		EnumJobStatusDao enumJobStatusDao = daoFactory.getEnumJobStatusDao();
+		EnumJobStatusDao enumJobStatusDao = daoFactory.getEnumJobStatus();
 		Map<Integer, String> enumJobStatus = enumJobStatusDao.loadEnumJobStatus();
+
+		BatchesDao batchesDao = daoFactory.getBatches();
+		LinkedList<EntityBatches> batches = batchesDao.loadAllBatches();
+
+		EnumMigrationTypeDao enumMigrationTypeDao = daoFactory.getEnumMigrationType();
+		Map<Integer, String> enumMigrationType = enumMigrationTypeDao.loadEnumMigrationType();
+
+		EnumRehydrationTypeDao enumRehydrationTypeDao = daoFactory.getEnumRehydrationType();
+		Map<Integer, String> enumRehydrationType = enumRehydrationTypeDao.loadEnumRehydrationType();
 
 		for (EntityJobHistories entity : entityJobHistories) {
 			Mapper mapper = new DozerBeanMapper();
@@ -43,13 +58,33 @@ public class DtoFactory {
 
 			String jobStatus = dto.getJobStatus();
 			String textJobStatus = enumJobStatus.get(Integer.parseInt(jobStatus));
-
 			dto.setJobStatus(textJobStatus);
 
-			dtoLinkedList.add(dto);
+			String source = dto.getSource();
+			String textSource = enumMigrationType.get(Integer.parseInt(source));
+			dto.setSource(textSource);
+
+			String target = dto.getTarget();
+			String textTarget = enumMigrationType.get(Integer.parseInt(target));
+			dto.setTarget(textTarget);
+
+			String rehydration = dto.getRehydrationType();
+			String textrehydration = enumRehydrationType.get(Integer.parseInt(rehydration));
+			dto.setRehydrationType(textrehydration);
+
+			Integer batchIdDTO = dto.getBatchId();
+			for (EntityBatches entityBatches : batches) {
+				String batchName = entityBatches.getBatchName();
+				Integer batchIdENTITY = entityBatches.getBatchId();
+				if (batchIdDTO == batchIdENTITY) {
+					dto.setBatchName(batchName);
+				}
+			}
+
+			result.add(dto);
 		}
 
-		return dtoLinkedList;
+		return result;
 	}
 
 	public LinkedList<DtoJobHistories> getJobHistoriesByStatus(String status) {
@@ -70,12 +105,19 @@ public class DtoFactory {
 		LinkedList<DtoJobEntries> dtoLinkedList = new LinkedList<DtoJobEntries>();
 
 		DaoFactory daoFactory = DaoFactory.getSqlFactory();
-		JobEntriesDao jobEntriesDao = daoFactory.getJobEntriesDao();
+		JobEntriesDao jobEntriesDao = daoFactory.getJobEntries();
+
+		EnumItemStatusDao enumItemStatusDao = daoFactory.getEnumItemStatus();
+		Map<Integer, String> enumItemStatus = enumItemStatusDao.loadEnumItemStatus();
 
 		LinkedList<EntityJobEntries> entityJobEntries = jobEntriesDao.loadJobEntriesByBatchId(batchId);
 		for (EntityJobEntries entity : entityJobEntries) {
 			Mapper mapper = new DozerBeanMapper();
 			DtoJobEntries dto = mapper.map(entity, DtoJobEntries.class);
+
+			String status = dto.getItemStatus();
+			String textStatus = enumItemStatus.get(Integer.parseInt(status));
+			dto.setItemStatus(textStatus);
 
 			dtoLinkedList.add(dto);
 		}
@@ -88,7 +130,7 @@ public class DtoFactory {
 		LinkedList<DtoBatches> dtoLinkedList = new LinkedList<DtoBatches>();
 
 		DaoFactory daoFactory = DaoFactory.getSqlFactory();
-		BatchesDao batchesDao = daoFactory.getBatchesDao();
+		BatchesDao batchesDao = daoFactory.getBatches();
 
 		LinkedList<EntityBatches> entityJobHistories = batchesDao.loadAllBatches();
 		for (EntityBatches entity : entityJobHistories) {
@@ -105,7 +147,7 @@ public class DtoFactory {
 		List<String> enumStatus = new ArrayList<String>();
 
 		DaoFactory daoFactory = DaoFactory.getSqlFactory();
-		EnumJobStatusDao enumJobStatusDao = daoFactory.getEnumJobStatusDao();
+		EnumJobStatusDao enumJobStatusDao = daoFactory.getEnumJobStatus();
 		Map<Integer, String> enumJobStatus = enumJobStatusDao.loadEnumJobStatus();
 
 		for (Map.Entry<Integer, String> entry : enumJobStatus.entrySet()) {

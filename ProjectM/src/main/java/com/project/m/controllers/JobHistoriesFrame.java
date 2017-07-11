@@ -20,6 +20,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseButton;
@@ -33,12 +34,12 @@ public class JobHistoriesFrame implements Initializable {
 	private LinkedList<DtoJobHistories> showRows;
 
 	@FXML
-	private TableColumn<DtoJobHistories, String> jobIdColumn, jobStatusColumn, timeStartedColumn, timeFinishedColumn,
-			itemsTotalColumn, itemsFailedColumn, itemsRemainingColumn, sourceColumn, targetColumn, jobCreatedByColumn,
-			jobModifiedByColumn, jobCreatedColumn, jobModifiedColumn, batchIdColumn, failedCountColumn,
-			processingInBatchColumn, processingOnMachineColumn, processingRateColumn, lastUpdateColumn,
-			statusMessageColumn, priorityColumn, percentCompleteColumn, sourceMailboxColumn, targetMailboxColumn,
-			processingItemsColumn, statusDateColumn, rehydrationTypeColumn;
+	private TableColumn<DtoJobHistories, String> batchNameColumn, jobIdColumn, jobStatusColumn, timeStartedColumn,
+			timeFinishedColumn, itemsTotalColumn, itemsFailedColumn, itemsRemainingColumn, sourceColumn, targetColumn,
+			jobCreatedByColumn, jobModifiedByColumn, jobCreatedColumn, jobModifiedColumn, batchIdColumn,
+			failedCountColumn, processingInBatchColumn, processingOnMachineColumn, processingRateColumn,
+			lastUpdateColumn, statusMessageColumn, priorityColumn, percentCompleteColumn, sourceMailboxColumn,
+			targetMailboxColumn, processingItemsColumn, statusDateColumn, rehydrationTypeColumn;
 
 	@FXML
 	private TableView<DtoJobHistories> jobHistoriesTable;
@@ -47,6 +48,21 @@ public class JobHistoriesFrame implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+
+		jobHistoriesTable.setRowFactory(tv -> new TableRow<DtoJobHistories>() {
+			@Override
+			public void updateItem(DtoJobHistories item, boolean empty) {
+				super.updateItem(item, empty);
+				if (item == null) {
+					setStyle("");
+				} else if (item.getJobStatus().equals("CompleteWithErrors")) {
+					setStyle("-fx-background-color: red;");
+				} else {
+					setStyle("");
+				}
+			}
+		});
+
 		initializeData();
 		show();
 
@@ -58,12 +74,21 @@ public class JobHistoriesFrame implements Initializable {
 					discoverColumnName();
 
 					if (columnName.equals("Batch Id")) {
-						batchIdColumn.setSortType(TableColumn.SortType.ASCENDING);
+						jobHistoriesTable.getSortOrder().clear();
+						if (batchIdColumn.getSortType().equals(TableColumn.SortType.ASCENDING)) {
+							batchIdColumn.setSortType(TableColumn.SortType.DESCENDING);
+						} else if (batchIdColumn.getSortType().equals(TableColumn.SortType.DESCENDING)) {
+							batchIdColumn.setSortType(TableColumn.SortType.ASCENDING);
+						}
 						jobHistoriesTable.getSortOrder().add(batchIdColumn);
-
 					} else if (columnName.equals("Batch Name")) {
-						// this column didn't create
-						jobHistoriesTable.getSortOrder().add(batchIdColumn);
+						jobHistoriesTable.getSortOrder().clear();
+						if (batchNameColumn.getSortType().equals(TableColumn.SortType.ASCENDING)) {
+							batchNameColumn.setSortType(TableColumn.SortType.DESCENDING);
+						} else if (batchNameColumn.getSortType().equals(TableColumn.SortType.DESCENDING)) {
+							batchNameColumn.setSortType(TableColumn.SortType.ASCENDING);
+						}
+						jobHistoriesTable.getSortOrder().add(batchNameColumn);
 					} else {
 						discoverBatchId();
 
@@ -84,29 +109,16 @@ public class JobHistoriesFrame implements Initializable {
 
 	}
 
-	private void show() {
-		SortedList<DtoJobHistories> jobHistoriesList = new SortedList<DtoJobHistories>(
-				FXCollections.observableArrayList(showRows));
-
-		jobHistoriesList.comparatorProperty().bind(jobHistoriesTable.comparatorProperty());
-
-		jobHistoriesTable.setItems(jobHistoriesList);
-
-		jobHistoriesTable.getSelectionModel().setCellSelectionEnabled(true);
-		jobHistoriesTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-		TableUtils.installCopyPasteHandler(jobHistoriesTable);
-		TableUtils.installCopyPasteMenu(jobHistoriesTable);
-
-	}
-
 	private void initializeData() {
 		initializeAllColumn();
 		initializeRows();
-		initializeJobHistoriesRow();
 		initializeComboJobStatus();
+		addFunction();
 	}
 
 	private void initializeAllColumn() {
+		batchNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+		batchNameColumn.setCellValueFactory(cellData -> cellData.getValue().getBatchNameSimple());
 		jobIdColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		jobIdColumn.setCellValueFactory(cellData -> cellData.getValue().getJobIdSimple());
 		jobStatusColumn.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -169,14 +181,51 @@ public class JobHistoriesFrame implements Initializable {
 		showRows = jobHistoriesRows;
 	}
 
-	private void initializeJobHistoriesRow() {
-		DtoFactory dtoFactory = DtoFactory.getFactory();
-		jobHistoriesRows = dtoFactory.getAllJobHistories();
-	}
-
 	private void initializeComboJobStatus() {
 		Set<String> statusJobList = loadJobStatus(jobHistoriesRows);
 		sortJobStatusCombo.getItems().addAll(statusJobList);
+	}
+
+	private void show() {
+		SortedList<DtoJobHistories> jobHistoriesList = new SortedList<DtoJobHistories>(
+				FXCollections.observableArrayList(showRows));
+
+		jobHistoriesList.comparatorProperty().bind(jobHistoriesTable.comparatorProperty());
+
+		jobHistoriesTable.setItems(jobHistoriesList);
+
+	}
+
+	private void addFunction() {
+		addMultiSelect();
+		addCopyFunction();
+		addRowColor();
+	}
+
+	private void addMultiSelect() {
+		jobHistoriesTable.getSelectionModel().setCellSelectionEnabled(true);
+		jobHistoriesTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+	}
+
+	private void addCopyFunction() {
+		TableUtils.installCopyPasteHandler(jobHistoriesTable);
+		TableUtils.installCopyPasteMenu(jobHistoriesTable);
+	}
+
+	private void addRowColor() {
+		jobHistoriesTable.setRowFactory(tv -> new TableRow<DtoJobHistories>() {
+			@Override
+			public void updateItem(DtoJobHistories item, boolean empty) {
+				super.updateItem(item, empty);
+				if (item == null) {
+					setStyle("");
+				} else if (item.getJobStatus().equals("CompleteWithErrors")) {
+					setStyle("-fx-background-color: red;");
+				} else {
+					setStyle("");
+				}
+			}
+		});
 	}
 
 	private void generateNewRows() {

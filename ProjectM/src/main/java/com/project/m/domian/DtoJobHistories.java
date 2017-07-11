@@ -14,8 +14,8 @@ public class DtoJobHistories {
 	private String itemsTotal; // BigInteger
 	private String itemsFailed; // BigInteger
 	private String itemsRemaining; // BigInteger
-	private Integer source;
-	private Integer target;
+	private String source;
+	private String target;
 	private String jobCreatedBy;
 	private String jobModifiedBy;
 	private Date jobCreated;
@@ -33,10 +33,19 @@ public class DtoJobHistories {
 	private String targetMailbox;
 	private Integer processingItems;
 	private Date statusDate;
-	private Integer rehydrationType;
+	private String rehydrationType;
+	private String batchName;
 
 	public DtoJobHistories() {
 		super();
+	}
+
+	public String getBatchName() {
+		return batchName;
+	}
+
+	public void setBatchName(String batchName) {
+		this.batchName = batchName;
 	}
 
 	public Integer getJobId() {
@@ -95,19 +104,19 @@ public class DtoJobHistories {
 		this.itemsRemaining = itemsRemaining;
 	}
 
-	public Integer getSource() {
+	public String getSource() {
 		return source;
 	}
 
-	public void setSource(Integer source) {
+	public void setSource(String source) {
 		this.source = source;
 	}
 
-	public Integer getTarget() {
+	public String getTarget() {
 		return target;
 	}
 
-	public void setTarget(Integer target) {
+	public void setTarget(String target) {
 		this.target = target;
 	}
 
@@ -247,26 +256,12 @@ public class DtoJobHistories {
 		this.statusDate = statusDate;
 	}
 
-	public Integer getRehydrationType() {
+	public String getRehydrationType() {
 		return rehydrationType;
 	}
 
-	public void setRehydrationType(Integer rehydrationType) {
+	public void setRehydrationType(String rehydrationType) {
 		this.rehydrationType = rehydrationType;
-	}
-
-	@Override
-	public String toString() {
-		return "DtoJobHistories [jobId=" + jobId + ", jobStatus=" + jobStatus + ", timeStarted=" + timeStarted
-				+ ", timeFinished=" + timeFinished + ", itemsTotal=" + itemsTotal + ", itemsFailed=" + itemsFailed
-				+ ", itemsRemaining=" + itemsRemaining + ", source=" + source + ", target=" + target + ", jobCreatedBy="
-				+ jobCreatedBy + ", jobModifiedBy=" + jobModifiedBy + ", jobCreated=" + jobCreated + ", jobModified="
-				+ jobModified + ", batchId=" + batchId + ", failedCount=" + failedCount + ", processingInBatch="
-				+ processingInBatch + ", processingOnMachine=" + processingOnMachine + ", processingRate="
-				+ processingRate + ", lastUpdate=" + lastUpdate + ", statusMessage=" + statusMessage + ", priority="
-				+ priority + ", percentComplete=" + percentComplete + ", sourceMailbox=" + sourceMailbox
-				+ ", targetMailbox=" + targetMailbox + ", processingItems=" + processingItems + ", statusDate="
-				+ statusDate + ", rehydrationType=" + rehydrationType + "]";
 	}
 
 	@Override
@@ -274,6 +269,7 @@ public class DtoJobHistories {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((batchId == null) ? 0 : batchId.hashCode());
+		result = prime * result + ((batchName == null) ? 0 : batchName.hashCode());
 		result = prime * result + ((failedCount == null) ? 0 : failedCount.hashCode());
 		result = prime * result + ((itemsFailed == null) ? 0 : itemsFailed.hashCode());
 		result = prime * result + ((itemsRemaining == null) ? 0 : itemsRemaining.hashCode());
@@ -316,6 +312,11 @@ public class DtoJobHistories {
 			if (other.batchId != null)
 				return false;
 		} else if (!batchId.equals(other.batchId))
+			return false;
+		if (batchName == null) {
+			if (other.batchName != null)
+				return false;
+		} else if (!batchName.equals(other.batchName))
 			return false;
 		if (failedCount == null) {
 			if (other.failedCount != null)
@@ -448,6 +449,20 @@ public class DtoJobHistories {
 		} else if (!timeStarted.equals(other.timeStarted))
 			return false;
 		return true;
+	}
+
+	@Override
+	public String toString() {
+		return "DtoJobHistories [jobId=" + jobId + ", jobStatus=" + jobStatus + ", timeStarted=" + timeStarted
+				+ ", timeFinished=" + timeFinished + ", itemsTotal=" + itemsTotal + ", itemsFailed=" + itemsFailed
+				+ ", itemsRemaining=" + itemsRemaining + ", source=" + source + ", target=" + target + ", jobCreatedBy="
+				+ jobCreatedBy + ", jobModifiedBy=" + jobModifiedBy + ", jobCreated=" + jobCreated + ", jobModified="
+				+ jobModified + ", batchId=" + batchId + ", failedCount=" + failedCount + ", processingInBatch="
+				+ processingInBatch + ", processingOnMachine=" + processingOnMachine + ", processingRate="
+				+ processingRate + ", lastUpdate=" + lastUpdate + ", statusMessage=" + statusMessage + ", priority="
+				+ priority + ", percentComplete=" + percentComplete + ", sourceMailbox=" + sourceMailbox
+				+ ", targetMailbox=" + targetMailbox + ", processingItems=" + processingItems + ", statusDate="
+				+ statusDate + ", rehydrationType=" + rehydrationType + ", batchName=" + batchName + "]";
 	}
 
 	public SimpleStringProperty getJobIdSimple() {
@@ -611,6 +626,12 @@ public class DtoJobHistories {
 		SimpleStringProperty rehydrationTypeSimple = new SimpleStringProperty(String.valueOf(getRehydrationType()));
 		rehydrationTypeSimple = SimpleObject.convertNullToSpace(rehydrationTypeSimple);
 		return rehydrationTypeSimple;
+	}
+
+	public SimpleStringProperty getBatchNameSimple() {
+		SimpleStringProperty batchNameSimple = new SimpleStringProperty(String.valueOf(getBatchName()));
+		batchNameSimple = SimpleObject.convertNullToSpace(batchNameSimple);
+		return batchNameSimple;
 	}
 
 }
