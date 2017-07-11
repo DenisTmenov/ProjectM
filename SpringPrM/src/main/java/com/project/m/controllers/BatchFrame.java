@@ -4,6 +4,9 @@ import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import com.project.m.dao.factory.DtoFactory;
 import com.project.m.domian.DtoBatches;
 import com.project.m.service.FrameManager;
@@ -45,7 +48,10 @@ public class BatchFrame implements Initializable {
 
 					setBatchId(batchId);
 
-					FrameManager frameManager = FrameManager.getFrameManager();
+					@SuppressWarnings("resource")
+					ApplicationContext context = new ClassPathXmlApplicationContext("ApplicationContext.xml");
+
+					FrameManager frameManager = (FrameManager) context.getBean("frameManager");
 					frameManager.openFrame("JobHistoriesFrame", "JobHistories", true, false, true);
 
 				}

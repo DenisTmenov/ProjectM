@@ -9,9 +9,13 @@ import com.project.m.entity.EntityJobEntries;
 import com.project.m.entity.EntityJobHistories;
 import com.project.m.exceptions.EntityException;
 
-public class CreatorEntity {
+public class CreatorEntity implements CreatorEntityInterface {
+	public CreatorEntity() {
 
-	public static EntityBatches createDboBatchesEntity(ResultSet set) {
+	}
+
+	@Override
+	public EntityBatches createDboBatchesEntity(ResultSet set) {
 		Integer batchId = null;
 		String batchName = null;
 		Date createdDate = null;
@@ -35,7 +39,8 @@ public class CreatorEntity {
 		return entity;
 	}
 
-	public static EntityJobHistories createDboJobHistoriesEntity(ResultSet set) {
+	@Override
+	public EntityJobHistories createDboJobHistoriesEntity(ResultSet set) {
 		Integer jobId = null;
 		Integer jobStatus = null;
 		Date timeStarted = null;
@@ -151,7 +156,8 @@ public class CreatorEntity {
 		return entity;
 	}
 
-	public static EntityJobEntries createDboJobEntriesEntity(ResultSet set) {
+	@Override
+	public EntityJobEntries createDboJobEntriesEntity(ResultSet set) {
 		String entryId = null;
 		Integer jobId = null;
 		Integer itemStatus = null;

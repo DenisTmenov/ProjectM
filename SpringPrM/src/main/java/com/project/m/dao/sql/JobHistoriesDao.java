@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedList;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import com.project.m.dao.JobHistoriesDaoInterface;
 import com.project.m.dao.db.ConnectionPool;
 import com.project.m.entity.EntityBatches;
@@ -43,7 +46,11 @@ public class JobHistoriesDao implements JobHistoriesDaoInterface {
 			set = statement.executeQuery();
 
 			while (set.next()) {
-				EntityJobHistories entity = CreatorEntity.createDboJobHistoriesEntity(set);
+				@SuppressWarnings("resource")
+				ApplicationContext context = new ClassPathXmlApplicationContext("ApplicationContext.xml");
+				CreatorEntity ceratorEntity = (CreatorEntity) context.getBean("ceratorEntity");
+				EntityJobHistories entity = ceratorEntity.createDboJobHistoriesEntity(set);
+
 				result.add(entity);
 			}
 		} catch (SQLException e) {
@@ -70,7 +77,11 @@ public class JobHistoriesDao implements JobHistoriesDaoInterface {
 			set = statement.executeQuery();
 
 			while (set.next()) {
-				EntityJobHistories entity = CreatorEntity.createDboJobHistoriesEntity(set);
+				@SuppressWarnings("resource")
+				ApplicationContext context = new ClassPathXmlApplicationContext("ApplicationContext.xml");
+				CreatorEntity ceratorEntity = (CreatorEntity) context.getBean("creatorEntity");
+				EntityJobHistories entity = ceratorEntity.createDboJobHistoriesEntity(set);
+
 				result.add(entity);
 			}
 		} catch (SQLException e) {

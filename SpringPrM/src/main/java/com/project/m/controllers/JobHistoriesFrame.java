@@ -6,6 +6,9 @@ import java.util.LinkedList;
 import java.util.ResourceBundle;
 import java.util.Set;
 
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
 import com.project.m.dao.factory.DtoFactory;
 import com.project.m.domian.DtoJobHistories;
 import com.project.m.service.FrameManager;
@@ -33,12 +36,9 @@ public class JobHistoriesFrame implements Initializable {
 	private LinkedList<DtoJobHistories> showRows;
 
 	@FXML
-	private TableColumn<DtoJobHistories, String> jobIdColumn, jobStatusColumn, timeStartedColumn, timeFinishedColumn,
-			itemsTotalColumn, itemsFailedColumn, itemsRemainingColumn, sourceColumn, targetColumn, jobCreatedByColumn,
-			jobModifiedByColumn, jobCreatedColumn, jobModifiedColumn, batchIdColumn, failedCountColumn,
-			processingInBatchColumn, processingOnMachineColumn, processingRateColumn, lastUpdateColumn,
-			statusMessageColumn, priorityColumn, percentCompleteColumn, sourceMailboxColumn, targetMailboxColumn,
-			processingItemsColumn, statusDateColumn, rehydrationTypeColumn;
+	private TableColumn<DtoJobHistories, String> jobIdColumn, jobStatusColumn, timeStartedColumn, timeFinishedColumn, itemsTotalColumn, itemsFailedColumn, itemsRemainingColumn, sourceColumn, targetColumn, jobCreatedByColumn, jobModifiedByColumn,
+			jobCreatedColumn, jobModifiedColumn, batchIdColumn, failedCountColumn, processingInBatchColumn, processingOnMachineColumn, processingRateColumn, lastUpdateColumn, statusMessageColumn, priorityColumn, percentCompleteColumn,
+			sourceMailboxColumn, targetMailboxColumn, processingItemsColumn, statusDateColumn, rehydrationTypeColumn;
 
 	@FXML
 	private TableView<DtoJobHistories> jobHistoriesTable;
@@ -67,8 +67,12 @@ public class JobHistoriesFrame implements Initializable {
 					} else {
 						discoverBatchId();
 
-						FrameManager frameManager = FrameManager.getFrameManager();
+						@SuppressWarnings("resource")
+						ApplicationContext context = new ClassPathXmlApplicationContext("ApplicationContext.xml");
+
+						FrameManager frameManager = (FrameManager) context.getBean("frameManager");
 						frameManager.openFrame("JobEntriesFrame", "JobHistories", true, false, true);
+
 					}
 
 				}
@@ -85,8 +89,7 @@ public class JobHistoriesFrame implements Initializable {
 	}
 
 	private void show() {
-		SortedList<DtoJobHistories> jobHistoriesList = new SortedList<DtoJobHistories>(
-				FXCollections.observableArrayList(showRows));
+		SortedList<DtoJobHistories> jobHistoriesList = new SortedList<DtoJobHistories>(FXCollections.observableArrayList(showRows));
 
 		jobHistoriesList.comparatorProperty().bind(jobHistoriesTable.comparatorProperty());
 

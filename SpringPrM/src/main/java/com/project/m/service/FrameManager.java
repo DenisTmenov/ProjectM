@@ -11,16 +11,13 @@ import javafx.scene.image.Image;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class FrameManager {
+public class FrameManager implements FrameManagerInterface {
 
-	private FrameManager() {
+	public FrameManager() {
 
 	}
 
-	public static FrameManager getFrameManager() {
-		return new FrameManager();
-	}
-
+	@Override
 	public void openFrame(String nameFrame, String title, Boolean resizableFrame, Boolean oneFrame, Boolean showAndWait) {
 		Stage frame = new Stage();
 		frame.setTitle(title);
@@ -31,7 +28,7 @@ public class FrameManager {
 		try {
 			parent = loader.load();
 		} catch (IOException e) {
-			throw new FrameException("Problem in LOADER JobHistoriesFrame.fxml", e);
+			throw new FrameException("Problem in LOADER FRAME!!!", e);
 		}
 		Scene scene = new Scene(parent);
 		frame.setScene(scene);
@@ -39,13 +36,12 @@ public class FrameManager {
 		if (oneFrame) {
 			frame.initModality(Modality.APPLICATION_MODAL);
 		}
-		if(showAndWait) {
+		if (showAndWait) {
 			frame.showAndWait();
 		} else {
 			frame.show();
 		}
 
-		
 	}
 
 	private void addIcon(Stage frame) {
