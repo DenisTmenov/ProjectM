@@ -17,7 +17,7 @@ public class ConnectionPool {
 	private ConnectionPool() {
 		try {
 			PropertyConfigurator.configure(getClass().getResource("/settings/log4j.properties"));
-			
+
 			Properties jdbcSettings = PropertiesClass.getSettings("jdbc");
 
 			String url = (String) jdbcSettings.getProperty("jdbc.url");
@@ -53,9 +53,12 @@ public class ConnectionPool {
 
 	private static void closeConnection(Connection connection) {
 		if (connection != null) {
-			/*
-			 * try { connection.close(); } catch (SQLException e) { }
-			 */
+
+			try {
+				connection.close();
+			} catch (SQLException e) {
+			}
+
 		}
 	}
 
