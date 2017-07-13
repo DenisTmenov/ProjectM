@@ -24,6 +24,7 @@ public class FrameManager {
 	public void openFrame(String nameFrame, String title, Boolean resizableFrame, Boolean oneFrame, Boolean showAndWait) {
 		Stage frame = new Stage();
 		frame.setTitle(title);
+		frame.setMaximized(true);
 		addIcon(frame);
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("/fxml/" + nameFrame + ".fxml"));
