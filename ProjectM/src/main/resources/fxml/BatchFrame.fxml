@@ -11,9 +11,9 @@
          <content>
             <TableView fx:id="batchTable" stylesheets="@../style/projectStyle.css">
               <columns>
-                <TableColumn fx:id="batchIdColumn" prefWidth="75.0" styleClass="columnRight" text="Batch Id" />
-                <TableColumn fx:id="batchNameColumn" prefWidth="75.0" text="Batch Name" />
-                <TableColumn fx:id="jobCountColumn" prefWidth="75.0" styleClass="columnRight" text="Job Count" />
+                <TableColumn fx:id="batchIdColumn"  styleClass="columnRight" text="Batch Id" />
+                <TableColumn fx:id="batchNameColumn"  text="Batch Name" />
+                <TableColumn fx:id="jobCountColumn"  styleClass="columnRight" text="Job Count" />
               </columns>
             </TableView>
          </content>
