@@ -1,9 +1,12 @@
 package com.project.m.domian;
 
+import java.math.BigInteger;
 import java.util.Date;
 
+import com.project.m.utils.SimpleBigIntegerProperty;
 import com.project.m.utils.SimpleObject;
 
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class DtoJobHistories {
@@ -11,9 +14,9 @@ public class DtoJobHistories {
 	private String jobStatus;
 	private Date timeStarted;
 	private Date timeFinished;
-	private String itemsTotal; // BigInteger
-	private String itemsFailed; // BigInteger
-	private String itemsRemaining; // BigInteger
+	private BigInteger itemsTotal;
+	private BigInteger itemsFailed;
+	private BigInteger itemsRemaining;
 	private String source;
 	private String target;
 	private String jobCreatedBy;
@@ -80,27 +83,27 @@ public class DtoJobHistories {
 		this.timeFinished = timeFinished;
 	}
 
-	public String getItemsTotal() {
+	public BigInteger getItemsTotal() {
 		return itemsTotal;
 	}
 
-	public void setItemsTotal(String itemsTotal) {
+	public void setItemsTotal(BigInteger itemsTotal) {
 		this.itemsTotal = itemsTotal;
 	}
 
-	public String getItemsFailed() {
+	public BigInteger getItemsFailed() {
 		return itemsFailed;
 	}
 
-	public void setItemsFailed(String itemsFailed) {
+	public void setItemsFailed(BigInteger itemsFailed) {
 		this.itemsFailed = itemsFailed;
 	}
 
-	public String getItemsRemaining() {
+	public BigInteger getItemsRemaining() {
 		return itemsRemaining;
 	}
 
-	public void setItemsRemaining(String itemsRemaining) {
+	public void setItemsRemaining(BigInteger itemsRemaining) {
 		this.itemsRemaining = itemsRemaining;
 	}
 
@@ -465,9 +468,8 @@ public class DtoJobHistories {
 				+ statusDate + ", rehydrationType=" + rehydrationType + ", batchName=" + batchName + "]";
 	}
 
-	public SimpleStringProperty getJobIdSimple() {
-		SimpleStringProperty jobIdSimple = new SimpleStringProperty(String.valueOf(getJobId()));
-		jobIdSimple = SimpleObject.convertNullToSpace(jobIdSimple);
+	public SimpleIntegerProperty getJobIdSimple() {
+		SimpleIntegerProperty jobIdSimple = new SimpleIntegerProperty(getJobId());
 		return jobIdSimple;
 	}
 
@@ -489,21 +491,18 @@ public class DtoJobHistories {
 		return timeFinishedSimple;
 	}
 
-	public SimpleStringProperty getItemsTotalSimple() {
-		SimpleStringProperty itemsTotalSimple = new SimpleStringProperty(String.valueOf(getItemsTotal()));
-		itemsTotalSimple = SimpleObject.convertNullToSpace(itemsTotalSimple);
+	public SimpleBigIntegerProperty getItemsTotalSimple() {
+		SimpleBigIntegerProperty itemsTotalSimple = new SimpleBigIntegerProperty(getItemsTotal());
 		return itemsTotalSimple;
 	}
 
-	public SimpleStringProperty getItemsFailedSimple() {
-		SimpleStringProperty itemsFailedSimple = new SimpleStringProperty(String.valueOf(getItemsFailed()));
-		itemsFailedSimple = SimpleObject.convertNullToSpace(itemsFailedSimple);
+	public SimpleBigIntegerProperty getItemsFailedSimple() {
+		SimpleBigIntegerProperty itemsFailedSimple = new SimpleBigIntegerProperty(getItemsFailed());
 		return itemsFailedSimple;
 	}
 
-	public SimpleStringProperty getItemsRemainingSimple() {
-		SimpleStringProperty itemsRemainingSimple = new SimpleStringProperty(String.valueOf(getItemsRemaining()));
-		itemsRemainingSimple = SimpleObject.convertNullToSpace(itemsRemainingSimple);
+	public SimpleBigIntegerProperty getItemsRemainingSimple() {
+		SimpleBigIntegerProperty itemsRemainingSimple = new SimpleBigIntegerProperty(getItemsRemaining());
 		return itemsRemainingSimple;
 	}
 
@@ -543,21 +542,18 @@ public class DtoJobHistories {
 		return jobModifiedSimple;
 	}
 
-	public SimpleStringProperty getBatchIdSimple() {
-		SimpleStringProperty batchIdSimple = new SimpleStringProperty(String.valueOf(getBatchId()));
-		batchIdSimple = SimpleObject.convertNullToSpace(batchIdSimple);
+	public SimpleIntegerProperty getBatchIdSimple() {
+		SimpleIntegerProperty batchIdSimple = new SimpleIntegerProperty(getBatchId());
 		return batchIdSimple;
 	}
 
-	public SimpleStringProperty getFailedCountSimple() {
-		SimpleStringProperty failedCountSimple = new SimpleStringProperty(String.valueOf(getFailedCount()));
-		failedCountSimple = SimpleObject.convertNullToSpace(failedCountSimple);
+	public SimpleIntegerProperty getFailedCountSimple() {
+		SimpleIntegerProperty failedCountSimple = new SimpleIntegerProperty(getFailedCount());
 		return failedCountSimple;
 	}
 
-	public SimpleStringProperty getProcessingInBatchSimple() {
-		SimpleStringProperty processingInBatchSimple = new SimpleStringProperty(String.valueOf(getProcessingInBatch()));
-		processingInBatchSimple = SimpleObject.convertNullToSpace(processingInBatchSimple);
+	public SimpleIntegerProperty getProcessingInBatchSimple() {
+		SimpleIntegerProperty processingInBatchSimple = new SimpleIntegerProperty(getProcessingInBatch());
 		return processingInBatchSimple;
 	}
 
@@ -568,9 +564,8 @@ public class DtoJobHistories {
 		return processingOnMachineSimple;
 	}
 
-	public SimpleStringProperty getProcessingRateSimple() {
-		SimpleStringProperty processingRateSimple = new SimpleStringProperty(String.valueOf(getProcessingRate()));
-		processingRateSimple = SimpleObject.convertNullToSpace(processingRateSimple);
+	public SimpleIntegerProperty getProcessingRateSimple() {
+		SimpleIntegerProperty processingRateSimple = new SimpleIntegerProperty(getProcessingRate());
 		return processingRateSimple;
 	}
 
@@ -586,15 +581,13 @@ public class DtoJobHistories {
 		return statusMessageSimple;
 	}
 
-	public SimpleStringProperty getPrioritySimple() {
-		SimpleStringProperty prioritySimple = new SimpleStringProperty(String.valueOf(getPriority()));
-		prioritySimple = SimpleObject.convertNullToSpace(prioritySimple);
+	public SimpleIntegerProperty getPrioritySimple() {
+		SimpleIntegerProperty prioritySimple = new SimpleIntegerProperty(getPriority());
 		return prioritySimple;
 	}
 
-	public SimpleStringProperty getPercentCompleteSimple() {
-		SimpleStringProperty percentCompleteSimple = new SimpleStringProperty(String.valueOf(getPercentComplete()));
-		percentCompleteSimple = SimpleObject.convertNullToSpace(percentCompleteSimple);
+	public SimpleIntegerProperty getPercentCompleteSimple() {
+		SimpleIntegerProperty percentCompleteSimple = new SimpleIntegerProperty(getPercentComplete());
 		return percentCompleteSimple;
 	}
 
@@ -610,9 +603,8 @@ public class DtoJobHistories {
 		return targetMailboxSimple;
 	}
 
-	public SimpleStringProperty getProcessingItemsSimple() {
-		SimpleStringProperty processingItemsSimple = new SimpleStringProperty(String.valueOf(getProcessingItems()));
-		processingItemsSimple = SimpleObject.convertNullToSpace(processingItemsSimple);
+	public SimpleIntegerProperty getProcessingItemsSimple() {
+		SimpleIntegerProperty processingItemsSimple = new SimpleIntegerProperty(getProcessingItems());
 		return processingItemsSimple;
 	}
 

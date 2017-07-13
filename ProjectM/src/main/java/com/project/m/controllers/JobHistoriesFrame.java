@@ -1,5 +1,6 @@
 package com.project.m.controllers;
 
+import java.math.BigInteger;
 import java.net.URL;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -25,6 +26,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+import javafx.util.converter.BigIntegerStringConverter;
+import javafx.util.converter.IntegerStringConverter;
 
 public class JobHistoriesFrame implements Initializable {
 	private static Integer batchId;
@@ -34,13 +37,17 @@ public class JobHistoriesFrame implements Initializable {
 	private LinkedList<DtoJobHistories> showRows;
 
 	@FXML
-	private TableColumn<DtoJobHistories, String> batchNameColumn, jobIdColumn, jobStatusColumn, timeStartedColumn,
-			timeFinishedColumn, itemsTotalColumn, itemsFailedColumn, itemsRemainingColumn, sourceColumn, targetColumn,
-			jobCreatedByColumn, jobModifiedByColumn, jobCreatedColumn, jobModifiedColumn, batchIdColumn,
-			failedCountColumn, processingInBatchColumn, processingOnMachineColumn, processingRateColumn,
-			lastUpdateColumn, statusMessageColumn, priorityColumn, percentCompleteColumn, sourceMailboxColumn,
-			targetMailboxColumn, processingItemsColumn, statusDateColumn, rehydrationTypeColumn;
+	private TableColumn<DtoJobHistories, String> batchNameColumn, jobStatusColumn, timeStartedColumn,
+			timeFinishedColumn, sourceColumn, targetColumn, jobCreatedByColumn, jobModifiedByColumn, jobCreatedColumn,
+			jobModifiedColumn, processingOnMachineColumn, lastUpdateColumn, statusMessageColumn, sourceMailboxColumn,
+			targetMailboxColumn, statusDateColumn, rehydrationTypeColumn;
 
+	@FXML
+	private TableColumn<DtoJobHistories, Integer> jobIdColumn, batchIdColumn, failedCountColumn, priorityColumn,
+			processingInBatchColumn, processingRateColumn, percentCompleteColumn, processingItemsColumn;
+
+	@FXML
+	private TableColumn<DtoJobHistories, BigInteger> itemsRemainingColumn, itemsFailedColumn, itemsTotalColumn;
 	@FXML
 	private TableView<DtoJobHistories> jobHistoriesTable;
 	@FXML
@@ -69,8 +76,8 @@ public class JobHistoriesFrame implements Initializable {
 		jobHistoriesTable.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent mouseClick) {
-				if (mouseClick.getButton() == MouseButton.PRIMARY  && mouseClick.getClickCount() == 2) {
-	
+				if (mouseClick.getButton() == MouseButton.PRIMARY && mouseClick.getClickCount() == 2) {
+
 					discoverColumnName();
 
 					if (columnName.equals("Batch Id")) {
@@ -91,6 +98,7 @@ public class JobHistoriesFrame implements Initializable {
 						jobHistoriesTable.getSortOrder().add(batchNameColumn);
 					} else {
 						discoverBatchId();
+						jobHistoriesTable.getSelectionModel().clearSelection();
 
 						FrameManager frameManager = FrameManager.getFrameManager();
 						frameManager.openFrame("JobEntriesFrame", "JobHistories", true, false, true);
@@ -119,19 +127,19 @@ public class JobHistoriesFrame implements Initializable {
 	private void initializeAllColumn() {
 		batchNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		batchNameColumn.setCellValueFactory(cellData -> cellData.getValue().getBatchNameSimple());
-		jobIdColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		jobIdColumn.setCellValueFactory(cellData -> cellData.getValue().getJobIdSimple());
+		jobIdColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+		jobIdColumn.setCellValueFactory(cellData -> cellData.getValue().getJobIdSimple().asObject());
 		jobStatusColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		jobStatusColumn.setCellValueFactory(cellData -> cellData.getValue().getJobStatusSimple());
 		timeStartedColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		timeStartedColumn.setCellValueFactory(cellData -> cellData.getValue().getTimeStartedSimple());
 		timeFinishedColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		timeFinishedColumn.setCellValueFactory(cellData -> cellData.getValue().getTimeFinishedSimple());
-		itemsTotalColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+		itemsTotalColumn.setCellFactory(TextFieldTableCell.forTableColumn(new BigIntegerStringConverter()));
 		itemsTotalColumn.setCellValueFactory(cellData -> cellData.getValue().getItemsTotalSimple());
-		itemsFailedColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+		itemsFailedColumn.setCellFactory(TextFieldTableCell.forTableColumn(new BigIntegerStringConverter()));
 		itemsFailedColumn.setCellValueFactory(cellData -> cellData.getValue().getItemsFailedSimple());
-		itemsRemainingColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+		itemsRemainingColumn.setCellFactory(TextFieldTableCell.forTableColumn(new BigIntegerStringConverter()));
 		itemsRemainingColumn.setCellValueFactory(cellData -> cellData.getValue().getItemsRemainingSimple());
 		sourceColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		sourceColumn.setCellValueFactory(cellData -> cellData.getValue().getSourceSimple());
@@ -145,30 +153,33 @@ public class JobHistoriesFrame implements Initializable {
 		jobCreatedColumn.setCellValueFactory(cellData -> cellData.getValue().getJobCreatedSimple());
 		jobModifiedColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		jobModifiedColumn.setCellValueFactory(cellData -> cellData.getValue().getJobModifiedSimple());
-		batchIdColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		batchIdColumn.setCellValueFactory(cellData -> cellData.getValue().getBatchIdSimple());
-		failedCountColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		failedCountColumn.setCellValueFactory(cellData -> cellData.getValue().getFailedCountSimple());
-		processingInBatchColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		processingInBatchColumn.setCellValueFactory(cellData -> cellData.getValue().getProcessingInBatchSimple());
+		batchIdColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+		batchIdColumn.setCellValueFactory(cellData -> cellData.getValue().getBatchIdSimple().asObject());
+		failedCountColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+		failedCountColumn.setCellValueFactory(cellData -> cellData.getValue().getFailedCountSimple().asObject());
+		processingInBatchColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+		processingInBatchColumn
+				.setCellValueFactory(cellData -> cellData.getValue().getProcessingInBatchSimple().asObject());
 		processingOnMachineColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		processingOnMachineColumn.setCellValueFactory(cellData -> cellData.getValue().getProcessingOnMachineSimple());
-		processingRateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		processingRateColumn.setCellValueFactory(cellData -> cellData.getValue().getProcessingRateSimple());
+		processingRateColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+		processingRateColumn.setCellValueFactory(cellData -> cellData.getValue().getProcessingRateSimple().asObject());
 		lastUpdateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		lastUpdateColumn.setCellValueFactory(cellData -> cellData.getValue().getLastUpdateSimple());
 		statusMessageColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		statusMessageColumn.setCellValueFactory(cellData -> cellData.getValue().getStatusMessageSimple());
-		priorityColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		priorityColumn.setCellValueFactory(cellData -> cellData.getValue().getPrioritySimple());
-		percentCompleteColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		percentCompleteColumn.setCellValueFactory(cellData -> cellData.getValue().getPercentCompleteSimple());
+		priorityColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+		priorityColumn.setCellValueFactory(cellData -> cellData.getValue().getPrioritySimple().asObject());
+		percentCompleteColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+		percentCompleteColumn
+				.setCellValueFactory(cellData -> cellData.getValue().getPercentCompleteSimple().asObject());
 		sourceMailboxColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		sourceMailboxColumn.setCellValueFactory(cellData -> cellData.getValue().getSourceMailboxSimple());
 		targetMailboxColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		targetMailboxColumn.setCellValueFactory(cellData -> cellData.getValue().getTargetMailboxSimple());
-		processingItemsColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		processingItemsColumn.setCellValueFactory(cellData -> cellData.getValue().getProcessingItemsSimple());
+		processingItemsColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+		processingItemsColumn
+				.setCellValueFactory(cellData -> cellData.getValue().getProcessingItemsSimple().asObject());
 		statusDateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		statusDateColumn.setCellValueFactory(cellData -> cellData.getValue().getStatusDateSimple());
 		rehydrationTypeColumn.setCellFactory(TextFieldTableCell.forTableColumn());

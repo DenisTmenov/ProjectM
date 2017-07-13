@@ -1,9 +1,12 @@
 package com.project.m.domian;
 
+import java.math.BigInteger;
 import java.util.Date;
 
+import com.project.m.utils.SimpleBigIntegerProperty;
 import com.project.m.utils.SimpleObject;
 
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 
 public class DtoJobEntries {
@@ -18,7 +21,7 @@ public class DtoJobEntries {
 	private String author;
 	private String recipients;
 	private Date receivedDate;
-	private String size;
+	private Integer size;
 	private String messageClass;
 	private String itemType;
 	private String owner;
@@ -28,13 +31,13 @@ public class DtoJobEntries {
 	private Date discoveryDate;
 	private String path;
 	private String name;
-	private String folderCount;
-	private String messageCount;
-	private String emailCount;
-	private String calendarCount;
-	private String taskCount;
-	private String contactCount;
-	private String otherCount;
+	private BigInteger folderCount;
+	private BigInteger messageCount;
+	private BigInteger emailCount;
+	private BigInteger calendarCount;
+	private BigInteger taskCount;
+	private BigInteger contactCount;
+	private BigInteger otherCount;
 	private String owner1;
 	private String owner2;
 	private String owner3;
@@ -138,11 +141,11 @@ public class DtoJobEntries {
 		this.receivedDate = receivedDate;
 	}
 
-	public String getSize() {
+	public Integer getSize() {
 		return size;
 	}
 
-	public void setSize(String size) {
+	public void setSize(Integer size) {
 		this.size = size;
 	}
 
@@ -218,59 +221,59 @@ public class DtoJobEntries {
 		this.name = name;
 	}
 
-	public String getFolderCount() {
+	public BigInteger getFolderCount() {
 		return folderCount;
 	}
 
-	public void setFolderCount(String folderCount) {
+	public void setFolderCount(BigInteger folderCount) {
 		this.folderCount = folderCount;
 	}
 
-	public String getMessageCount() {
+	public BigInteger getMessageCount() {
 		return messageCount;
 	}
 
-	public void setMessageCount(String messageCount) {
+	public void setMessageCount(BigInteger messageCount) {
 		this.messageCount = messageCount;
 	}
 
-	public String getEmailCount() {
+	public BigInteger getEmailCount() {
 		return emailCount;
 	}
 
-	public void setEmailCount(String emailCount) {
+	public void setEmailCount(BigInteger emailCount) {
 		this.emailCount = emailCount;
 	}
 
-	public String getCalendarCount() {
+	public BigInteger getCalendarCount() {
 		return calendarCount;
 	}
 
-	public void setCalendarCount(String calendarCount) {
+	public void setCalendarCount(BigInteger calendarCount) {
 		this.calendarCount = calendarCount;
 	}
 
-	public String getTaskCount() {
+	public BigInteger getTaskCount() {
 		return taskCount;
 	}
 
-	public void setTaskCount(String taskCount) {
+	public void setTaskCount(BigInteger taskCount) {
 		this.taskCount = taskCount;
 	}
 
-	public String getContactCount() {
+	public BigInteger getContactCount() {
 		return contactCount;
 	}
 
-	public void setContactCount(String contactCount) {
+	public void setContactCount(BigInteger contactCount) {
 		this.contactCount = contactCount;
 	}
 
-	public String getOtherCount() {
+	public BigInteger getOtherCount() {
 		return otherCount;
 	}
 
-	public void setOtherCount(String otherCount) {
+	public void setOtherCount(BigInteger otherCount) {
 		this.otherCount = otherCount;
 	}
 
@@ -622,9 +625,8 @@ public class DtoJobEntries {
 		return entryIdSimple;
 	}
 
-	public SimpleStringProperty getJobIdSimple() {
-		SimpleStringProperty jobIdSimple = new SimpleStringProperty(String.valueOf(getJobId()));
-		jobIdSimple = SimpleObject.convertNullToSpace(jobIdSimple);
+	public SimpleIntegerProperty getJobIdSimple() {
+		SimpleIntegerProperty jobIdSimple = new SimpleIntegerProperty(getJobId());
 		return jobIdSimple;
 	}
 
@@ -682,9 +684,8 @@ public class DtoJobEntries {
 		return receivedDateSimple;
 	}
 
-	public SimpleStringProperty getSizeSimple() {
-		SimpleStringProperty sizeSimple = new SimpleStringProperty(String.valueOf(getSize()));
-		sizeSimple = SimpleObject.convertNullToSpace(sizeSimple);
+	public SimpleIntegerProperty getSizeSimple() {
+		SimpleIntegerProperty sizeSimple = new SimpleIntegerProperty(getSize());
 		return sizeSimple;
 	}
 
@@ -742,45 +743,38 @@ public class DtoJobEntries {
 		return nameSimple;
 	}
 
-	public SimpleStringProperty getFolderCountSimple() {
-		SimpleStringProperty folderCountSimple = new SimpleStringProperty(String.valueOf(getFolderCount()));
-		folderCountSimple = SimpleObject.convertNullToSpace(folderCountSimple);
+	public SimpleBigIntegerProperty getFolderCountSimple() {
+		SimpleBigIntegerProperty folderCountSimple = new SimpleBigIntegerProperty(getFolderCount());
 		return folderCountSimple;
 	}
 
-	public SimpleStringProperty getMessageCountSimple() {
-		SimpleStringProperty messageCountSimple = new SimpleStringProperty(String.valueOf(getMessageCount()));
-		messageCountSimple = SimpleObject.convertNullToSpace(messageCountSimple);
+	public SimpleBigIntegerProperty getMessageCountSimple() {
+		SimpleBigIntegerProperty messageCountSimple = new SimpleBigIntegerProperty(getMessageCount());
 		return messageCountSimple;
 	}
 
-	public SimpleStringProperty getEmailCountSimple() {
-		SimpleStringProperty emailCountSimple = new SimpleStringProperty(String.valueOf(getEmailCount()));
-		emailCountSimple = SimpleObject.convertNullToSpace(emailCountSimple);
+	public SimpleBigIntegerProperty getEmailCountSimple() {
+		SimpleBigIntegerProperty emailCountSimple = new SimpleBigIntegerProperty(getEmailCount());
 		return emailCountSimple;
 	}
 
-	public SimpleStringProperty getCalendarCountSimple() {
-		SimpleStringProperty calendarCountSimple = new SimpleStringProperty(String.valueOf(getCalendarCount()));
-		calendarCountSimple = SimpleObject.convertNullToSpace(calendarCountSimple);
+	public SimpleBigIntegerProperty getCalendarCountSimple() {
+		SimpleBigIntegerProperty calendarCountSimple = new SimpleBigIntegerProperty(getCalendarCount());
 		return calendarCountSimple;
 	}
 
-	public SimpleStringProperty getTaskCountSimple() {
-		SimpleStringProperty taskCountSimple = new SimpleStringProperty(String.valueOf(getTaskCount()));
-		taskCountSimple = SimpleObject.convertNullToSpace(taskCountSimple);
+	public SimpleBigIntegerProperty getTaskCountSimple() {
+		SimpleBigIntegerProperty taskCountSimple = new SimpleBigIntegerProperty(getTaskCount());
 		return taskCountSimple;
 	}
 
-	public SimpleStringProperty getContactCountSimple() {
-		SimpleStringProperty contactCountSimple = new SimpleStringProperty(String.valueOf(getContactCount()));
-		contactCountSimple = SimpleObject.convertNullToSpace(contactCountSimple);
+	public SimpleBigIntegerProperty getContactCountSimple() {
+		SimpleBigIntegerProperty contactCountSimple = new SimpleBigIntegerProperty(getContactCount());
 		return contactCountSimple;
 	}
 
-	public SimpleStringProperty getOtherCountSimple() {
-		SimpleStringProperty otherCountSimple = new SimpleStringProperty(String.valueOf(getOtherCount()));
-		otherCountSimple = SimpleObject.convertNullToSpace(otherCountSimple);
+	public SimpleBigIntegerProperty getOtherCountSimple() {
+		SimpleBigIntegerProperty otherCountSimple = new SimpleBigIntegerProperty(getOtherCount());
 		return otherCountSimple;
 	}
 

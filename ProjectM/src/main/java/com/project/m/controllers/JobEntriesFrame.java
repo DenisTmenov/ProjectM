@@ -1,5 +1,6 @@
 package com.project.m.controllers;
 
+import java.math.BigInteger;
 import java.net.URL;
 import java.util.LinkedList;
 import java.util.ResourceBundle;
@@ -16,17 +17,19 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.util.converter.BigIntegerStringConverter;
+import javafx.util.converter.IntegerStringConverter;
 
 public class JobEntriesFrame implements Initializable {
 	@FXML
-	private TableColumn<DtoJobEntries, String> entryIdColumn, jobIdColumn, itemStatusColumn, mailboxColumn, msgIdColumn,
-			dateCreatedColumn, folderColumn, subjectColumn, authorColumn, recipientsColumn, receivedDateColumn,
-			sizeColumn, messageClassColumn, itemTypeColumn, ownerColumn, fileNameColumn, dateModifiedColumn,
-			statusMessageColumn, discoveryDateColumn, pathColumn, nameColumn, folderCountColumn, messageCountColumn,
-			emailCountColumn, calendarCountColumn, taskCountColumn, contactCountColumn, otherCountColumn, owner1Column,
-			owner2Column, owner3Column, originalIdColumn, folderIdColumn, failedCountColumn, statusDateColumn,
-			hashBytesColumn, extraDataColumn, messageIdColumn;
+	private TableColumn<DtoJobEntries, String> entryIdColumn, itemStatusColumn, mailboxColumn, msgIdColumn, dateCreatedColumn, folderColumn, subjectColumn, authorColumn, recipientsColumn,
+			receivedDateColumn, messageClassColumn, itemTypeColumn, ownerColumn, fileNameColumn, dateModifiedColumn, statusMessageColumn, discoveryDateColumn, pathColumn, nameColumn, owner1Column,
+			owner2Column, owner3Column, originalIdColumn, folderIdColumn, failedCountColumn, statusDateColumn, hashBytesColumn, extraDataColumn, messageIdColumn;
 
+	@FXML
+	private TableColumn<DtoJobEntries, Integer> jobIdColumn, sizeColumn;
+	@FXML
+	private TableColumn<DtoJobEntries, BigInteger> folderCountColumn, messageCountColumn, calendarCountColumn, taskCountColumn, contactCountColumn, emailCountColumn, otherCountColumn;
 	@FXML
 	private TableView<DtoJobEntries> jobEntriesTable;
 
@@ -47,8 +50,8 @@ public class JobEntriesFrame implements Initializable {
 
 		entryIdColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		entryIdColumn.setCellValueFactory(cellData -> cellData.getValue().getEntryIdSimple());
-		jobIdColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		jobIdColumn.setCellValueFactory(cellData -> cellData.getValue().getJobIdSimple());
+		jobIdColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+		jobIdColumn.setCellValueFactory(cellData -> cellData.getValue().getJobIdSimple().asObject());
 		itemStatusColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		itemStatusColumn.setCellValueFactory(cellData -> cellData.getValue().getItemStatusSimple());
 		mailboxColumn.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -67,8 +70,8 @@ public class JobEntriesFrame implements Initializable {
 		recipientsColumn.setCellValueFactory(cellData -> cellData.getValue().getRecipientsSimple());
 		receivedDateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		receivedDateColumn.setCellValueFactory(cellData -> cellData.getValue().getReceivedDateSimple());
-		sizeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		sizeColumn.setCellValueFactory(cellData -> cellData.getValue().getSizeSimple());
+		sizeColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+		sizeColumn.setCellValueFactory(cellData -> cellData.getValue().getSizeSimple().asObject());
 		messageClassColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		messageClassColumn.setCellValueFactory(cellData -> cellData.getValue().getMessageClassSimple());
 		itemTypeColumn.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -87,19 +90,19 @@ public class JobEntriesFrame implements Initializable {
 		pathColumn.setCellValueFactory(cellData -> cellData.getValue().getPathSimple());
 		nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		nameColumn.setCellValueFactory(cellData -> cellData.getValue().getNameSimple());
-		folderCountColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+		folderCountColumn.setCellFactory(TextFieldTableCell.forTableColumn(new BigIntegerStringConverter()));
 		folderCountColumn.setCellValueFactory(cellData -> cellData.getValue().getFolderCountSimple());
-		messageCountColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+		messageCountColumn.setCellFactory(TextFieldTableCell.forTableColumn(new BigIntegerStringConverter()));
 		messageCountColumn.setCellValueFactory(cellData -> cellData.getValue().getMessageCountSimple());
-		emailCountColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+		emailCountColumn.setCellFactory(TextFieldTableCell.forTableColumn(new BigIntegerStringConverter()));
 		emailCountColumn.setCellValueFactory(cellData -> cellData.getValue().getEmailCountSimple());
-		calendarCountColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+		calendarCountColumn.setCellFactory(TextFieldTableCell.forTableColumn(new BigIntegerStringConverter()));
 		calendarCountColumn.setCellValueFactory(cellData -> cellData.getValue().getCalendarCountSimple());
-		taskCountColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+		taskCountColumn.setCellFactory(TextFieldTableCell.forTableColumn(new BigIntegerStringConverter()));
 		taskCountColumn.setCellValueFactory(cellData -> cellData.getValue().getTaskCountSimple());
-		contactCountColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+		contactCountColumn.setCellFactory(TextFieldTableCell.forTableColumn(new BigIntegerStringConverter()));
 		contactCountColumn.setCellValueFactory(cellData -> cellData.getValue().getContactCountSimple());
-		otherCountColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+		otherCountColumn.setCellFactory(TextFieldTableCell.forTableColumn(new BigIntegerStringConverter()));
 		otherCountColumn.setCellValueFactory(cellData -> cellData.getValue().getOtherCountSimple());
 		owner1Column.setCellFactory(TextFieldTableCell.forTableColumn());
 		owner1Column.setCellValueFactory(cellData -> cellData.getValue().getOwner1Simple());

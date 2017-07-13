@@ -22,7 +22,7 @@
 				<TableColumn fx:id="authorColumn"  text="Author" />
 				<TableColumn fx:id="recipientsColumn"  text="Recipients" />
 				<TableColumn fx:id="receivedDateColumn"  styleClass="columnRight" text="Received Date" />
-				<TableColumn fx:id="sizeColumn"  text="Size" />
+				<TableColumn fx:id="sizeColumn"  styleClass="columnRight" text="Size" />
 				<TableColumn fx:id="messageClassColumn"  text="Message Class" />
 				<TableColumn fx:id="itemTypeColumn"  text="Item Type" />
 				<TableColumn fx:id="ownerColumn"  text="Owner" />
@@ -32,13 +32,13 @@
 				<TableColumn fx:id="discoveryDateColumn"  styleClass="columnRight" text="Discovery Date" />
 				<TableColumn fx:id="pathColumn"  text="Path" />
 				<TableColumn fx:id="nameColumn"  text="Name" />
-				<TableColumn fx:id="folderCountColumn"  text="Folder Count" />
-				<TableColumn fx:id="messageCountColumn"  text="Message Count" />
-				<TableColumn fx:id="emailCountColumn"  text="Email Count" />
-				<TableColumn fx:id="calendarCountColumn"  text="Calendar Count" />
-				<TableColumn fx:id="taskCountColumn"  text="Task Count" />
-				<TableColumn fx:id="contactCountColumn"  text="Contact Count" />
-				<TableColumn fx:id="otherCountColumn"  text="Other Count" />
+				<TableColumn fx:id="folderCountColumn" styleClass="columnRight" text="Folder Count" />
+				<TableColumn fx:id="messageCountColumn" styleClass="columnRight" text="Message Count" />
+				<TableColumn fx:id="emailCountColumn" styleClass="columnRight" text="Email Count" />
+				<TableColumn fx:id="calendarCountColumn" styleClass="columnRight" text="Calendar Count" />
+				<TableColumn fx:id="taskCountColumn" styleClass="columnRight" text="Task Count" />
+				<TableColumn fx:id="contactCountColumn" styleClass="columnRight" text="Contact Count" />
+				<TableColumn fx:id="otherCountColumn" styleClass="columnRight" text="Other Count" />
 				<TableColumn fx:id="owner1Column"  text="Owner1" />
 				<TableColumn fx:id="owner2Column"  text="Owner2" />
 				<TableColumn fx:id="owner3Column"  text="Owner3" />
