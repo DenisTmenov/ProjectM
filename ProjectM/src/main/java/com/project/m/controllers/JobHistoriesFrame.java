@@ -184,6 +184,7 @@ public class JobHistoriesFrame implements Initializable {
 	private void initializeComboJobStatus() {
 		Set<String> statusJobList = loadJobStatus(jobHistoriesRows);
 		sortJobStatusCombo.getItems().addAll(statusJobList);
+		sortJobStatusCombo.getSelectionModel().select("All");
 	}
 
 	private void show() {
