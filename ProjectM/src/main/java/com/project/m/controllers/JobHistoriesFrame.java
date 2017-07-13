@@ -66,11 +66,11 @@ public class JobHistoriesFrame implements Initializable {
 		initializeData();
 		show();
 
-		jobHistoriesTable.setOnMousePressed(new EventHandler<MouseEvent>() {
+		jobHistoriesTable.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
-			public void handle(MouseEvent mouseEvent) {
-				if (mouseEvent.getButton().equals(MouseButton.PRIMARY) && mouseEvent.getClickCount() == 2) {
-					// It does not work well
+			public void handle(MouseEvent mouseClick) {
+				if (mouseClick.getButton() == MouseButton.PRIMARY  && mouseClick.getClickCount() == 2) {
+	
 					discoverColumnName();
 
 					if (columnName.equals("Batch Id")) {
@@ -278,8 +278,8 @@ public class JobHistoriesFrame implements Initializable {
 		return batchId;
 	}
 
-	private void setBatchId(Integer batchIdnew) {
-		batchId = batchIdnew;
+	private void setBatchId(Integer batchIdNew) {
+		batchId = batchIdNew;
 	}
 
 }
