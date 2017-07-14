@@ -20,7 +20,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableRow;
@@ -47,7 +46,7 @@ public class JobHistoriesFrame implements Initializable {
 	@FXML
 	private TableColumn<DtoJobHistories, BigInteger> itemsRemainingColumn, itemsFailedColumn, itemsTotalColumn;
 	@FXML
-	private TableColumn<DtoJobHistories, String> statusDateColumn;
+	private TableColumn<DtoJobHistories, String> statusDateColumn; // MAKE DATE
 	@FXML
 	private TableView<DtoJobHistories> jobHistoriesTable;
 	@FXML
@@ -224,23 +223,14 @@ public class JobHistoriesFrame implements Initializable {
 
 	private void initializeFiltredData() {
 		filteredData = new FilteredList<>(showRows, e -> true);
-
 	}
 
 	private void addFunction() {
-		addMultiSelect();
-		addCopyFunction();
+		TableUtils tableUtils = new TableUtils(jobHistoriesTable);
+		tableUtils.installCopyPasteHandler();
+		tableUtils.installCopyPasteMenu();
+		tableUtils.installMultiSelect();
 		addRowColor();
-	}
-
-	private void addMultiSelect() {
-		jobHistoriesTable.getSelectionModel().setCellSelectionEnabled(true);
-		jobHistoriesTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-	}
-
-	private void addCopyFunction() {
-		TableUtils.installCopyPasteHandler(jobHistoriesTable);
-		TableUtils.installCopyPasteMenu(jobHistoriesTable);
 	}
 
 	private void addRowColor() {

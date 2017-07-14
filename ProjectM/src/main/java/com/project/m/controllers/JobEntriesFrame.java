@@ -13,7 +13,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.TextFieldTableCell;
@@ -22,9 +21,9 @@ import javafx.util.converter.IntegerStringConverter;
 
 public class JobEntriesFrame implements Initializable {
 	@FXML
-	private TableColumn<DtoJobEntries, String> entryIdColumn, itemStatusColumn, mailboxColumn, msgIdColumn, dateCreatedColumn, folderColumn, subjectColumn, authorColumn, recipientsColumn,
-			receivedDateColumn, messageClassColumn, itemTypeColumn, ownerColumn, fileNameColumn, dateModifiedColumn, statusMessageColumn, discoveryDateColumn, pathColumn, nameColumn, owner1Column,
-			owner2Column, owner3Column, originalIdColumn, folderIdColumn, failedCountColumn, statusDateColumn, hashBytesColumn, extraDataColumn, messageIdColumn;
+	private TableColumn<DtoJobEntries, String> entryIdColumn, itemStatusColumn, mailboxColumn, msgIdColumn, dateCreatedColumn, folderColumn, subjectColumn, authorColumn, recipientsColumn, receivedDateColumn, messageClassColumn, itemTypeColumn,
+			ownerColumn, fileNameColumn, dateModifiedColumn, statusMessageColumn, discoveryDateColumn, pathColumn, nameColumn, owner1Column, owner2Column, owner3Column, originalIdColumn, folderIdColumn, failedCountColumn, statusDateColumn,
+			hashBytesColumn, extraDataColumn, messageIdColumn;
 
 	@FXML
 	private TableColumn<DtoJobEntries, Integer> jobIdColumn, sizeColumn;
@@ -33,21 +32,23 @@ public class JobEntriesFrame implements Initializable {
 	@FXML
 	private TableView<DtoJobEntries> jobEntriesTable;
 
+	private LinkedList<DtoJobEntries> jobEntriesRows;
+	private Integer batchId;
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		showTable();
+		batchId = JobHistoriesFrame.getBatchId();
+		initializeData();
+		addFunction();
+		show();
 	}
 
-	private void showTable() {
-		Integer batchId = JobHistoriesFrame.getBatchId();
+	private void initializeData() {
+		initializeAllColumn();
+		initializeRows();
+	}
 
-		DtoFactory dtoFactory = DtoFactory.getFactory();
-
-		LinkedList<DtoJobEntries> jobEntriesRows = dtoFactory.getJobEntries(batchId);
-
-		ObservableList<DtoJobEntries> jobEntriesOblist = FXCollections.observableArrayList();
-		jobEntriesOblist.addAll(jobEntriesRows);
-
+	private void initializeAllColumn() {
 		entryIdColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		entryIdColumn.setCellValueFactory(cellData -> cellData.getValue().getEntryIdSimple());
 		jobIdColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
@@ -124,13 +125,27 @@ public class JobEntriesFrame implements Initializable {
 		extraDataColumn.setCellValueFactory(cellData -> cellData.getValue().getExtraDataSimple());
 		messageIdColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		messageIdColumn.setCellValueFactory(cellData -> cellData.getValue().getMessageIdSimple());
+	}
+
+	private void initializeRows() {
+		DtoFactory dtoFactory = DtoFactory.getFactory();
+
+		jobEntriesRows = dtoFactory.getJobEntries(batchId);
+	}
+
+	private void addFunction() {
+		TableUtils tableUtils = new TableUtils(jobEntriesTable);
+		tableUtils.installCopyPasteHandler();
+		tableUtils.installCopyPasteMenu();
+		tableUtils.installMultiSelect();
+	}
+
+	private void show() {
+		ObservableList<DtoJobEntries> jobEntriesOblist = FXCollections.observableArrayList();
+
+		jobEntriesOblist.addAll(jobEntriesRows);
 
 		jobEntriesTable.setItems(jobEntriesOblist);
-
-		jobEntriesTable.getSelectionModel().setCellSelectionEnabled(true);
-		jobEntriesTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-		TableUtils.installCopyPasteHandler(jobEntriesTable);
-		TableUtils.installCopyPasteMenu(jobEntriesTable);
 	}
 
 }

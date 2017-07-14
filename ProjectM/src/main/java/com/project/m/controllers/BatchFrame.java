@@ -14,7 +14,6 @@ import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
@@ -31,9 +30,48 @@ public class BatchFrame implements Initializable {
 	@FXML
 	private TableView<DtoBatches> batchTable;
 
+	private LinkedList<DtoBatches> batchesRows;
+
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		showTable();
+		initializeData();
+		addFunction();
+		show();
+	}
+
+	private void initializeData() {
+		initializeAllColumn();
+		initializeRows();
+	}
+
+	private void initializeAllColumn() {
+		batchIdColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+		batchIdColumn.setCellValueFactory(cellData -> cellData.getValue().getBatchesIdSimple());
+		batchNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+		batchNameColumn.setCellValueFactory(cellData -> cellData.getValue().getBatchesNameSimple());
+		jobCountColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+		// jobCountColumn.setCellValueFactory(cellData -> cellData.getValue().get);
+	}
+
+	private void initializeRows() {
+		DtoFactory dtoFactory = DtoFactory.getFactory();
+
+		batchesRows = dtoFactory.getAllBatches();
+	}
+
+	private void show() {
+		ObservableList<DtoBatches> batchesOblist = FXCollections.observableArrayList();
+
+		batchesOblist.addAll(batchesRows);
+
+		batchTable.setItems(batchesOblist);
+	}
+
+	private void addFunction() {
+		TableUtils tableUtils = new TableUtils(batchTable);
+		tableUtils.installCopyPasteHandler();
+		tableUtils.installCopyPasteMenu();
+		tableUtils.installMultiSelect();
 
 		batchTable.setOnMousePressed(new EventHandler<MouseEvent>() {
 			@Override
@@ -51,31 +89,6 @@ public class BatchFrame implements Initializable {
 				}
 			}
 		});
-	}
-
-	private void showTable() {
-		DtoFactory dtoFactory = DtoFactory.getFactory();
-
-		LinkedList<DtoBatches> batchesRows = dtoFactory.getAllBatches();
-
-		ObservableList<DtoBatches> batchesOblist = FXCollections.observableArrayList();
-		batchesOblist.addAll(batchesRows);
-
-		batchIdColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		batchIdColumn.setCellValueFactory(cellData -> cellData.getValue().getBatchesIdSimple());
-		batchNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		batchNameColumn.setCellValueFactory(cellData -> cellData.getValue().getBatchesNameSimple());
-		jobCountColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		// jobCountColumn.setCellValueFactory(cellData -> cellData.getValue().get);
-
-		batchTable.setItems(batchesOblist);
-
-		batchTable.getSelectionModel().setCellSelectionEnabled(true);
-		batchTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-		TableUtils.installCopyPasteHandler(batchTable);
-		TableUtils.installCopyPasteMenu(batchTable);
-		;
-
 	}
 
 	public static Integer getBatchId() {
