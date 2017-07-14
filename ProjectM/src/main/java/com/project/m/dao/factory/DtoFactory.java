@@ -12,7 +12,6 @@ import com.project.m.dao.sql.BatchesDao;
 import com.project.m.dao.sql.EnumItemStatusDao;
 import com.project.m.dao.sql.EnumJobStatusDao;
 import com.project.m.dao.sql.EnumMigrationTypeDao;
-import com.project.m.dao.sql.EnumRehydrationTypeDao;
 import com.project.m.dao.sql.JobEntriesDao;
 import com.project.m.dao.sql.JobHistoriesDao;
 import com.project.m.domian.DtoBatches;
@@ -21,6 +20,9 @@ import com.project.m.domian.DtoJobHistories;
 import com.project.m.entity.EntityBatches;
 import com.project.m.entity.EntityJobEntries;
 import com.project.m.entity.EntityJobHistories;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 public class DtoFactory {
 	private DtoFactory() {
@@ -31,9 +33,9 @@ public class DtoFactory {
 		return new DtoFactory();
 	}
 
-	public LinkedList<DtoJobHistories> getAllJobHistories() {
+	public ObservableList<DtoJobHistories> getAllJobHistories() {
 
-		LinkedList<DtoJobHistories> result = new LinkedList<DtoJobHistories>();
+		ObservableList<DtoJobHistories> result = FXCollections.observableArrayList();
 
 		DaoFactory daoFactory = DaoFactory.getSqlFactory();
 		JobHistoriesDao jobHistoriesDao = daoFactory.getJobHistories();
@@ -48,9 +50,6 @@ public class DtoFactory {
 
 		EnumMigrationTypeDao enumMigrationTypeDao = daoFactory.getEnumMigrationType();
 		Map<Integer, String> enumMigrationType = enumMigrationTypeDao.loadEnumMigrationType();
-
-		EnumRehydrationTypeDao enumRehydrationTypeDao = daoFactory.getEnumRehydrationType();
-		Map<Integer, String> enumRehydrationType = enumRehydrationTypeDao.loadEnumRehydrationType();
 
 		for (EntityJobHistories entity : entityJobHistories) {
 			Mapper mapper = new DozerBeanMapper();
@@ -68,10 +67,6 @@ public class DtoFactory {
 			String textTarget = enumMigrationType.get(Integer.parseInt(target));
 			dto.setTarget(textTarget);
 
-			String rehydration = dto.getRehydrationType();
-			String textrehydration = enumRehydrationType.get(Integer.parseInt(rehydration));
-			dto.setRehydrationType(textrehydration);
-
 			Integer batchIdDTO = dto.getBatchId();
 			for (EntityBatches entityBatches : batches) {
 				String batchName = entityBatches.getBatchName();
@@ -87,10 +82,10 @@ public class DtoFactory {
 		return result;
 	}
 
-	public LinkedList<DtoJobHistories> getJobHistoriesByStatus(String status) {
-		LinkedList<DtoJobHistories> result = new LinkedList<DtoJobHistories>();
+	public ObservableList<DtoJobHistories> getJobHistoriesByStatus(String status) {
+		ObservableList<DtoJobHistories> result = FXCollections.observableArrayList();
 
-		LinkedList<DtoJobHistories> linkedList = getAllJobHistories();
+		ObservableList<DtoJobHistories> linkedList = getAllJobHistories();
 
 		for (DtoJobHistories dtoJobHistories : linkedList) {
 			if (dtoJobHistories.getJobStatus().equals(status)) {
