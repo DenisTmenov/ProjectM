@@ -1,6 +1,7 @@
 package com.project.m.domian;
 
 import java.math.BigInteger;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.project.m.utils.SimpleBigIntegerProperty;
@@ -297,8 +298,14 @@ public class DtoJobHistories {
 	}
 
 	public SimpleStringProperty getStatusDateSimple() {
-		SimpleStringProperty statusDateSimple = new SimpleStringProperty(String.valueOf(getStatusDate()));
-		statusDateSimple = SimpleObject.convertNullToSpace(statusDateSimple);
+		Date date = getStatusDate();
+		SimpleStringProperty statusDateSimple = null;
+		if (date != null) {
+			SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MMM/yy HH:mm");
+			statusDateSimple = new SimpleStringProperty(dateFormat.format(date));
+		} else {
+			statusDateSimple = new SimpleStringProperty(String.valueOf(""));
+		}
 		return statusDateSimple;
 	}
 

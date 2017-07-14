@@ -87,7 +87,7 @@ public class JobHistoriesFrame implements Initializable {
 		jobHistoriesTable.setOnMouseClicked(new EventHandler<MouseEvent>() {
 			@Override
 			public void handle(MouseEvent mouseClick) {
-				if (mouseClick.getButton() == MouseButton.PRIMARY && mouseClick.getClickCount() == 2) {
+				if (mouseClick.getButton() == MouseButton.PRIMARY && mouseClick.getClickCount() == 2 && mouseClick.getY() > 30) {
 
 					discoverColumnName();
 
@@ -109,10 +109,11 @@ public class JobHistoriesFrame implements Initializable {
 						jobHistoriesTable.getSortOrder().add(batchNameColumn);
 					} else {
 						discoverBatchId();
+
 						jobHistoriesTable.getSelectionModel().clearSelection();
 
-						FrameManager frameManager = FrameManager.getFrameManager();
-						frameManager.openFrame("JobEntriesFrame", "JobHistories", true, false, true);
+						openNewFrame();
+
 					}
 
 				}
@@ -156,7 +157,6 @@ public class JobHistoriesFrame implements Initializable {
 						}
 					} catch (NullPointerException e1) {
 						// bad code!!!!!!!!!!
-						// System.out.println("Exception" + e1);
 						return false;
 					}
 					return false;
@@ -167,6 +167,11 @@ public class JobHistoriesFrame implements Initializable {
 			showRows = sortedData;
 			show();
 		});
+	}
+
+	private void openNewFrame() {
+		FrameManager frameManager = FrameManager.getFrameManager();
+		frameManager.openFrame("JobEntriesFrame", "JobHistories", true, false, true);
 	}
 
 	private void show() {
