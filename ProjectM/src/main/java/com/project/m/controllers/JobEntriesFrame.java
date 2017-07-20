@@ -19,7 +19,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.util.converter.BigIntegerStringConverter;
 import javafx.util.converter.IntegerStringConverter;
 
-public class JobEntriesFrame implements Initializable {
+public class JobEntriesFrame implements Initializable, ControllerInterface {
 	@FXML
 	private TableColumn<DtoJobEntries, String> entryIdColumn, itemStatusColumn, mailboxColumn, msgIdColumn, dateCreatedColumn, folderColumn, subjectColumn, authorColumn, recipientsColumn, receivedDateColumn, messageClassColumn, itemTypeColumn,
 			ownerColumn, fileNameColumn, dateModifiedColumn, statusMessageColumn, discoveryDateColumn, pathColumn, nameColumn, owner1Column, owner2Column, owner3Column, originalIdColumn, folderIdColumn, failedCountColumn, statusDateColumn,
@@ -36,16 +36,21 @@ public class JobEntriesFrame implements Initializable {
 	private Integer batchId;
 
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		batchId = JobHistoriesFrame.getBatchId();
-		initializeData();
+	public void setParameter(String value) {
+		batchId = Integer.valueOf(value);
+	}
+
+	@Override
+	public void start() {
+		initializeRows();
 		addFunction();
 		show();
 	}
 
-	private void initializeData() {
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
 		initializeAllColumn();
-		initializeRows();
+
 	}
 
 	private void initializeAllColumn() {

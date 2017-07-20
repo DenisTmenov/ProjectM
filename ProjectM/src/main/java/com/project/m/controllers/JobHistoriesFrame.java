@@ -9,6 +9,7 @@ import java.util.function.Predicate;
 
 import com.project.m.dao.factory.DtoFactory;
 import com.project.m.domian.DtoJobHistories;
+import com.project.m.exceptions.FrameException;
 import com.project.m.service.FrameManager;
 import com.project.m.utils.TableUtils;
 
@@ -31,8 +32,8 @@ import javafx.scene.input.MouseEvent;
 import javafx.util.converter.BigIntegerStringConverter;
 import javafx.util.converter.IntegerStringConverter;
 
-public class JobHistoriesFrame implements Initializable {
-	private static Integer batchId;
+public class JobHistoriesFrame implements Initializable, ControllerInterface {
+	private Integer batchId;
 	private String columnName;
 	private String itemJobStatusCombo;
 	private ObservableList<DtoJobHistories> jobHistoriesRows;
@@ -54,19 +55,96 @@ public class JobHistoriesFrame implements Initializable {
 	@FXML
 	private TextField searchTextField;
 
+	@Deprecated
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		initializeData();
-		activeActions();
-		show();
+	public void setParameter(String value) {
+		throw new FrameException("This method should not be implemented!!!");
 	}
 
-	private void initializeData() {
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
 		initializeAllColumn();
+	}
+
+	@Override
+	public void start() {
 		initializeRows();
 		initializeComboJobStatus();
 		initializeFiltredData();
 		addFunction();
+		activeActions();
+		show();
+	}
+
+	private void initializeAllColumn() {
+		batchNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+		batchNameColumn.setCellValueFactory(cellData -> cellData.getValue().getBatchNameSimple());
+		jobIdColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+		jobIdColumn.setCellValueFactory(cellData -> cellData.getValue().getJobIdSimple().asObject());
+		jobStatusColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+		jobStatusColumn.setCellValueFactory(cellData -> cellData.getValue().getJobStatusSimple());
+		itemsTotalColumn.setCellFactory(TextFieldTableCell.forTableColumn(new BigIntegerStringConverter()));
+		itemsTotalColumn.setCellValueFactory(cellData -> cellData.getValue().getItemsTotalSimple());
+		itemsFailedColumn.setCellFactory(TextFieldTableCell.forTableColumn(new BigIntegerStringConverter()));
+		itemsFailedColumn.setCellValueFactory(cellData -> cellData.getValue().getItemsFailedSimple());
+		itemsRemainingColumn.setCellFactory(TextFieldTableCell.forTableColumn(new BigIntegerStringConverter()));
+		itemsRemainingColumn.setCellValueFactory(cellData -> cellData.getValue().getItemsRemainingSimple());
+		sourceColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+		sourceColumn.setCellValueFactory(cellData -> cellData.getValue().getSourceSimple());
+		targetColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+		targetColumn.setCellValueFactory(cellData -> cellData.getValue().getTargetSimple());
+		batchIdColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+		batchIdColumn.setCellValueFactory(cellData -> cellData.getValue().getBatchIdSimple().asObject());
+		statusMessageColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+		statusMessageColumn.setCellValueFactory(cellData -> cellData.getValue().getStatusMessageSimple());
+		sourceMailboxColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+		sourceMailboxColumn.setCellValueFactory(cellData -> cellData.getValue().getSourceMailboxSimple());
+		targetMailboxColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+		targetMailboxColumn.setCellValueFactory(cellData -> cellData.getValue().getTargetMailboxSimple());
+
+		// change with correct DATE
+		statusDateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+		statusDateColumn.setCellValueFactory(cellData -> cellData.getValue().getStatusDateSimple());
+	}
+
+	private void initializeRows() {
+		DtoFactory dtoFactory = DtoFactory.getFactory();
+		jobHistoriesRows = dtoFactory.getAllJobHistories();
+		showRows = jobHistoriesRows;
+	}
+
+	private void initializeComboJobStatus() {
+		Set<String> statusJobList = loadJobStatus(jobHistoriesRows);
+		sortJobStatusCombo.getItems().addAll(statusJobList);
+		sortJobStatusCombo.getSelectionModel().select("All");
+	}
+
+	private void initializeFiltredData() {
+		filteredData = new FilteredList<>(showRows, e -> true);
+	}
+
+	private void addFunction() {
+		TableUtils tableUtils = new TableUtils(jobHistoriesTable);
+		tableUtils.installCopyPasteHandler();
+		tableUtils.installCopyPasteMenu();
+		tableUtils.installMultiSelect();
+		addRowColor();
+	}
+
+	private void addRowColor() {
+		jobHistoriesTable.setRowFactory(tv -> new TableRow<DtoJobHistories>() {
+			@Override
+			public void updateItem(DtoJobHistories item, boolean empty) {
+				super.updateItem(item, empty);
+				if (item == null) {
+					setStyle("");
+				} else if (item.getJobStatus().equals("CompleteWithErrors")) {
+					setStyle("-fx-background-color: red;");
+				} else {
+					setStyle("");
+				}
+			}
+		});
 	}
 
 	private void activeActions() {
@@ -171,7 +249,7 @@ public class JobHistoriesFrame implements Initializable {
 
 	private void openNewFrame() {
 		FrameManager frameManager = FrameManager.getFrameManager();
-		frameManager.openFrame("JobEntriesFrame", "JobHistories", true, false, true);
+		frameManager.openFrameWithParameter("JobEntriesFrame", "JobHistories", true, false, true, String.valueOf(batchId));
 	}
 
 	private void show() {
@@ -181,77 +259,6 @@ public class JobHistoriesFrame implements Initializable {
 
 		jobHistoriesTable.setItems(jobHistoriesList);
 
-	}
-
-	private void initializeAllColumn() {
-		batchNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		batchNameColumn.setCellValueFactory(cellData -> cellData.getValue().getBatchNameSimple());
-		jobIdColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-		jobIdColumn.setCellValueFactory(cellData -> cellData.getValue().getJobIdSimple().asObject());
-		jobStatusColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		jobStatusColumn.setCellValueFactory(cellData -> cellData.getValue().getJobStatusSimple());
-		itemsTotalColumn.setCellFactory(TextFieldTableCell.forTableColumn(new BigIntegerStringConverter()));
-		itemsTotalColumn.setCellValueFactory(cellData -> cellData.getValue().getItemsTotalSimple());
-		itemsFailedColumn.setCellFactory(TextFieldTableCell.forTableColumn(new BigIntegerStringConverter()));
-		itemsFailedColumn.setCellValueFactory(cellData -> cellData.getValue().getItemsFailedSimple());
-		itemsRemainingColumn.setCellFactory(TextFieldTableCell.forTableColumn(new BigIntegerStringConverter()));
-		itemsRemainingColumn.setCellValueFactory(cellData -> cellData.getValue().getItemsRemainingSimple());
-		sourceColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		sourceColumn.setCellValueFactory(cellData -> cellData.getValue().getSourceSimple());
-		targetColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		targetColumn.setCellValueFactory(cellData -> cellData.getValue().getTargetSimple());
-		batchIdColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-		batchIdColumn.setCellValueFactory(cellData -> cellData.getValue().getBatchIdSimple().asObject());
-		statusMessageColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		statusMessageColumn.setCellValueFactory(cellData -> cellData.getValue().getStatusMessageSimple());
-		sourceMailboxColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		sourceMailboxColumn.setCellValueFactory(cellData -> cellData.getValue().getSourceMailboxSimple());
-		targetMailboxColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		targetMailboxColumn.setCellValueFactory(cellData -> cellData.getValue().getTargetMailboxSimple());
-
-		// change with correct DATE
-		statusDateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		statusDateColumn.setCellValueFactory(cellData -> cellData.getValue().getStatusDateSimple());
-	}
-
-	private void initializeRows() {
-		DtoFactory dtoFactory = DtoFactory.getFactory();
-		jobHistoriesRows = dtoFactory.getAllJobHistories();
-		showRows = jobHistoriesRows;
-	}
-
-	private void initializeComboJobStatus() {
-		Set<String> statusJobList = loadJobStatus(jobHistoriesRows);
-		sortJobStatusCombo.getItems().addAll(statusJobList);
-		sortJobStatusCombo.getSelectionModel().select("All");
-	}
-
-	private void initializeFiltredData() {
-		filteredData = new FilteredList<>(showRows, e -> true);
-	}
-
-	private void addFunction() {
-		TableUtils tableUtils = new TableUtils(jobHistoriesTable);
-		tableUtils.installCopyPasteHandler();
-		tableUtils.installCopyPasteMenu();
-		tableUtils.installMultiSelect();
-		addRowColor();
-	}
-
-	private void addRowColor() {
-		jobHistoriesTable.setRowFactory(tv -> new TableRow<DtoJobHistories>() {
-			@Override
-			public void updateItem(DtoJobHistories item, boolean empty) {
-				super.updateItem(item, empty);
-				if (item == null) {
-					setStyle("");
-				} else if (item.getJobStatus().equals("CompleteWithErrors")) {
-					setStyle("-fx-background-color: red;");
-				} else {
-					setStyle("");
-				}
-			}
-		});
 	}
 
 	private void generateNewRows() {
@@ -297,11 +304,6 @@ public class JobHistoriesFrame implements Initializable {
 		int index = pos.getRow();
 		Integer batchId = jobHistoriesTable.getItems().get(index).getBatchId();
 		setBatchId(batchId);
-
-	}
-
-	public static Integer getBatchId() {
-		return batchId;
 	}
 
 	private void setBatchId(Integer batchIdNew) {
