@@ -249,7 +249,7 @@ public class JobHistoriesFrame implements Initializable, ControllerInterface {
 
 	private void openNewFrame() {
 		FrameManager frameManager = FrameManager.getFrameManager();
-		frameManager.openFrameWithParameter("JobEntriesFrame", "JobHistories", true, false, true, String.valueOf(batchId));
+		frameManager.openFrame("JobEntriesFrame", "JobHistories", true, false, true, String.valueOf(batchId));
 	}
 
 	private void show() {
