@@ -15,4 +15,19 @@ public final class StringUtils {
 			return str;
 	}
 
+	public static String diviveCamelCase(String word) {
+		String result = "";
+		char[] charArray = word.toCharArray();
+		result += charArray[0];
+		for (int i = 1; i < charArray.length; i++) {
+			String simvol = String.valueOf(charArray[i]);
+			if (simvol.matches("[A-ZА-Я]")) {
+				result += " " + simvol;
+			} else {
+				result += simvol;
+			}
+		}
+		return result;
+	}
+
 }
