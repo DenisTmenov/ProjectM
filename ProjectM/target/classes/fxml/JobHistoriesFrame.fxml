@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" styleClass="table" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.m.controllers.JobHistoriesFrame">
+   <children>
+      <ToolBar prefHeight="50.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <items>
+            <Label text="Job Status:" />
+            <ComboBox fx:id="sortJobStatusCombo" prefWidth="150.0" />
+            <Label text="Search:">
+               <padding>
+                  <Insets left="10.0" />
+               </padding>
+            </Label>
+            <TextField fx:id="searchTextField" />
+         </items>
+      </ToolBar>
+      <ScrollPane fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+         <content>
+            <TableView fx:id="jobHistoriesTable" stylesheets="@../style/projectStyle.css">
+              <columns>
+                <TableColumn fx:id="jobIdColumn" styleClass="columnRight" text="Job Id" />
+  				<TableColumn fx:id="batchIdColumn" styleClass="columnRight" text="Batch Id" />
+                <TableColumn fx:id="batchNameColumn" text="Batch Name" />
+  				<TableColumn fx:id="jobStatusColumn" text="Job Status" />
+  				<TableColumn fx:id="statusDateColumn" styleClass="columnRight" text="Status Date" />
+  				<TableColumn fx:id="sourceColumn" text="Source" />
+  				<TableColumn fx:id="targetColumn" text="Target" />
+  				<TableColumn fx:id="sourceMailboxColumn" text="Source Mailbox" />
+  				<TableColumn fx:id="targetMailboxColumn" text="Target Mailbox" />
+  				<TableColumn fx:id="itemsTotalColumn" styleClass="columnRight" text="Items Total" />
+  				<TableColumn fx:id="itemsFailedColumn" styleClass="columnRight" text="Items Failed" />
+  				<TableColumn fx:id="itemsRemainingColumn" styleClass="columnRight" text="Items Remaining" />
+  				<TableColumn fx:id="statusMessageColumn" prefWidth="250.0" text="Status Message" />
+  				<!--
+  				<TableColumn fx:id="timeStartedColumn" styleClass="columnRight" text="Time Started" />
+  				<TableColumn fx:id="timeFinishedColumn" styleClass="columnRight" text="Time Finished" />
+  				<TableColumn fx:id="jobCreatedByColumn" text="Job Created By" />
+  				<TableColumn fx:id="jobModifiedByColumn" text="Job Modified By" />
+  				<TableColumn fx:id="jobCreatedColumn" styleClass="columnRight" text="Job Created" />
+  				<TableColumn fx:id="jobModifiedColumn" styleClass="columnRight" text="Job Modified" />
+  				<TableColumn fx:id="failedCountColumn" styleClass="columnRight" text="Failed Count" />
+  				<TableColumn fx:id="processingInBatchColumn" styleClass="columnRight" text="Processing In Batch" />
+  				<TableColumn fx:id="processingOnMachineColumn" styleClass="columnRight" text="Processing On Machine" />
+  				<TableColumn fx:id="processingRateColumn" styleClass="columnRight" text="Processing Rate" />
+  				<TableColumn fx:id="lastUpdateColumn" styleClass="columnRight" text="Last Update" />
+  				<TableColumn fx:id="priorityColumn" styleClass="columnRight" text="Priority" />
+  				<TableColumn fx:id="percentCompleteColumn" styleClass="columnRight" text="Percent Complete" />
+  				<TableColumn fx:id="processingItemsColumn" styleClass="columnRight" text="Processing Items" />
+  				<TableColumn fx:id="rehydrationTypeColumn" text="Rehydration Type" />
+  				-->
+              </columns>
+            </TableView>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

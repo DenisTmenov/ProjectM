@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 
 import com.project.m.dao.factory.DtoFactory;
 import com.project.m.domian.DtoJobEntries;
+import com.project.m.utils.ConverterData;
 import com.project.m.utils.TableUtils;
 
 import javafx.collections.FXCollections;
@@ -65,7 +66,7 @@ public class JobEntriesFrame implements Initializable, ControllerInterface {
 		msgIdColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		msgIdColumn.setCellValueFactory(cellData -> cellData.getValue().getMsgIdSimple());
 		dateCreatedColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		dateCreatedColumn.setCellValueFactory(cellData -> cellData.getValue().getDateCreatedSimple());
+		dateCreatedColumn.setCellValueFactory(cellData -> ConverterData.convertDataToSimpleStringProperty(cellData.getValue().getDateCreated()));
 		folderColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		folderColumn.setCellValueFactory(cellData -> cellData.getValue().getFolderSimple());
 		subjectColumn.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -75,7 +76,7 @@ public class JobEntriesFrame implements Initializable, ControllerInterface {
 		recipientsColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		recipientsColumn.setCellValueFactory(cellData -> cellData.getValue().getRecipientsSimple());
 		receivedDateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		receivedDateColumn.setCellValueFactory(cellData -> cellData.getValue().getReceivedDateSimple());
+		receivedDateColumn.setCellValueFactory(cellData -> ConverterData.convertDataToSimpleStringProperty(cellData.getValue().getReceivedDate()));
 		sizeColumn.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
 		sizeColumn.setCellValueFactory(cellData -> cellData.getValue().getSizeSimple().asObject());
 		messageClassColumn.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -87,11 +88,11 @@ public class JobEntriesFrame implements Initializable, ControllerInterface {
 		fileNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		fileNameColumn.setCellValueFactory(cellData -> cellData.getValue().getFileNameSimple());
 		dateModifiedColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		dateModifiedColumn.setCellValueFactory(cellData -> cellData.getValue().getDateModifiedSimple());
+		dateModifiedColumn.setCellValueFactory(cellData -> ConverterData.convertDataToSimpleStringProperty(cellData.getValue().getDateModified()));
 		statusMessageColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		statusMessageColumn.setCellValueFactory(cellData -> cellData.getValue().getStatusMessageSimple());
 		discoveryDateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		discoveryDateColumn.setCellValueFactory(cellData -> cellData.getValue().getDiscoveryDateSimple());
+		discoveryDateColumn.setCellValueFactory(cellData -> ConverterData.convertDataToSimpleStringProperty(cellData.getValue().getDiscoveryDate()));
 		pathColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		pathColumn.setCellValueFactory(cellData -> cellData.getValue().getPathSimple());
 		nameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
@@ -123,7 +124,7 @@ public class JobEntriesFrame implements Initializable, ControllerInterface {
 		failedCountColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		failedCountColumn.setCellValueFactory(cellData -> cellData.getValue().getFailedCountSimple());
 		statusDateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		statusDateColumn.setCellValueFactory(cellData -> cellData.getValue().getStatusDateSimple());
+		statusDateColumn.setCellValueFactory(cellData -> ConverterData.convertDataToSimpleStringProperty(cellData.getValue().getStatusDate()));
 		hashBytesColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		hashBytesColumn.setCellValueFactory(cellData -> cellData.getValue().getHashBytesSimple());
 		extraDataColumn.setCellFactory(TextFieldTableCell.forTableColumn());

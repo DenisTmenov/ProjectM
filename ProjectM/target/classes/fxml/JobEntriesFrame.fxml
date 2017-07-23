@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" styleClass="table" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.m.controllers.JobEntriesFrame">
+   <children>
+      <ScrollPane fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <content>
+            <TableView fx:id="jobEntriesTable" stylesheets="@../style/projectStyle.css">
+              <columns>
+                <TableColumn fx:id="entryIdColumn"  text="Entry Id" />
+				<TableColumn fx:id="jobIdColumn"  styleClass="columnRight" text="Job Id" />
+				<TableColumn fx:id="itemStatusColumn"  text="Item Status" />
+				<TableColumn fx:id="mailboxColumn"  text="Mailbox" />
+				<TableColumn fx:id="msgIdColumn"  text="MsgId" />
+				<TableColumn fx:id="dateCreatedColumn"  styleClass="columnRight" text="Date Created" />
+				<TableColumn fx:id="folderColumn"  text="Folder" />
+				<TableColumn fx:id="subjectColumn"  text="Subject" />
+				<TableColumn fx:id="authorColumn"  text="Author" />
+				<TableColumn fx:id="recipientsColumn"  text="Recipients" />
+				<TableColumn fx:id="receivedDateColumn"  styleClass="columnRight" text="Received Date" />
+				<TableColumn fx:id="sizeColumn"  styleClass="columnRight" text="Size" />
+				<TableColumn fx:id="messageClassColumn"  text="Message Class" />
+				<TableColumn fx:id="itemTypeColumn"  text="Item Type" />
+				<TableColumn fx:id="ownerColumn"  text="Owner" />
+				<TableColumn fx:id="fileNameColumn"  text="File Name" />
+				<TableColumn fx:id="dateModifiedColumn"  styleClass="columnRight" text="Date Modified" />
+				<TableColumn fx:id="statusMessageColumn"  text="Status Message" />
+				<TableColumn fx:id="discoveryDateColumn"  styleClass="columnRight" text="Discovery Date" />
+				<TableColumn fx:id="pathColumn"  text="Path" />
+				<TableColumn fx:id="nameColumn"  text="Name" />
+				<TableColumn fx:id="folderCountColumn" styleClass="columnRight" text="Folder Count" />
+				<TableColumn fx:id="messageCountColumn" styleClass="columnRight" text="Message Count" />
+				<TableColumn fx:id="emailCountColumn" styleClass="columnRight" text="Email Count" />
+				<TableColumn fx:id="calendarCountColumn" styleClass="columnRight" text="Calendar Count" />
+				<TableColumn fx:id="taskCountColumn" styleClass="columnRight" text="Task Count" />
+				<TableColumn fx:id="contactCountColumn" styleClass="columnRight" text="Contact Count" />
+				<TableColumn fx:id="otherCountColumn" styleClass="columnRight" text="Other Count" />
+				<TableColumn fx:id="owner1Column"  text="Owner1" />
+				<TableColumn fx:id="owner2Column"  text="Owner2" />
+				<TableColumn fx:id="owner3Column"  text="Owner3" />
+				<TableColumn fx:id="originalIdColumn"  text="Original Id" />
+				<TableColumn fx:id="folderIdColumn"  styleClass="columnRight" text="Folder Id" />
+				<TableColumn fx:id="failedCountColumn"  styleClass="columnRight" text="Failed Count" />
+				<TableColumn fx:id="statusDateColumn"  styleClass="columnRight" text="Status Date" />
+				<TableColumn fx:id="hashBytesColumn"  text="Hash Bytes" />
+				<TableColumn fx:id="extraDataColumn"  text="Extra Data" />
+				<TableColumn fx:id="messageIdColumn"  text="Message Id" />
+              </columns>
+            </TableView>
+         </content>
+      </ScrollPane>
+   </children>
+</AnchorPane>

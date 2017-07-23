@@ -11,6 +11,7 @@ import com.project.m.dao.factory.DtoFactory;
 import com.project.m.domian.DtoJobHistories;
 import com.project.m.exceptions.FrameException;
 import com.project.m.service.FrameClass;
+import com.project.m.utils.ConverterData;
 import com.project.m.utils.TableUtils;
 
 import javafx.collections.FXCollections;
@@ -47,7 +48,7 @@ public class JobHistoriesFrame implements Initializable, ControllerInterface {
 	@FXML
 	private TableColumn<DtoJobHistories, BigInteger> itemsRemainingColumn, itemsFailedColumn, itemsTotalColumn;
 	@FXML
-	private TableColumn<DtoJobHistories, String> statusDateColumn; // MAKE DATE
+	private TableColumn<DtoJobHistories, String> statusDateColumn;
 	@FXML
 	private TableView<DtoJobHistories> jobHistoriesTable;
 	@FXML
@@ -101,10 +102,8 @@ public class JobHistoriesFrame implements Initializable, ControllerInterface {
 		sourceMailboxColumn.setCellValueFactory(cellData -> cellData.getValue().getSourceMailboxSimple());
 		targetMailboxColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 		targetMailboxColumn.setCellValueFactory(cellData -> cellData.getValue().getTargetMailboxSimple());
-
-		// change with correct DATE
 		statusDateColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-		statusDateColumn.setCellValueFactory(cellData -> cellData.getValue().getStatusDateSimple());
+		statusDateColumn.setCellValueFactory(cellData -> ConverterData.convertDataToSimpleStringProperty(cellData.getValue().getStatusDate()));
 	}
 
 	private void initializeRows() {

@@ -359,17 +359,11 @@ public class DtoJobEntries {
 
 	@Override
 	public String toString() {
-		return "DtoJobEntries [entryId=" + entryId + ", jobId=" + jobId + ", itemStatus=" + itemStatus + ", mailbox="
-				+ mailbox + ", msgId=" + msgId + ", dateCreated=" + dateCreated + ", folder=" + folder + ", subject="
-				+ subject + ", author=" + author + ", recipients=" + recipients + ", receivedDate=" + receivedDate
-				+ ", size=" + size + ", messageClass=" + messageClass + ", itemType=" + itemType + ", owner=" + owner
-				+ ", fileName=" + fileName + ", dateModified=" + dateModified + ", statusMessage=" + statusMessage
-				+ ", discoveryDate=" + discoveryDate + ", path=" + path + ", name=" + name + ", folderCount="
-				+ folderCount + ", messageCount=" + messageCount + ", emailCount=" + emailCount + ", calendarCount="
-				+ calendarCount + ", taskCount=" + taskCount + ", contactCount=" + contactCount + ", otherCount="
-				+ otherCount + ", owner1=" + owner1 + ", owner2=" + owner2 + ", owner3=" + owner3 + ", originalId="
-				+ originalId + ", folderId=" + folderId + ", failedCount=" + failedCount + ", statusDate=" + statusDate
-				+ ", hashBytes=" + hashBytes + ", extraData=" + extraData + ", messageId=" + messageId + "]";
+		return "DtoJobEntries [entryId=" + entryId + ", jobId=" + jobId + ", itemStatus=" + itemStatus + ", mailbox=" + mailbox + ", msgId=" + msgId + ", dateCreated=" + dateCreated + ", folder=" + folder + ", subject=" + subject + ", author="
+				+ author + ", recipients=" + recipients + ", receivedDate=" + receivedDate + ", size=" + size + ", messageClass=" + messageClass + ", itemType=" + itemType + ", owner=" + owner + ", fileName=" + fileName + ", dateModified="
+				+ dateModified + ", statusMessage=" + statusMessage + ", discoveryDate=" + discoveryDate + ", path=" + path + ", name=" + name + ", folderCount=" + folderCount + ", messageCount=" + messageCount + ", emailCount=" + emailCount
+				+ ", calendarCount=" + calendarCount + ", taskCount=" + taskCount + ", contactCount=" + contactCount + ", otherCount=" + otherCount + ", owner1=" + owner1 + ", owner2=" + owner2 + ", owner3=" + owner3 + ", originalId=" + originalId
+				+ ", folderId=" + folderId + ", failedCount=" + failedCount + ", statusDate=" + statusDate + ", hashBytes=" + hashBytes + ", extraData=" + extraData + ", messageId=" + messageId + "]";
 	}
 
 	@Override
@@ -648,11 +642,13 @@ public class DtoJobEntries {
 		return msgIdSimple;
 	}
 
-	public SimpleStringProperty getDateCreatedSimple() {
-		SimpleStringProperty dateCreatedSimple = new SimpleStringProperty(String.valueOf(getDateCreated()));
-		dateCreatedSimple = SimpleObject.convertNullToSpace(dateCreatedSimple);
-		return dateCreatedSimple;
-	}
+	/*
+	 * public SimpleStringProperty getDateCreatedSimple() { SimpleStringProperty
+	 * dateCreatedSimple = new
+	 * SimpleStringProperty(String.valueOf(getDateCreated())); dateCreatedSimple =
+	 * SimpleObject.convertNullToSpace(dateCreatedSimple); return dateCreatedSimple;
+	 * }
+	 */
 
 	public SimpleStringProperty getFolderSimple() {
 		SimpleStringProperty folderSimple = new SimpleStringProperty(String.valueOf(getFolder()));
@@ -678,11 +674,13 @@ public class DtoJobEntries {
 		return recipientsSimple;
 	}
 
-	public SimpleStringProperty getReceivedDateSimple() {
-		SimpleStringProperty receivedDateSimple = new SimpleStringProperty(String.valueOf(getReceivedDate()));
-		receivedDateSimple = SimpleObject.convertNullToSpace(receivedDateSimple);
-		return receivedDateSimple;
-	}
+	/*
+	 * public SimpleStringProperty getReceivedDateSimple() { SimpleStringProperty
+	 * receivedDateSimple = new
+	 * SimpleStringProperty(String.valueOf(getReceivedDate())); receivedDateSimple =
+	 * SimpleObject.convertNullToSpace(receivedDateSimple); return
+	 * receivedDateSimple; }
+	 */
 
 	public SimpleIntegerProperty getSizeSimple() {
 		SimpleIntegerProperty sizeSimple = new SimpleIntegerProperty(getSize());
@@ -713,11 +711,13 @@ public class DtoJobEntries {
 		return fileNameSimple;
 	}
 
-	public SimpleStringProperty getDateModifiedSimple() {
-		SimpleStringProperty dateModifiedSimple = new SimpleStringProperty(String.valueOf(getDateModified()));
-		dateModifiedSimple = SimpleObject.convertNullToSpace(dateModifiedSimple);
-		return dateModifiedSimple;
-	}
+	/*
+	 * public SimpleStringProperty getDateModifiedSimple() { SimpleStringProperty
+	 * dateModifiedSimple = new
+	 * SimpleStringProperty(String.valueOf(getDateModified())); dateModifiedSimple =
+	 * SimpleObject.convertNullToSpace(dateModifiedSimple); return
+	 * dateModifiedSimple; }
+	 */
 
 	public SimpleStringProperty getStatusMessageSimple() {
 		SimpleStringProperty statusMessageSimple = new SimpleStringProperty(String.valueOf(getStatusMessage()));
@@ -725,11 +725,13 @@ public class DtoJobEntries {
 		return statusMessageSimple;
 	}
 
-	public SimpleStringProperty getDiscoveryDateSimple() {
-		SimpleStringProperty discoveryDateSimple = new SimpleStringProperty(String.valueOf(getDiscoveryDate()));
-		discoveryDateSimple = SimpleObject.convertNullToSpace(discoveryDateSimple);
-		return discoveryDateSimple;
-	}
+	/*
+	 * public SimpleStringProperty getDiscoveryDateSimple() { SimpleStringProperty
+	 * discoveryDateSimple = new
+	 * SimpleStringProperty(String.valueOf(getDiscoveryDate())); discoveryDateSimple
+	 * = SimpleObject.convertNullToSpace(discoveryDateSimple); return
+	 * discoveryDateSimple; }
+	 */
 
 	public SimpleStringProperty getPathSimple() {
 		SimpleStringProperty pathSimple = new SimpleStringProperty(String.valueOf(getPath()));
@@ -814,11 +816,12 @@ public class DtoJobEntries {
 		return failedCountSimple;
 	}
 
-	public SimpleStringProperty getStatusDateSimple() {
-		SimpleStringProperty statusDateSimple = new SimpleStringProperty(String.valueOf(getStatusDate()));
-		statusDateSimple = SimpleObject.convertNullToSpace(statusDateSimple);
-		return statusDateSimple;
-	}
+	/*
+	 * public SimpleStringProperty getStatusDateSimple() { SimpleStringProperty
+	 * statusDateSimple = new SimpleStringProperty(String.valueOf(getStatusDate()));
+	 * statusDateSimple = SimpleObject.convertNullToSpace(statusDateSimple); return
+	 * statusDateSimple; }
+	 */
 
 	public SimpleStringProperty getHashBytesSimple() {
 		SimpleStringProperty hashBytesSimple = new SimpleStringProperty(String.valueOf(getHashBytes()));

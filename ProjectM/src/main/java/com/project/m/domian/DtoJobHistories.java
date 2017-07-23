@@ -1,7 +1,6 @@
 package com.project.m.domian;
 
 import java.math.BigInteger;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.project.m.utils.SimpleBigIntegerProperty;
@@ -297,17 +296,14 @@ public class DtoJobHistories {
 		return targetMailboxSimple;
 	}
 
-	public SimpleStringProperty getStatusDateSimple() {
-		Date date = getStatusDate();
-		SimpleStringProperty statusDateSimple = null;
-		if (date != null) {
-			SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MMM/yy HH:mm");
-			statusDateSimple = new SimpleStringProperty(dateFormat.format(date));
-		} else {
-			statusDateSimple = new SimpleStringProperty(String.valueOf(""));
-		}
-		return statusDateSimple;
-	}
+	/*
+	 * public SimpleStringProperty getStatusDateSimple() { Date date =
+	 * getStatusDate(); SimpleStringProperty statusDateSimple = null; if (date !=
+	 * null) { SimpleDateFormat dateFormat = new
+	 * SimpleDateFormat("dd/MMM/yy HH:mm"); statusDateSimple = new
+	 * SimpleStringProperty(dateFormat.format(date)); } else { statusDateSimple =
+	 * new SimpleStringProperty(String.valueOf("")); } return statusDateSimple; }
+	 */
 
 	public SimpleStringProperty getBatchNameSimple() {
 		SimpleStringProperty batchNameSimple = new SimpleStringProperty(String.valueOf(getBatchName()));
