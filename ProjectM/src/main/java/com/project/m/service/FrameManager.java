@@ -13,34 +13,34 @@ import javafx.scene.layout.Pane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class FrameManager {
+public class FrameManager extends FrameClass {
 	private String title = "";
 	private Boolean resizableFrame = true;
 	private Boolean oneFrame = true;
 	private Boolean showAndWait = true;
 
-	private FrameManager() {
-
+	public FrameManager() {
+		super();
 	}
 
-	public static FrameManager getFrameManager() {
-		return new FrameManager();
-	}
-
+	@Override
 	public void openFrame(String nameFrame) {
 		this.title = StringUtils.diviveCamelCase(nameFrame).replaceAll(" Frame", "");
 		openFrame(nameFrame, this.title, this.resizableFrame, this.oneFrame, this.showAndWait, null);
 	}
 
+	@Override
 	public void openFrame(String nameFrame, String valueParameter) {
 		this.title = StringUtils.diviveCamelCase(nameFrame).replaceAll(" Frame", "");
 		openFrame(nameFrame, this.title, this.resizableFrame, this.oneFrame, this.showAndWait, valueParameter);
 	}
 
+	@Override
 	public void openFrame(String nameFrame, String title, Boolean resizableFrame, Boolean oneFrame, Boolean showAndWait) {
 		openFrame(nameFrame, title, resizableFrame, oneFrame, showAndWait, null);
 	}
 
+	@Override
 	public void openFrame(String nameFrame, String title, Boolean resizableFrame, Boolean oneFrame, Boolean showAndWait, String valueParameter) {
 		Stage frame = new Stage();
 		frame.setTitle(title);

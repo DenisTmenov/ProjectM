@@ -10,7 +10,7 @@ import java.util.function.Predicate;
 import com.project.m.dao.factory.DtoFactory;
 import com.project.m.domian.DtoJobHistories;
 import com.project.m.exceptions.FrameException;
-import com.project.m.service.FrameManager;
+import com.project.m.service.FrameClass;
 import com.project.m.utils.TableUtils;
 
 import javafx.collections.FXCollections;
@@ -248,8 +248,8 @@ public class JobHistoriesFrame implements Initializable, ControllerInterface {
 	}
 
 	private void openNewFrame() {
-		FrameManager frameManager = FrameManager.getFrameManager();
-		frameManager.openFrame("JobEntriesFrame", "JobHistories", true, false, true, String.valueOf(batchId));
+		FrameClass frame = FrameClass.getFrame();
+		frame.openFrame("JobEntriesFrame", "JobHistories", true, false, true, String.valueOf(batchId));
 	}
 
 	private void show() {
