@@ -1,18 +1,20 @@
 package com.project.m.entity;
 
+import java.util.Date;
+
 public class EntityJobFolderDetails {
 
 	private Integer entryId;
 	private Integer jobId;
 	private Integer childFolderCount;
-	private Boolean unreadCount;
-	private Boolean totalCount;
-	private Boolean creationTime;
-	private Boolean modificationTime;
+	private Integer unreadCount;
+	private Integer totalCount;
+	private Date creationTime;
+	private Date modificationTime;
 	private Boolean isMailEnabled;
-	private Integer mailEnabledId;
-	private Integer mailEnabledAddress;
-	private Integer size;
+	private String mailEnabledId;
+	private String mailEnabledAddress;
+	private Boolean size;
 
 	public EntityJobFolderDetails() {
 		super();
@@ -20,10 +22,6 @@ public class EntityJobFolderDetails {
 
 	public Integer getEntryId() {
 		return entryId;
-	}
-
-	public void setEntryId(Integer entryId) {
-		this.entryId = entryId;
 	}
 
 	public Integer getJobId() {
@@ -42,35 +40,35 @@ public class EntityJobFolderDetails {
 		this.childFolderCount = childFolderCount;
 	}
 
-	public Boolean getUnreadCount() {
+	public Integer getUnreadCount() {
 		return unreadCount;
 	}
 
-	public void setUnreadCount(Boolean unreadCount) {
+	public void setUnreadCount(Integer unreadCount) {
 		this.unreadCount = unreadCount;
 	}
 
-	public Boolean getTotalCount() {
+	public Integer getTotalCount() {
 		return totalCount;
 	}
 
-	public void setTotalCount(Boolean totalCount) {
+	public void setTotalCount(Integer totalCount) {
 		this.totalCount = totalCount;
 	}
 
-	public Boolean getCreationTime() {
+	public Date getCreationTime() {
 		return creationTime;
 	}
 
-	public void setCreationTime(Boolean creationTime) {
+	public void setCreationTime(Date creationTime) {
 		this.creationTime = creationTime;
 	}
 
-	public Boolean getModificationTime() {
+	public Date getModificationTime() {
 		return modificationTime;
 	}
 
-	public void setModificationTime(Boolean modificationTime) {
+	public void setModificationTime(Date modificationTime) {
 		this.modificationTime = modificationTime;
 	}
 
@@ -82,28 +80,32 @@ public class EntityJobFolderDetails {
 		this.isMailEnabled = isMailEnabled;
 	}
 
-	public Integer getMailEnabledId() {
+	public String getMailEnabledId() {
 		return mailEnabledId;
 	}
 
-	public void setMailEnabledId(Integer mailEnabledId) {
+	public void setMailEnabledId(String mailEnabledId) {
 		this.mailEnabledId = mailEnabledId;
 	}
 
-	public Integer getMailEnabledAddress() {
+	public String getMailEnabledAddress() {
 		return mailEnabledAddress;
 	}
 
-	public void setMailEnabledAddress(Integer mailEnabledAddress) {
+	public void setMailEnabledAddress(String mailEnabledAddress) {
 		this.mailEnabledAddress = mailEnabledAddress;
 	}
 
-	public Integer getSize() {
+	public Boolean getSize() {
 		return size;
 	}
 
-	public void setSize(Integer size) {
+	public void setSize(Boolean size) {
 		this.size = size;
+	}
+
+	public void setEntryId(Integer entryId) {
+		this.entryId = entryId;
 	}
 
 	@Override
