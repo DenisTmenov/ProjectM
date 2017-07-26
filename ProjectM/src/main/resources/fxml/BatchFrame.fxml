@@ -11,10 +11,10 @@
          <content>
             <TableView fx:id="batchesTable" stylesheets="@../style/projectStyle.css">
               <columns>
-                <TableColumn fx:id="batchIdColumn"  styleClass="columnRight" text="Batch Id" />
-                <TableColumn fx:id="batchNameColumn"  text="Batch Name" />
-                <TableColumn fx:id="createDateColumn"  styleClass="columnRight" text="Create Date" />
-                <TableColumn fx:id="isActiveColumn"  text="Is Active" />
+                <TableColumn fx:id="batchIdColumn" styleClass="columnRight" text="Batch Id" />
+                <TableColumn fx:id="batchNameColumn" text="Batch Name" />
+                <TableColumn fx:id="createDateColumn" styleClass="columnRight" text="Create Date" />
+                <TableColumn fx:id="isActiveColumn" text="Is Active" />
               </columns>
             </TableView>
          </content>

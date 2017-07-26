@@ -22,9 +22,6 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableRow;
@@ -58,12 +55,6 @@ public class JobHistoriesFrame implements Initializable, ControllerInterface {
 	private ComboBox<String> sortJobStatusCombo;
 	@FXML
 	private TextField searchTextField;
-	@FXML
-	private MenuBar openMenuBar;
-	@FXML
-	private Menu openMenu, frameMenu;
-	@FXML
-	private MenuItem batchFrameMenuItem, jobEntriesFrameMenuItem, jobHistoriesFrameMenuItem;
 
 	@Deprecated
 	@Override
@@ -242,7 +233,6 @@ public class JobHistoriesFrame implements Initializable, ControllerInterface {
 							return true;
 						}
 					} catch (NullPointerException e1) {
-						// bad code!!!!!!!!!!
 						return false;
 					}
 					return false;
@@ -254,15 +244,11 @@ public class JobHistoriesFrame implements Initializable, ControllerInterface {
 			show();
 		});
 
-		batchFrameMenuItem.setOnAction(actionEvent -> {
-			FrameClass frame = FrameClass.getFrame();
-			frame.openFrame("BatchFrame", "Batch", true, false, false);
-		});
 	}
 
 	private void openNewFrame() {
 		FrameClass frame = FrameClass.getFrame();
-		frame.openFrame("JobEntriesFrame", "JobHistories", true, false, true, String.valueOf(batchId));
+		frame.openFrame("JobEntriesFrame", "Job Entries", String.valueOf(batchId));
 	}
 
 	private void show() {

@@ -8,9 +8,9 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
 	@Override
-	public void start(Stage Stage) {
+	public void start(Stage primaryStage) {
 		FrameClass frame = FrameClass.getFrame();
-		frame.openFrame("JobHistoriesFrame", "JobHistories", true, true, false);
+		frame.openFrame(primaryStage, "JobHistoriesFrame", "Job Histories");
 	}
 
 	public static void main(String[] args) {

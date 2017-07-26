@@ -3,9 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Menu?>
-<?import javafx.scene.control.MenuBar?>
-<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -15,22 +12,7 @@
 
 <AnchorPane id="AnchorPane" styleClass="table" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.m.controllers.JobHistoriesFrame">
    <children>
-      <MenuBar fx:id="openMenuBar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <menus>
-          <Menu fx:id="openMenu" mnemonicParsing="false" text="Open">
-            <items>
-                  <Menu fx:id="frameMenu" mnemonicParsing="false" text="Frame">
-                    <items>
-                      <MenuItem fx:id="batchFrameMenuItem" mnemonicParsing="false" text="Batch Frame" />
-                      <MenuItem fx:id="jobEntriesFrameMenuItem" mnemonicParsing="false" text="Job Entries Frame" />
-                      <MenuItem fx:id="jobHistoriesFrameMenuItem" mnemonicParsing="false" text="Job Histories Frame" />
-                    </items>
-                  </Menu>
-            </items>
-          </Menu>
-        </menus>
-      </MenuBar>
-      <ToolBar prefHeight="50.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
+      <ToolBar prefHeight="50.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <items>
             <Label text="Job Status:" />
             <ComboBox fx:id="sortJobStatusCombo" prefWidth="150.0" />
@@ -42,7 +24,7 @@
             <TextField fx:id="searchTextField" />
          </items>
       </ToolBar>
-      <ScrollPane fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
+      <ScrollPane fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
          <content>
             <TableView fx:id="jobHistoriesTable" stylesheets="@../style/projectStyle.css">
               <columns>

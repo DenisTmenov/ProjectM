@@ -42,7 +42,6 @@ public class BatchFrame implements Initializable, ControllerInterface {
 	public void start() {
 		initializeRows();
 		addFunction();
-		activeActions();
 		show();
 	}
 
@@ -73,10 +72,6 @@ public class BatchFrame implements Initializable, ControllerInterface {
 		tableUtils.installCopyPasteHandler();
 		tableUtils.installCopyPasteMenu();
 		tableUtils.installMultiSelect();
-	}
-
-	private void activeActions() {
-
 	}
 
 	private void show() {

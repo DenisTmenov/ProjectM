@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+
+<MenuBar fx:id="openMenuBar" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.m.controllers.MenuController">
+	<menus>
+	  <Menu fx:id="openMenu" mnemonicParsing="false" text="Open">
+	    <items>
+	      <Menu fx:id="frameMenu" mnemonicParsing="false" text="Frame">
+	        <items>
+	          <MenuItem fx:id="batchFrameMenuItem" mnemonicParsing="false" text="Batch Frame" />
+	          <MenuItem fx:id="jobEntriesFrameMenuItem" mnemonicParsing="false" text="Job Entries Frame" />
+	          <MenuItem fx:id="jobHistoriesFrameMenuItem" mnemonicParsing="false" text="Job Histories Frame" />
+	          <MenuItem fx:id="newFrameMenuItem" mnemonicParsing="false" text="New Frame" />
+	          <MenuItem fx:id="newFrameMenuItem1" mnemonicParsing="false" text="New Frame" />
+	        </items>
+	      </Menu>
+	    </items>
+	  </Menu>
+	</menus>
+</MenuBar>
