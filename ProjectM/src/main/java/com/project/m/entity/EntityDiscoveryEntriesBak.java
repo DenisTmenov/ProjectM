@@ -12,15 +12,15 @@ public class EntityDiscoveryEntriesBak {
 	private BigInteger size;
 	private String name;
 	private BigInteger folderCount;
-	private BigInteger MessageCount;
-	private BigInteger EmailCount;
-	private BigInteger CalendarCount;
-	private BigInteger TaskCount;
-	private BigInteger ContactCount;
-	private BigInteger OtherCount;
-	private String Owner1;
-	private String Owner2;
-	private String Owner3;
+	private BigInteger messageCount;
+	private BigInteger emailCount;
+	private BigInteger calendarCount;
+	private BigInteger taskCount;
+	private BigInteger contactCount;
+	private BigInteger otherCount;
+	private String owner1;
+	private String owner2;
+	private String owner3;
 
 	public EntityDiscoveryEntriesBak() {
 		super();
@@ -83,90 +83,90 @@ public class EntityDiscoveryEntriesBak {
 	}
 
 	public BigInteger getMessageCount() {
-		return MessageCount;
+		return messageCount;
 	}
 
 	public void setMessageCount(BigInteger messageCount) {
-		MessageCount = messageCount;
+		this.messageCount = messageCount;
 	}
 
 	public BigInteger getEmailCount() {
-		return EmailCount;
+		return emailCount;
 	}
 
 	public void setEmailCount(BigInteger emailCount) {
-		EmailCount = emailCount;
+		this.emailCount = emailCount;
 	}
 
 	public BigInteger getCalendarCount() {
-		return CalendarCount;
+		return calendarCount;
 	}
 
 	public void setCalendarCount(BigInteger calendarCount) {
-		CalendarCount = calendarCount;
+		this.calendarCount = calendarCount;
 	}
 
 	public BigInteger getTaskCount() {
-		return TaskCount;
+		return taskCount;
 	}
 
 	public void setTaskCount(BigInteger taskCount) {
-		TaskCount = taskCount;
+		this.taskCount = taskCount;
 	}
 
 	public BigInteger getContactCount() {
-		return ContactCount;
+		return contactCount;
 	}
 
 	public void setContactCount(BigInteger contactCount) {
-		ContactCount = contactCount;
+		this.contactCount = contactCount;
 	}
 
 	public BigInteger getOtherCount() {
-		return OtherCount;
+		return otherCount;
 	}
 
 	public void setOtherCount(BigInteger otherCount) {
-		OtherCount = otherCount;
+		this.otherCount = otherCount;
 	}
 
 	public String getOwner1() {
-		return Owner1;
+		return owner1;
 	}
 
 	public void setOwner1(String owner1) {
-		Owner1 = owner1;
+		this.owner1 = owner1;
 	}
 
 	public String getOwner2() {
-		return Owner2;
+		return owner2;
 	}
 
 	public void setOwner2(String owner2) {
-		Owner2 = owner2;
+		this.owner2 = owner2;
 	}
 
 	public String getOwner3() {
-		return Owner3;
+		return owner3;
 	}
 
 	public void setOwner3(String owner3) {
-		Owner3 = owner3;
+		this.owner3 = owner3;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((CalendarCount == null) ? 0 : CalendarCount.hashCode());
-		result = prime * result + ((ContactCount == null) ? 0 : ContactCount.hashCode());
-		result = prime * result + ((EmailCount == null) ? 0 : EmailCount.hashCode());
-		result = prime * result + ((MessageCount == null) ? 0 : MessageCount.hashCode());
-		result = prime * result + ((OtherCount == null) ? 0 : OtherCount.hashCode());
-		result = prime * result + ((Owner1 == null) ? 0 : Owner1.hashCode());
-		result = prime * result + ((Owner2 == null) ? 0 : Owner2.hashCode());
-		result = prime * result + ((Owner3 == null) ? 0 : Owner3.hashCode());
-		result = prime * result + ((TaskCount == null) ? 0 : TaskCount.hashCode());
+		result = prime * result + ((calendarCount == null) ? 0 : calendarCount.hashCode());
+		result = prime * result + ((contactCount == null) ? 0 : contactCount.hashCode());
+		result = prime * result + ((emailCount == null) ? 0 : emailCount.hashCode());
+		result = prime * result + ((messageCount == null) ? 0 : messageCount.hashCode());
+		result = prime * result + ((otherCount == null) ? 0 : otherCount.hashCode());
+		result = prime * result + ((owner1 == null) ? 0 : owner1.hashCode());
+		result = prime * result + ((owner2 == null) ? 0 : owner2.hashCode());
+		result = prime * result + ((owner3 == null) ? 0 : owner3.hashCode());
+		result = prime * result + ((taskCount == null) ? 0 : taskCount.hashCode());
 		result = prime * result + ((discoveryDate == null) ? 0 : discoveryDate.hashCode());
 		result = prime * result + ((discoveryJobId == null) ? 0 : discoveryJobId.hashCode());
 		result = prime * result + ((folderCount == null) ? 0 : folderCount.hashCode());
@@ -186,50 +186,50 @@ public class EntityDiscoveryEntriesBak {
 		if (getClass() != obj.getClass())
 			return false;
 		EntityDiscoveryEntriesBak other = (EntityDiscoveryEntriesBak) obj;
-		if (CalendarCount == null) {
-			if (other.CalendarCount != null)
+		if (calendarCount == null) {
+			if (other.calendarCount != null)
 				return false;
-		} else if (!CalendarCount.equals(other.CalendarCount))
+		} else if (!calendarCount.equals(other.calendarCount))
 			return false;
-		if (ContactCount == null) {
-			if (other.ContactCount != null)
+		if (contactCount == null) {
+			if (other.contactCount != null)
 				return false;
-		} else if (!ContactCount.equals(other.ContactCount))
+		} else if (!contactCount.equals(other.contactCount))
 			return false;
-		if (EmailCount == null) {
-			if (other.EmailCount != null)
+		if (emailCount == null) {
+			if (other.emailCount != null)
 				return false;
-		} else if (!EmailCount.equals(other.EmailCount))
+		} else if (!emailCount.equals(other.emailCount))
 			return false;
-		if (MessageCount == null) {
-			if (other.MessageCount != null)
+		if (messageCount == null) {
+			if (other.messageCount != null)
 				return false;
-		} else if (!MessageCount.equals(other.MessageCount))
+		} else if (!messageCount.equals(other.messageCount))
 			return false;
-		if (OtherCount == null) {
-			if (other.OtherCount != null)
+		if (otherCount == null) {
+			if (other.otherCount != null)
 				return false;
-		} else if (!OtherCount.equals(other.OtherCount))
+		} else if (!otherCount.equals(other.otherCount))
 			return false;
-		if (Owner1 == null) {
-			if (other.Owner1 != null)
+		if (owner1 == null) {
+			if (other.owner1 != null)
 				return false;
-		} else if (!Owner1.equals(other.Owner1))
+		} else if (!owner1.equals(other.owner1))
 			return false;
-		if (Owner2 == null) {
-			if (other.Owner2 != null)
+		if (owner2 == null) {
+			if (other.owner2 != null)
 				return false;
-		} else if (!Owner2.equals(other.Owner2))
+		} else if (!owner2.equals(other.owner2))
 			return false;
-		if (Owner3 == null) {
-			if (other.Owner3 != null)
+		if (owner3 == null) {
+			if (other.owner3 != null)
 				return false;
-		} else if (!Owner3.equals(other.Owner3))
+		} else if (!owner3.equals(other.owner3))
 			return false;
-		if (TaskCount == null) {
-			if (other.TaskCount != null)
+		if (taskCount == null) {
+			if (other.taskCount != null)
 				return false;
-		} else if (!TaskCount.equals(other.TaskCount))
+		} else if (!taskCount.equals(other.taskCount))
 			return false;
 		if (discoveryDate == null) {
 			if (other.discoveryDate != null)
@@ -272,8 +272,8 @@ public class EntityDiscoveryEntriesBak {
 	@Override
 	public String toString() {
 		return "EntityDiscoveryEntriesBak [id=" + id + ", discoveryJobId=" + discoveryJobId + ", discoveryDate=" + discoveryDate + ", path=" + path + ", size=" + size + ", name=" + name + ", folderCount=" + folderCount + ", MessageCount="
-				+ MessageCount + ", EmailCount=" + EmailCount + ", CalendarCount=" + CalendarCount + ", TaskCount=" + TaskCount + ", ContactCount=" + ContactCount + ", OtherCount=" + OtherCount + ", Owner1=" + Owner1 + ", Owner2=" + Owner2
-				+ ", Owner3=" + Owner3 + "]";
+				+ messageCount + ", EmailCount=" + emailCount + ", CalendarCount=" + calendarCount + ", TaskCount=" + taskCount + ", ContactCount=" + contactCount + ", OtherCount=" + otherCount + ", Owner1=" + owner1 + ", Owner2=" + owner2
+				+ ", Owner3=" + owner3 + "]";
 	}
 
 }
