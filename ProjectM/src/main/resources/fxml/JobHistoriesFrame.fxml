@@ -3,6 +3,9 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -12,7 +15,22 @@
 
 <AnchorPane id="AnchorPane" styleClass="table" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.project.m.controllers.JobHistoriesFrame">
    <children>
-      <ToolBar prefHeight="50.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <MenuBar fx:id="openMenuBar" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <menus>
+          <Menu fx:id="openMenu" mnemonicParsing="false" text="Open">
+            <items>
+                  <Menu fx:id="frameMenu" mnemonicParsing="false" text="Frame">
+                    <items>
+                      <MenuItem fx:id="batchFrameMenuItem" mnemonicParsing="false" text="Batch Frame" />
+                      <MenuItem fx:id="jobEntriesFrameMenuItem" mnemonicParsing="false" text="Job Entries Frame" />
+                      <MenuItem fx:id="jobHistoriesFrameMenuItem" mnemonicParsing="false" text="Job Histories Frame" />
+                    </items>
+                  </Menu>
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+      <ToolBar prefHeight="50.0" prefWidth="200.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="30.0">
          <items>
             <Label text="Job Status:" />
             <ComboBox fx:id="sortJobStatusCombo" prefWidth="150.0" />
@@ -24,7 +42,7 @@
             <TextField fx:id="searchTextField" />
          </items>
       </ToolBar>
-      <ScrollPane fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+      <ScrollPane fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="80.0">
          <content>
             <TableView fx:id="jobHistoriesTable" stylesheets="@../style/projectStyle.css">
               <columns>
@@ -41,23 +59,6 @@
   				<TableColumn fx:id="itemsFailedColumn" styleClass="columnRight" text="Items Failed" />
   				<TableColumn fx:id="itemsRemainingColumn" styleClass="columnRight" text="Items Remaining" />
   				<TableColumn fx:id="statusMessageColumn" prefWidth="250.0" text="Status Message" />
-  				<!--
-  				<TableColumn fx:id="timeStartedColumn" styleClass="columnRight" text="Time Started" />
-  				<TableColumn fx:id="timeFinishedColumn" styleClass="columnRight" text="Time Finished" />
-  				<TableColumn fx:id="jobCreatedByColumn" text="Job Created By" />
-  				<TableColumn fx:id="jobModifiedByColumn" text="Job Modified By" />
-  				<TableColumn fx:id="jobCreatedColumn" styleClass="columnRight" text="Job Created" />
-  				<TableColumn fx:id="jobModifiedColumn" styleClass="columnRight" text="Job Modified" />
-  				<TableColumn fx:id="failedCountColumn" styleClass="columnRight" text="Failed Count" />
-  				<TableColumn fx:id="processingInBatchColumn" styleClass="columnRight" text="Processing In Batch" />
-  				<TableColumn fx:id="processingOnMachineColumn" styleClass="columnRight" text="Processing On Machine" />
-  				<TableColumn fx:id="processingRateColumn" styleClass="columnRight" text="Processing Rate" />
-  				<TableColumn fx:id="lastUpdateColumn" styleClass="columnRight" text="Last Update" />
-  				<TableColumn fx:id="priorityColumn" styleClass="columnRight" text="Priority" />
-  				<TableColumn fx:id="percentCompleteColumn" styleClass="columnRight" text="Percent Complete" />
-  				<TableColumn fx:id="processingItemsColumn" styleClass="columnRight" text="Processing Items" />
-  				<TableColumn fx:id="rehydrationTypeColumn" text="Rehydration Type" />
-  				-->
               </columns>
             </TableView>
          </content>

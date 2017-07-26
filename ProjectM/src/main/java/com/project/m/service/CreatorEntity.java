@@ -12,13 +12,13 @@ import com.project.m.exceptions.EntityException;
 public class CreatorEntity {
 
 	public static EntityBatches createDboBatchesEntity(ResultSet set) {
-		Integer batchId = null;
-		String batchName = null;
+		Integer batchesId = null;
+		String batchesName = null;
 		Date createdDate = null;
 		Boolean isActive = null;
 		try {
-			batchId = set.getInt("BatchId");
-			batchName = set.getString("BatchName");
+			batchesId = set.getInt("BatchId");
+			batchesName = set.getString("BatchName");
 			createdDate = set.getDate("CreatedDate");
 			isActive = set.getBoolean("IsActive");
 		} catch (SQLException e) {
@@ -27,8 +27,8 @@ public class CreatorEntity {
 
 		EntityBatches entity = new EntityBatches();
 
-		entity.setBatchId(batchId);
-		entity.setBatchName(batchName);
+		entity.setBatchesId(batchesId);
+		entity.setBatchesName(batchesName);
 		entity.setCreateDate(createdDate);
 		entity.setIsActive(isActive);
 

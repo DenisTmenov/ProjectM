@@ -69,8 +69,8 @@ public class DtoFactory {
 
 			Integer batchIdDTO = dto.getBatchId();
 			for (EntityBatches entityBatches : batches) {
-				String batchName = entityBatches.getBatchName();
-				Integer batchIdENTITY = entityBatches.getBatchId();
+				String batchName = entityBatches.getBatchesName();
+				Integer batchIdENTITY = entityBatches.getBatchesId();
 				if (batchIdDTO == batchIdENTITY) {
 					dto.setBatchName(batchName);
 				}
@@ -120,22 +120,22 @@ public class DtoFactory {
 		return dtoLinkedList;
 	}
 
-	public LinkedList<DtoBatches> getAllBatches() {
+	public ObservableList<DtoBatches> getAllBatches() {
 
-		LinkedList<DtoBatches> dtoLinkedList = new LinkedList<DtoBatches>();
+		ObservableList<DtoBatches> dtoList = FXCollections.observableArrayList();
 
 		DaoFactory daoFactory = DaoFactory.getSqlFactory();
 		BatchesDao batchesDao = daoFactory.getBatches();
 
-		LinkedList<EntityBatches> entityJobHistories = batchesDao.loadAllBatches();
-		for (EntityBatches entity : entityJobHistories) {
+		LinkedList<EntityBatches> entityBatches = batchesDao.loadAllBatches();
+		for (EntityBatches entity : entityBatches) {
 			Mapper mapper = new DozerBeanMapper();
 			DtoBatches dto = mapper.map(entity, DtoBatches.class);
 
-			dtoLinkedList.add(dto);
+			dtoList.add(dto);
 		}
 
-		return dtoLinkedList;
+		return dtoList;
 	}
 
 	public List<String> getEnumStatus() {

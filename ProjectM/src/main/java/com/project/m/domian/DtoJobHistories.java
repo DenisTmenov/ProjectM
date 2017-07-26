@@ -296,15 +296,6 @@ public class DtoJobHistories {
 		return targetMailboxSimple;
 	}
 
-	/*
-	 * public SimpleStringProperty getStatusDateSimple() { Date date =
-	 * getStatusDate(); SimpleStringProperty statusDateSimple = null; if (date !=
-	 * null) { SimpleDateFormat dateFormat = new
-	 * SimpleDateFormat("dd/MMM/yy HH:mm"); statusDateSimple = new
-	 * SimpleStringProperty(dateFormat.format(date)); } else { statusDateSimple =
-	 * new SimpleStringProperty(String.valueOf("")); } return statusDateSimple; }
-	 */
-
 	public SimpleStringProperty getBatchNameSimple() {
 		SimpleStringProperty batchNameSimple = new SimpleStringProperty(String.valueOf(getBatchName()));
 		batchNameSimple = SimpleObject.convertNullToSpace(batchNameSimple);

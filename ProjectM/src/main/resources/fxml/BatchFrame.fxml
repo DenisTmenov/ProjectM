@@ -9,11 +9,12 @@
    <children>
       <ScrollPane fitToHeight="true" fitToWidth="true" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <content>
-            <TableView fx:id="batchTable" stylesheets="@../style/projectStyle.css">
+            <TableView fx:id="batchesTable" stylesheets="@../style/projectStyle.css">
               <columns>
                 <TableColumn fx:id="batchIdColumn"  styleClass="columnRight" text="Batch Id" />
                 <TableColumn fx:id="batchNameColumn"  text="Batch Name" />
-                <TableColumn fx:id="jobCountColumn"  styleClass="columnRight" text="Job Count" />
+                <TableColumn fx:id="createDateColumn"  styleClass="columnRight" text="Create Date" />
+                <TableColumn fx:id="isActiveColumn"  text="Is Active" />
               </columns>
             </TableView>
          </content>

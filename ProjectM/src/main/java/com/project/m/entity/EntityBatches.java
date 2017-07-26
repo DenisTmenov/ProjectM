@@ -4,8 +4,8 @@ import java.util.Date;
 
 public class EntityBatches {
 
-	private Integer batchId;
-	private String batchName;
+	private Integer batchesId;
+	private String batchesName;
 	private Date createDate;
 	private Boolean isActive;
 
@@ -13,20 +13,20 @@ public class EntityBatches {
 		super();
 	}
 
-	public Integer getBatchId() {
-		return batchId;
+	public Integer getBatchesId() {
+		return batchesId;
 	}
 
-	public void setBatchId(Integer batchesId) {
-		this.batchId = batchesId;
+	public void setBatchesId(Integer batchesId) {
+		this.batchesId = batchesId;
 	}
 
-	public String getBatchName() {
-		return batchName;
+	public String getBatchesName() {
+		return batchesName;
 	}
 
-	public void setBatchName(String batchesName) {
-		this.batchName = batchesName;
+	public void setBatchesName(String batchesName) {
+		this.batchesName = batchesName;
 	}
 
 	public Date getCreateDate() {
@@ -49,8 +49,8 @@ public class EntityBatches {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((batchId == null) ? 0 : batchId.hashCode());
-		result = prime * result + ((batchName == null) ? 0 : batchName.hashCode());
+		result = prime * result + ((batchesId == null) ? 0 : batchesId.hashCode());
+		result = prime * result + ((batchesName == null) ? 0 : batchesName.hashCode());
 		result = prime * result + ((createDate == null) ? 0 : createDate.hashCode());
 		result = prime * result + ((isActive == null) ? 0 : isActive.hashCode());
 		return result;
@@ -65,15 +65,15 @@ public class EntityBatches {
 		if (getClass() != obj.getClass())
 			return false;
 		EntityBatches other = (EntityBatches) obj;
-		if (batchId == null) {
-			if (other.batchId != null)
+		if (batchesId == null) {
+			if (other.batchesId != null)
 				return false;
-		} else if (!batchId.equals(other.batchId))
+		} else if (!batchesId.equals(other.batchesId))
 			return false;
-		if (batchName == null) {
-			if (other.batchName != null)
+		if (batchesName == null) {
+			if (other.batchesName != null)
 				return false;
-		} else if (!batchName.equals(other.batchName))
+		} else if (!batchesName.equals(other.batchesName))
 			return false;
 		if (createDate == null) {
 			if (other.createDate != null)
@@ -90,8 +90,7 @@ public class EntityBatches {
 
 	@Override
 	public String toString() {
-		return "DboBatchesDao [batchesId=" + batchId + ", batchesName=" + batchName + ", createDate=" + createDate
-				+ ", isActive=" + isActive + "]";
+		return "DboBatchesDao [batchesId=" + batchesId + ", batchesName=" + batchesName + ", createDate=" + createDate + ", isActive=" + isActive + "]";
 	}
 
 }
