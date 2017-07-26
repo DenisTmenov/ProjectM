@@ -2,55 +2,55 @@ package com.project.m.entity;
 
 public class Entity__MigrationHistory {
 
-	private String MigrationId;
-	private String ContextKey;
-	private String Model;
-	private String ProductVersion;
+	private String migrationId;
+	private String contextKey;
+	private String model;
+	private String productVersion;
 
 	public Entity__MigrationHistory() {
 		super();
 	}
 
-	public String getBatchId() {
-		return MigrationId;
+	public String getMigrationId() {
+		return migrationId;
 	}
 
-	public void setBatchId(String batchesId) {
-		this.MigrationId = batchesId;
+	public void setMigrationId(String migrationId) {
+		this.migrationId = migrationId;
 	}
 
-	public String getBatchName() {
-		return ContextKey;
+	public String getContextKey() {
+		return contextKey;
 	}
 
-	public void setBatchName(String batchesName) {
-		this.ContextKey = batchesName;
+	public void setContextKey(String contextKey) {
+		this.contextKey = contextKey;
 	}
 
-	public String getCreateDate() {
-		return Model;
+	public String getModel() {
+		return model;
 	}
 
-	public void setCreateDate(String createDate) {
-		this.Model = createDate;
+	public void setModel(String model) {
+		this.model = model;
 	}
 
-	public String getIsActive() {
-		return ProductVersion;
+	public String getProductVersion() {
+		return productVersion;
 	}
 
-	public void setIsActive(String isActive) {
-		this.ProductVersion = isActive;
+	public void setProductVersion(String productVersion) {
+		this.productVersion = productVersion;
 	}
 
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((ContextKey == null) ? 0 : ContextKey.hashCode());
-		result = prime * result + ((MigrationId == null) ? 0 : MigrationId.hashCode());
-		result = prime * result + ((Model == null) ? 0 : Model.hashCode());
-		result = prime * result + ((ProductVersion == null) ? 0 : ProductVersion.hashCode());
+		result = prime * result + ((contextKey == null) ? 0 : contextKey.hashCode());
+		result = prime * result + ((migrationId == null) ? 0 : migrationId.hashCode());
+		result = prime * result + ((model == null) ? 0 : model.hashCode());
+		result = prime * result + ((productVersion == null) ? 0 : productVersion.hashCode());
 		return result;
 	}
 
@@ -63,32 +63,32 @@ public class Entity__MigrationHistory {
 		if (getClass() != obj.getClass())
 			return false;
 		Entity__MigrationHistory other = (Entity__MigrationHistory) obj;
-		if (ContextKey == null) {
-			if (other.ContextKey != null)
+		if (contextKey == null) {
+			if (other.contextKey != null)
 				return false;
-		} else if (!ContextKey.equals(other.ContextKey))
+		} else if (!contextKey.equals(other.contextKey))
 			return false;
-		if (MigrationId == null) {
-			if (other.MigrationId != null)
+		if (migrationId == null) {
+			if (other.migrationId != null)
 				return false;
-		} else if (!MigrationId.equals(other.MigrationId))
+		} else if (!migrationId.equals(other.migrationId))
 			return false;
-		if (Model == null) {
-			if (other.Model != null)
+		if (model == null) {
+			if (other.model != null)
 				return false;
-		} else if (!Model.equals(other.Model))
+		} else if (!model.equals(other.model))
 			return false;
-		if (ProductVersion == null) {
-			if (other.ProductVersion != null)
+		if (productVersion == null) {
+			if (other.productVersion != null)
 				return false;
-		} else if (!ProductVersion.equals(other.ProductVersion))
+		} else if (!productVersion.equals(other.productVersion))
 			return false;
 		return true;
 	}
 
 	@Override
 	public String toString() {
-		return "Entity__MigrationHistory [MigrationId=" + MigrationId + ", ContextKey=" + ContextKey + ", Model=" + Model + ", ProductVersion=" + ProductVersion + "]";
+		return "Entity__MigrationHistory [migrationId=" + migrationId + ", contextKey=" + contextKey + ", model=" + model + ", productVersion=" + productVersion + "]";
 	}
 
 }
