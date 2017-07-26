@@ -8,24 +8,11 @@ import java.util.LinkedList;
 
 import com.project.m.dao.JobEntriesDaoInterface;
 import com.project.m.dao.db.ConnectionPool;
-import com.project.m.entity.EntityBatches;
 import com.project.m.entity.EntityJobEntries;
 import com.project.m.exceptions.DaoException;
 import com.project.m.service.CreatorEntity;
 
 public class JobEntriesDao implements JobEntriesDaoInterface {
-
-	@Override
-	public void save(EntityBatches bean) throws DaoException {
-	}
-
-	@Override
-	public void update(EntityBatches bean) throws DaoException {
-	}
-
-	@Override
-	public void remove(Integer batchId) throws DaoException {
-	}
 
 	@Override
 	public LinkedList<EntityJobEntries> loadJobEntriesByBatchId(Integer batchId) {

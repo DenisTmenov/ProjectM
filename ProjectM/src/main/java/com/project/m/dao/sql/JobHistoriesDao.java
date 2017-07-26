@@ -8,24 +8,11 @@ import java.util.LinkedList;
 
 import com.project.m.dao.JobHistoriesDaoInterface;
 import com.project.m.dao.db.ConnectionPool;
-import com.project.m.entity.EntityBatches;
 import com.project.m.entity.EntityJobHistories;
 import com.project.m.exceptions.DaoException;
 import com.project.m.service.CreatorEntity;
 
 public class JobHistoriesDao implements JobHistoriesDaoInterface {
-
-	@Override
-	public void save(EntityBatches bean) throws DaoException {
-	}
-
-	@Override
-	public void update(EntityBatches bean) throws DaoException {
-	}
-
-	@Override
-	public void remove(Integer batchId) throws DaoException {
-	}
 
 	@Override
 	public LinkedList<EntityJobHistories> loadJobHistoriesByBatchId(Integer batchId) {

@@ -15,18 +15,6 @@ import com.project.m.service.CreatorEntity;
 public class BatchesDao implements BatchesDaoInterface {
 
 	@Override
-	public void save(EntityBatches bean) throws DaoException {
-	}
-
-	@Override
-	public void update(EntityBatches bean) throws DaoException {
-	}
-
-	@Override
-	public void remove(Integer batchId) throws DaoException {
-	}
-
-	@Override
 	public LinkedList<EntityBatches> loadAllBatches() {
 		Connection connection = null;
 		PreparedStatement statement = null;
@@ -52,5 +40,4 @@ public class BatchesDao implements BatchesDaoInterface {
 		return result;
 	}
 
-	
 }
